@@ -55,6 +55,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 
 ## Phase 4 — Polish & release
 - [ ] How-to page: where save files are on Android / PC / Switch, how to copy them back
+  - Android path: `Android/data/com.poncle.vampirecrawler/…`. Android 11+ blocks third-party file managers from writing there → document: USB + PC (works), system "Files" app (device-dependent), Shizuku + ZArchiver/MiXplorer/Material Files (on-device)
 - [ ] Error handling for unknown versions (`saveSystemVersion` ≠ 0.30.0 → warning)
 - [ ] README with screenshots, disclaimer
 - [ ] Release v1.0
