@@ -46,7 +46,7 @@ PLAN.md             project plan & progress
 - Known IDs, names, hints, prices and content groups live in `data/ids.json` (no code changes needed for new content).
 - Most reliable reference: https://vampire.survivors.wiki/w/Crawlers:Characters (online guides were outdated/wrong).
 - When the game gets an update:
-  1. Put the new APK into `game-files/` (gitignored, never commit game files) and run `node --max-old-space-size=6000 tools/extract-apk-ids.mjs game-files/<file>.apk --write` → refreshes `apk` in `data/ids.json` (all achievements/unlocks, relics, arcanas, dungeons, …). Also run `node tools/extract-ids.mjs <save…>` on a save from the new version and check every save ID appears in the APK lists.
+  1. Put the new APK into `game-files/` (gitignored, never commit game files) and run `node --max-old-space-size=6000 tools/extract-apk-ids.mjs game-files/<file>.apk --write` → refreshes `apk` in `data/ids.json`: database-registered IDs per content pack, save IDs, what unlocks what (`unlockedBy`/`unlocks`), deprecated content. Then re-check `hidden`/`experimental`, `characterUnlocks`, `relicUnlocks`, `powerUpGroups` against the new `apk` data. Also run `node tools/extract-ids.mjs <save…>` on a save from the new version and check every save ID appears in the APK lists.
   2. New characters show up in the editor under "New / not yet categorized" automatically.
   3. Add a group to `characterGroups` (`{ "name": "<Update> update", "released": "YYYY-MM-DD", "ids": [...] }`), plus `displayNames`, `hints`, `characterPrices` from the wiki.
   4. New characters also need an entry in `characterUnlocks` (unlock achievement). Unconfirmed IDs → `experimental`; unused/dev leftovers → `hidden` (never shown, kept in the file).

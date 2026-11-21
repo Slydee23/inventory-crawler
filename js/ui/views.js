@@ -449,7 +449,7 @@ function powerUpsView(ctx) {
     levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
       groupedSections(all.filter(p.isRegular), p.ids.powerUpGroups,
         (list, group, onCount) => h('div', null,
-          group?.unlock && p.achievements && h('label', { class: 'toggle unlock-toggle', title: group.unlock },
+          group?.unlock && p.achievements && h('label', { class: 'toggle unlock-toggle', title: `Unlocks: ${p.ids.unlockEffects?.[group.unlock] ?? group.unlock}` },
             h('input', {
               type: 'checkbox', checked: kvGet(p.achievements, group.unlock) === true,
               onchange: (e) => {
@@ -457,7 +457,7 @@ function powerUpsView(ctx) {
                 ctx.changed();
               },
             }),
-            h('span', null, 'Unlocked in shop', h('small', null, group.unlock))),
+            h('span', null, 'Unlocked in the shop', h('small', null, group.unlock))),
           kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {}, onCount)), { key: 'powerups' }),
       h('p', { class: 'note' }, 'A level only shows in-game if its shop tier is unlocked ("Unlocked in shop"). Max levels from the in-game shop. Hover a power-up for its effect and base price (the in-game price rises with each purchase).')),
     enabled && panel('Power-ups enabled', 'PowerUpEnabled',
@@ -525,7 +525,11 @@ function achievementsView(ctx) {
     onCount,
     isOn: (id) => kvGet(ach, id) === true,
     set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
-    hints: p.ids.unlockHints ?? {},
+    hints: Object.fromEntries(list.map((id) => [id, [
+      p.ids.unlockHints?.[id],
+      p.ids.unlockEffects?.[id] && `Unlocks: ${p.ids.unlockEffects[id]}`,
+      p.ids.experimental?.[id],
+    ].filter(Boolean).join(' · ') || id])),
     links: {
       ...linksTo(ctx, list, invert(p.ids.characterUnlocks), 'characters', '→ Character'),
       ...linksTo(ctx, list, invert(p.ids.relicUnlocks), 'relics', '→ Relic'),

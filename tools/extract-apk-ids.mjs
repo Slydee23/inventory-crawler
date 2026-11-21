@@ -1,6 +1,6 @@
 // Extract game IDs (achievements/unlocks, relics, arcanas, dungeons, …) from a Vampire Crawlers APK.
 //
-// Usage:  node tools/extract-apk-ids.mjs <path/to/game.apk> [--write]
+// Usage:  node --max-old-space-size=6000 tools/extract-apk-ids.mjs <path/to/game.apk> [--write]
 //
 // Reads only: opens the APK (zip), decompresses the Unity bundles data.unity3d / datapack.unity3d
 // (UnityFS, LZ4) in memory and scans them for length-prefixed ID strings. Nothing is executed and
@@ -120,65 +120,186 @@ function unityFsFiles(b) {
   let w = 0;
   for (const [u, c, f] of blocks) { unpack(b.subarray(o, o + c), f & 0x3f, u).copy(data, w); w += u; o += c; }
   // .resS / .resource hold textures/audio only — skip them
-  return nodes.filter((n) => !/\.(resS|resource)$/.test(n.name)).map((n) => data.subarray(n.off, n.off + n.size));
+  return nodes.filter((n) => !/\.(resS|resource)$/.test(n.name)).map((n) => ({ name: n.name, buf: data.subarray(n.off, n.off + n.size) }));
 }
 
-// ---------------------------------------------------------------- scan
+// ---------------------------------------------------------------- Unity SerializedFile (no type trees needed)
+
+function parseSerialized(buf) {
+  let o = 0;
+  const be32 = () => { const v = buf.readUInt32BE(o); o += 4; return v; };
+  be32(); be32(); const version = be32(); let dataOffset = be32();
+  if (version < 19) throw new Error('SerializedFile version too old: ' + version);
+  let le = buf[o] === 0; o += 4;
+  if (version >= 22) { o += 4; o += 8; dataOffset = Number(buf.readBigUInt64BE(o)); o += 8; o += 8; }
+  const u8 = () => buf[o++];
+  const i16 = () => { const v = le ? buf.readInt16LE(o) : buf.readInt16BE(o); o += 2; return v; };
+  const i32 = () => { const v = le ? buf.readInt32LE(o) : buf.readInt32BE(o); o += 4; return v; };
+  const u32 = () => { const v = le ? buf.readUInt32LE(o) : buf.readUInt32BE(o); o += 4; return v; };
+  const i64 = () => { const v = le ? buf.readBigInt64LE(o) : buf.readBigInt64BE(o); o += 8; return v; };
+  const cstr = () => { const s = o; while (buf[o]) o++; return buf.toString('utf8', s, o++); };
+  const align = () => { o = (o + 3) & ~3; };
+  cstr(); i32();
+  const typeTree = u8() !== 0;
+  const readTree = () => {
+    const nodes = i32(), strSize = i32();
+    o += nodes * (version >= 19 ? 32 : 24) + strSize;
+  };
+  const readTypes = (isRef) => {
+    const types = [];
+    for (let n = i32(), k = 0; k < n; k++) {
+      const t = { classID: i32() };
+      u8(); i16();
+      if (isRef || t.classID === 114) o += 16;
+      o += 16;
+      if (typeTree) {
+        readTree();
+        if (version >= 21) { if (isRef) { cstr(); cstr(); cstr(); } else { const d = i32(); o += 4 * d; } }
+      }
+      types.push(t);
+    }
+    return types;
+  };
+  const types = readTypes(false);
+  const objects = [];
+  for (let n = i32(), k = 0; k < n; k++) {
+    align();
+    const pathID = i64();
+    const start = dataOffset + (version >= 22 ? Number(i64()) : u32());
+    const size = u32();
+    const t = types[i32()];
+    objects.push({ pathID, start, size, classID: t?.classID });
+  }
+  for (let n = i32(), k = 0; k < n; k++) { i32(); align(); i64(); }
+  const externals = [];
+  for (let n = i32(), k = 0; k < n; k++) { cstr(); o += 16; i32(); externals.push(cstr().split('/').pop()); }
+  return { objects, externals };
+}
+
+// ---------------------------------------------------------------- analysis
 
 const apk = readFileSync(apkPath);
 const zip = zipEntries(apk);
-const files = [];
+const files = {};
 for (const name of ['assets/bin/Data/data.unity3d', 'assets/bin/Data/datapack.unity3d']) {
   const e = zip.get(name);
   if (!e) { console.warn('missing in APK:', name); continue; }
-  files.push(...unityFsFiles(zipRead(apk, e)));
-}
-
-const PREFIX = /^(FCC|Card|RelicConfig|ArcanaConfig|GemConfig|PowerUp|TownBuilding|Dungeon)_[A-Za-z0-9_]+$/;
-const ACH = /^[A-Za-z]*Achievement_[A-Za-z0-9_]+$/;
-const found = new Set();
-const achievementObjects = [];
-for (const b of files) {
-  const strAt = (i, re) => {
-    if (i < 0 || i + 4 > b.length) return null;
-    const n = b.readInt32LE(i);
-    if (n < 4 || n > 100 || i + 4 + n > b.length) return null;
-    const s = b.toString('latin1', i + 4, i + 4 + n);
-    return re.test(s) ? s : null;
-  };
-  for (let i = 0; i < b.length - 8; i++) {
-    const p = strAt(i, PREFIX);
-    if (p) { found.add(p); i += 3 + p.length; continue; }
-    const a = strAt(i, ACH);
-    if (!a) continue;
-    let id = null, at = -1;
-    for (let j = i + 4 + a.length; j < i + 170; j++) { const t = strAt(j, ACH); if (t) { id = t; at = j; break; } }
-    if (id) { achievementObjects.push({ name: a, id }); i = at + 3 + id.length; } else i += 3 + a.length;
+  for (const f of unityFsFiles(zipRead(apk, e))) {
+    try { files[f.name] = { name: f.name, buf: f.buf, ...parseSerialized(f.buf) }; } catch { /* not a serialized file */ }
   }
 }
 
-const byPrefix = (p) => [...found].filter((s) => s.startsWith(p + '_')).sort();
-const isTest = (s) => /^Test|_Test|BlahBlahBlah|_teaser$|_Demo$/i.test(s);
-const achievements = [...new Set(achievementObjects.filter((o) => !isTest(o.name) && !isTest(o.id)).map((o) => o.id))].sort();
+const lookup = {};
+for (const f of Object.values(files)) {
+  lookup[f.name] = new Map();
+  for (const ob of f.objects) { ob.file = f.name; lookup[f.name].set(ob.pathID.toString(), ob); }
+}
+const readStr = (b, at) => { const n = b.readInt32LE(at); return n >= 0 && n < 512 ? b.toString('utf8', at + 4, at + 4 + n) : ''; };
+const alignUp = (n) => (n + 3) & ~3;
+const targetFile = (f, fid) => (fid === 0 ? f.name : f.externals[fid - 1]);
+
+// MonoScript (115): m_Name, m_ExecutionOrder, m_PropertiesHash(16), m_ClassName
+for (const f of Object.values(files)) for (const ob of f.objects) {
+  if (ob.classID !== 115) continue;
+  const name = readStr(f.buf, ob.start);
+  ob.scriptClass = readStr(f.buf, alignUp(ob.start + 4 + Buffer.byteLength(name)) + 20) || name;
+}
+// MonoBehaviour (114): m_GameObject PPtr, m_Enabled, m_Script PPtr, m_Name
+const behaviours = [];
+for (const f of Object.values(files)) for (const ob of f.objects) {
+  if (ob.classID !== 114) continue;
+  const fid = f.buf.readInt32LE(ob.start + 16), pid = f.buf.readBigInt64LE(ob.start + 20);
+  ob.cls = lookup[targetFile(f, fid)]?.get(pid.toString())?.scriptClass ?? '?';
+  ob.name = readStr(f.buf, ob.start + 28);
+  ob.fieldsStart = alignUp(ob.start + 32 + Buffer.byteLength(ob.name));
+  behaviours.push(ob);
+}
+/** Objects referenced by PPtrs inside an object's fields. */
+function refsOf(ob) {
+  const f = files[ob.file]; const out = [];
+  for (let p = ob.fieldsStart; p + 12 <= ob.start + ob.size; p += 4) {
+    const fid = f.buf.readInt32LE(p);
+    if (fid < 0 || fid > f.externals.length) continue;
+    const pid = f.buf.readBigInt64LE(p + 4);
+    if (pid === 0n) continue;
+    const t = lookup[targetFile(f, fid)]?.get(pid.toString());
+    if (t && t !== ob && t.classID === 114) out.push(t);
+  }
+  return out;
+}
+/**
+ * Save ID = first ID-like string field after m_Name (falls back to the asset name).
+ * Achievements keep it right after m_Name; relics/gems store it deep inside the object.
+ */
+function saveId(ob, re, window = Infinity) {
+  const b = files[ob.file].buf, end = ob.start + ob.size;
+  for (let p = ob.fieldsStart; p + 4 < Math.min(end, ob.fieldsStart + window); p++) {
+    const n = b.readInt32LE(p);
+    if (n > 3 && n < 100 && p + 4 + n <= end) { const s = b.toString('latin1', p + 4, p + 4 + n); if (re.test(s)) return s; }
+  }
+  return ob.name;
+}
+
+const ACH = /^[A-Za-z-]*Achievement_[A-Za-z0-9_]+$/;
+const isAch = (o) => /Achievement$/.test(o.cls) && o.cls !== 'EnemyAchievementUnlockOnDeath';
+const CATEGORY = {
+  FccConfig: ['characters', /^FCC_[A-Za-z0-9_']+$/],
+  RelicConfig: ['relics', /^RelicConfig_[A-Za-z0-9_]+$/],
+  PowerUpConfig: ['powerUps', /^PowerUp_[A-Za-z0-9_]+$/],
+  GemConfig: ['gems', /^GemConfig_[A-Za-z0-9_]+$/],
+  ArcanaConfig: ['arcanas', /^ArcanaConfig_[A-Za-z0-9_]+$/],
+  EbbAndComboArcanaConfig: ['arcanas', /^ArcanaConfig_[A-Za-z0-9_]+$/],
+  DungeonConfig: ['dungeons', /^Dungeon_[A-Za-z0-9_]+$/],
+  TownBuildingConfig: ['buildings', /^TownBuilding_[A-Za-z0-9_]+$/],
+  CardConfig: ['cards', /^Card_[A-Za-z0-9_]+$/],
+};
+const idOf = (o) => (isAch(o) ? saveId(o, ACH, 400) : CATEGORY[o.cls] ? saveId(o, CATEGORY[o.cls][1]) : o.name);
+
+// Content packs: <Pack>_XxxDatabase objects list what the game actually loads
 const result = {
   source: apkPath.split(/[\\/]/).pop(),
   extracted: new Date().toISOString().slice(0, 10),
-  achievements,
-  achievementAssetNames: Object.fromEntries(achievementObjects.filter((o) => o.name !== o.id).map((o) => [o.id, o.name])),
-  characters: byPrefix('FCC').filter((s) => !/_(Actions|Played|Discovered|Triggered|Attack)/.test(s)),
-  relics: byPrefix('RelicConfig'),
-  arcanas: byPrefix('ArcanaConfig'),
-  dungeons: byPrefix('Dungeon').filter((s) => !isTest(s)),
-  buildings: byPrefix('TownBuilding'),
-  powerUps: byPrefix('PowerUp'),
-  gems: byPrefix('GemConfig'),
-  cards: byPrefix('Card').filter((s) => !/_(Played|Discovered|Damage|Level|Duration)$/.test(s)),
+  achievements: new Set(), characters: new Set(), relics: new Set(), powerUps: new Set(), gems: new Set(),
+  arcanas: new Set(), dungeons: new Set(), buildings: new Set(), cards: new Set(),
+  pack: {}, deprecated: [], achievementAssetNames: {}, unlockedBy: {}, unlocks: {},
 };
+for (const db of behaviours.filter((o) => /Database$/.test(o.cls) && !/Multi/.test(o.cls))) {
+  const pack = db.name.split('_')[0];
+  for (const t of refsOf(db)) {
+    if (/^Test/i.test(t.name)) continue;
+    const cat = isAch(t) ? 'achievements' : CATEGORY[t.cls]?.[0];
+    if (!cat) continue;
+    const id = idOf(t);
+    if (cat === 'arcanas' && /DEPRECATED/i.test(t.name)) result.deprecated.push(id);
+    result[cat].add(id);
+    result.pack[id] ??= pack;
+    if (isAch(t) && t.name !== id) result.achievementAssetNames[id] = t.name;
+  }
+}
+// What unlocks what: content objects reference their unlock achievement
+for (const o of behaviours) {
+  if (/Database$|MultiGroup$/.test(o.cls) || isAch(o) || o.cls === 'ProgressionData' || /^Test/i.test(o.name)) continue;
+  const content = CATEGORY[o.cls] || ['PassiveEventConfig', 'EnemyEncounterConfig'].includes(o.cls);
+  if (!content) continue;
+  const id = CATEGORY[o.cls] ? idOf(o) : `${o.cls.replace('Config', '')}:${o.name}`;
+  for (const t of refsOf(o)) {
+    if (!isAch(t)) continue;
+    const ach = idOf(t);
+    if (CATEGORY[o.cls]) result.unlockedBy[id] ??= ach;
+    (result.unlocks[ach] ??= []).includes(id) || result.unlocks[ach].push(id);
+  }
+}
+for (const k of ['achievements', 'characters', 'relics', 'powerUps', 'gems', 'arcanas', 'dungeons', 'buildings', 'cards']) {
+  result[k] = [...result[k]].sort();
+}
+result.deprecated.sort();
 
 for (const [k, v] of Object.entries(result)) {
   if (Array.isArray(v)) console.log(`${k.padEnd(14)} ${v.length}`);
 }
-console.log(`asset name ≠ save ID: ${Object.keys(result.achievementAssetNames).length}`);
+const packs = {};
+for (const p of Object.values(result.pack)) packs[p] = (packs[p] ?? 0) + 1;
+console.log('packs:', packs, '| unlock links:', Object.keys(result.unlockedBy).length, '| asset name ≠ save ID:', Object.keys(result.achievementAssetNames).length);
 
 if (flags.includes('--write')) {
   const url = new URL('../data/ids.json', import.meta.url);

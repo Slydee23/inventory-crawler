@@ -213,12 +213,10 @@
     "RelicConfig_RageVirus",
     "RelicConfig_Randomazzo",
     "RelicConfig_Randomizer",
-    "RelicConfig_Rilevatore",
     "RelicConfig_SeventhTrumpet",
     "RelicConfig_SorcerersTears",
     "RelicConfig_Tappo",
     "RelicConfig_UltimateOverkill",
-    "RelicConfig_UltraOverkill",
     "RelicConfig_YellowSign"
   ],
   "dungeons": [
@@ -273,60 +271,58 @@
     "PowerUp_Speed": 2
   },
   "experimental": {
-    "SimpleAchievement_Relic_BraveStory": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_Darkasso": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_FccPamphlet": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_InnKey": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_MagicBanger": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_PossessedSneakers": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_RageVirus": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_Randomazzo": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_Randomizer": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_YellowSign": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_Gemcyclopedia": "relic in the game data but not on the wiki relic list — possibly unused",
-    "SimpleAchievement_Relic_SlateOfIndecision": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_BraveStory": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_Darkasso": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_FccPamphlet": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_InnKey": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_MagicBanger": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_PossessedSneakers": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_RageVirus": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_Randomazzo": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_Randomizer": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_YellowSign": "relic in the game data but not on the wiki relic list — possibly unused",
-    "RelicConfig_UltraOverkill": "second config of Ultimate Ultra Overkill (shares its unlock) — possibly unused",
-    "DungeonAchievement_Unlock_Soda_01": "\"Soda\" dungeon: not found on the wiki — possibly unreleased",
-    "DungeonAchievement_Unlock_Soda_02": "\"Soda\" dungeon: not found on the wiki — possibly unreleased",
-    "DungeonAchievement_FirstTime_Soda2": "\"Soda\" dungeon: not found on the wiki — possibly unreleased",
-    "MetricAchievement_Event_ChickenShop": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_Event_DuplicationTable": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_Event_DuplicationTableEvent": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_Event_GFH": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_Event_ManaOfferingTable": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_ChickenShop": "dungeon event tracker — not a listed unlock, effect unknown",
-    "MetricAchievement_MantishAmbushEncountered": "dungeon event tracker — not a listed unlock, effect unknown",
-    "DungeonAchievement_VentoSacro": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Base_Game_Complete": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Unlock_Complete_MF3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Unlock_Complete_IL3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Unlock_Complete_DP3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_CompleteMF3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_CompleteIL3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_CompleteDP3": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_GainMana": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_03_GalloTower": "not on the wiki unlock list — effect unknown",
-    "DungeonAchievement_Gems_02_CompIL1": "not on the wiki unlock list — effect unknown",
-    "MetricAchievement_ImNotLeaving": "arcana in the game data but not on the wiki unlock list",
-    "MetricAchievement_ShieldBash": "arcana in the game data but not on the wiki unlock list",
-    "MetricAchievement_ExperimentalMedicine": "arcana in the game data but not on the wiki unlock list"
+    "Multi-Achievement_Unlock_TinyBridge": "combined unlock of Teeny Bridge, evaluated by the game from Unlock_TinyBridge_01 (full game) or its demo counterpart — use Unlock_TinyBridge_01 instead",
+    "RelicConfig_Darkasso": "relic exists, but nothing in the game unlocks it and it is not a starter relic",
+    "RelicConfig_FccPamphlet": "relic exists, but nothing in the game unlocks it and it is not a starter relic",
+    "RelicConfig_PossessedSneakers": "relic exists, but nothing in the game unlocks it and it is not a starter relic",
+    "RelicConfig_RageVirus": "relic exists, but nothing in the game unlocks it and it is not a starter relic",
+    "RelicConfig_Randomizer": "relic exists, but nothing in the game unlocks it and it is not a starter relic",
+    "RelicConfig_YellowSign": "relic exists, but nothing in the game unlocks it and it is not a starter relic"
   },
   "hidden": {
-    "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown",
-    "FCC_Divano": "unused character in the game data (wiki lists it as \"Unused\")",
-    "SimpleAchievement_Character_ZiAssunta": "unlock of an unused character (Zi Assunta, not in the game roster)",
     "DungeonAchievement_BlacksmithPlaceholder": "developer placeholder",
-    "DungeonAchievement_JewelerPlaceholder": "developer placeholder"
+    "DungeonAchievement_FirstTime_Soda2": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Gems_03_GalloTower": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Gems_GainMana": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_JewelerPlaceholder": "developer placeholder",
+    "DungeonAchievement_MoonGolow_0_Unlock": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Unlock_Complete_DP3": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Unlock_Complete_IL3": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Unlock_Complete_MF3": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Unlock_Soda_01": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "DungeonAchievement_Unlock_Soda_02": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Event_ChickenShop": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Event_DuplicationTable": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_ExperimentalMedicine": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Gems_Armor": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Gems_Ditto": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Gems_Draw": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Gems_Execute": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_Gems_Rally": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "MetricAchievement_ImNotLeaving": "unlock of a deprecated arcana",
+    "MetricAchievement_ShieldBash": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_BraveStory": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_Darkasso": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_DeckBox": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_FccPamphlet": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_Gemcyclopedia": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_MagicBanger": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_MilkyWayMap": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_PossessedSneakers": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_RageVirus": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_Randomizer": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_Rilevatore": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "SimpleAchievement_Relic_SlateOfIndecision": "unlocks nothing in the game data, not on the wiki, never seen in a save",
+    "RelicConfig_BraveStory": "broken relic config (wrong save ID) — unused",
+    "RelicConfig_MagicBanger": "broken relic config (wrong save ID) — unused",
+    "ArcanaConfig_BattleStance": "marked DEPRECATED in the game data",
+    "ArcanaConfig_DuelWielding": "marked DEPRECATED in the game data",
+    "ArcanaConfig_Execute": "marked DEPRECATED in the game data",
+    "ArcanaConfig_ImNotLeaving": "marked DEPRECATED in the game data",
+    "ArcanaConfig_QuickRecover": "marked DEPRECATED in the game data",
+    "FCC_Divano": "unused character in the game data (wiki lists it as \"Unused\")",
+    "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown",
+    "SimpleAchievement_Character_ZiAssunta": "unlock of an unused character (Zi Assunta, not in the game roster)"
   },
   "hints": {
     "FCC_Antonio": "Starting character (finish the tutorial)",
@@ -362,7 +358,7 @@
     "PowerUp_Curse": "+20% enemy strength per rank, but more XP · Unlock: Completing Weeny Bridge · Base price 350 gold",
     "PowerUp_Speed": "+1 card dealt per rank · Unlock: Completing Weeny Bridge · Base price 2,500 gold",
     "PowerUp_Duration": "+1 duration per rank · Unlock: Power-up shop · Base price 250 gold",
-    "PowerUp_Greed": "+25% coins per rank · Unlock: Completing Inlaid Library · Base price 1,000 gold",
+    "PowerUp_Greed": "+25% coins per rank · Unlock: with the Library West Wing unlock = completing Inlaid Library · Base price 1,000 gold",
     "PowerUp_Growth": "+20% XP per rank · Unlock: Power-up shop · Base price 750 gold",
     "PowerUp_Luck": "+20% Luck per rank · Unlock: Power-up shop · Base price 400 gold",
     "PowerUp_Magnet": "+1 to Draw effects · Unlock: Completing Weeny Bridge · Base price 2,000 gold",
@@ -372,12 +368,11 @@
     "PowerUp_Recovery": "+1 HP healed after each encounter per rank · Unlock: Power-up shop · Base price 500 gold",
     "PowerUp_Reroll": "+2 rerolls per rank · Unlock: Power-up shop · Base price 200 gold",
     "PowerUp_Revival": "+1 revival · Unlock: Completing Weeny Bridge · Base price 4,000 gold",
-    "PowerUp_Skip": "+2 skips (skip choices for XP) per rank · Unlock: Completing Teeny Bridge · Base price 250 gold",
+    "PowerUp_Skip": "+2 skips (skip choices for XP) per rank · Unlock: with the Dairy Plant unlock (game data) · Base price 250 gold",
     "RelicConfig_PancakeOfPower": "Play cards in ascending Mana cost order for a Combo Multiplier · Tutorial",
     "RelicConfig_DeckBox": "A simple box to hold a deck of cards · available from the start",
     "RelicConfig_MilkyWayMap": "Shows enemy positions and more on the minimap · available from the start",
-    "RelicConfig_Rilevatore": "Shows how weapons will affect targets · available from the start",
-    "RelicConfig_DamageIndicators": "Enabled from the start in every save (no unlock needed)",
+    "RelicConfig_DamageIndicators": "Shows how weapons will affect targets · available from the start (save ID: RelicConfig_DamageIndicators)",
     "RelicConfig_GemHammer": "Unlocks adding Gems to cards with empty gem slots · Mad Forest",
     "RelicConfig_GuidingLight": "Shows breakable light sources on the minimap · Inlaid Library",
     "RelicConfig_Polentir": "Unlocks the Fortune Teller's Arcana tent in the village · Furious Forest",
@@ -391,7 +386,9 @@
     "RelicConfig_Ovenkilt": "Overkill in any encounter · Cappella Ultima",
     "RelicConfig_SeventhTrumpet": "Adds an Endless button to the world map",
     "RelicConfig_GalileosHand": "Adds a Cap Hand Size button to the world map · Moongohigh",
-    "RelicConfig_Tappo": "Prevents the Drowner from appearing in normal stages · Gallo Dungeons"
+    "RelicConfig_Tappo": "Prevents the Drowner from appearing in normal stages · Gallo Dungeons",
+    "RelicConfig_InnKey": "Not on the wiki, but the game has an unlock for it",
+    "RelicConfig_Randomazzo": "Not on the wiki, but the game has an unlock for it"
   },
   "displayNames": {
     "FCC_Antonio": "Antonio Belpaese",
@@ -441,8 +438,7 @@
     "RelicConfig_PancakeOfPower": "Combo Stack",
     "RelicConfig_DeckBox": "Deck Box",
     "RelicConfig_MilkyWayMap": "Milky Way Map",
-    "RelicConfig_Rilevatore": "Rilevatore",
-    "RelicConfig_DamageIndicators": "Damage Indicators",
+    "RelicConfig_DamageIndicators": "Rilevatore",
     "RelicConfig_GemHammer": "Gem Hammer",
     "RelicConfig_GuidingLight": "Guiding Light",
     "RelicConfig_Polentir": "Polentír",
@@ -456,7 +452,43 @@
     "RelicConfig_Ovenkilt": "Ovenkilt",
     "RelicConfig_SeventhTrumpet": "Seventh Trumpet",
     "RelicConfig_GalileosHand": "Galileo's Hand",
-    "RelicConfig_Tappo": "Tappo"
+    "RelicConfig_Tappo": "Tappo",
+    "RelicConfig_InnKey": "Inn Key",
+    "RelicConfig_Randomazzo": "Randomazzo",
+    "RelicConfig_YellowSign": "Yellow Sign",
+    "RelicConfig_Darkasso": "Darkasso",
+    "RelicConfig_FccPamphlet": "FCC Pamphlet",
+    "RelicConfig_PossessedSneakers": "Possessed Sneakers",
+    "RelicConfig_RageVirus": "Rage Virus",
+    "RelicConfig_Randomizer": "Randomizer",
+    "Dungeon_Tutorial": "Tutorial",
+    "Dungeon_Madforest_01": "Mad Forest",
+    "Dungeon_Madforest_02": "Furious Forest",
+    "Dungeon_Madforest_03": "Berserk Wood",
+    "Dungeon_InlaidLibrary_01": "Inlaid Library",
+    "Dungeon_InlaidLibrary_02": "Library West Wing",
+    "Dungeon_InlaidLibrary_03": "Library Sanctum",
+    "Dungeon_TinyBridge_01": "Teeny Bridge",
+    "Dungeon_TinyBridge_02": "Weeny Bridge",
+    "Dungeon_TinyBridge_03": "Meany Bridge",
+    "Dungeon_DairyPlant_01": "Dairy Plant",
+    "Dungeon_DairyPlant_02": "Milk Factory",
+    "Dungeon_DairyPlant_03": "Curd Refinery",
+    "Dungeon_GalloTower_01": "Gallo Tower",
+    "Dungeon_CappellaMagna_01": "Cappella Magna",
+    "Dungeon_CappellaMagna_02": "Cappella Ultima",
+    "Dungeon_GalloBelow_01": "Gallo Dungeons",
+    "Dungeon_Soda_01": "Moongolow",
+    "Dungeon_Soda_02": "Moongohigh",
+    "Dungeon_Moongolow_teaser": "??? (Moongolow teaser)",
+    "TownBuilding_Shop": "Power-up shop",
+    "TownBuilding_Inn": "Inn (Crawler selection)",
+    "TownBuilding_Museum": "Relic Museum",
+    "TownBuilding_Blacksmith": "Blacksmith",
+    "TownBuilding_Fortune": "Fortune Teller",
+    "TownBuilding_Graveyard": "Graveyard",
+    "TownBuilding_TownHall": "Town Hall",
+    "TownBuilding_WorldMap": "World Map"
   },
   "characterPrices": {
     "FCC_Antonio": 0,
@@ -524,7 +556,8 @@
   ],
   "powerUpGroups": [
     {
-      "name": "Shop tier 1 — available from the start",
+      "name": "Shop tier 1 — with the power-up shop",
+      "unlock": "MetricAchievement_PowerUpShop",
       "ids": [
         "PowerUp_Area",
         "PowerUp_Armor",
@@ -535,34 +568,40 @@
         "PowerUp_Might",
         "PowerUp_Recovery",
         "PowerUp_Reroll"
-      ],
-      "unlock": "MetricAchievement_PowerUpShop"
+      ]
     },
     {
-      "name": "Shop tier 2 — after Teeny Bridge",
+      "name": "Shop tier 2",
+      "unlock": "DungeonAchievement_Unlock_ShopTier2",
       "ids": [
         "PowerUp_Amount",
         "PowerUp_CharacterSlot",
-        "PowerUp_Cooldown",
-        "PowerUp_Skip"
-      ],
-      "unlock": "DungeonAchievement_Unlock_ShopTier2"
+        "PowerUp_Cooldown"
+      ]
     },
     {
-      "name": "Shop tier 3 — after Weeny Bridge",
+      "name": "Shop tier 3",
+      "unlock": "DungeonAchievement_Unlock_ShopTier3",
       "ids": [
         "PowerUp_Banish",
         "PowerUp_Curse",
-        "PowerUp_Speed",
         "PowerUp_Magnet",
-        "PowerUp_Revival"
-      ],
-      "unlock": "DungeonAchievement_Unlock_ShopTier3"
+        "PowerUp_Revival",
+        "PowerUp_Speed"
+      ]
     },
     {
-      "name": "After Inlaid Library",
+      "name": "Greed — with the Library West Wing unlock",
+      "unlock": "DungeonAchievement_Unlock_InlaidLibrary_02",
       "ids": [
         "PowerUp_Greed"
+      ]
+    },
+    {
+      "name": "Skip — with the Dairy Plant unlock",
+      "unlock": "DungeonAchievement_Unlock_DairyPlant_01",
+      "ids": [
+        "PowerUp_Skip"
       ]
     }
   ],
@@ -615,6 +654,7 @@
       "DungeonAchievement_Unlock_ShopTier3",
       "DungeonAchievement_Unlock_Soda_01",
       "DungeonAchievement_Unlock_Soda_02",
+      "DungeonAchievement_Unlock_TinyBridge_01",
       "DungeonAchievement_Unlock_TinyBridge_02",
       "DungeonAchievement_Unlock_TinyBridge_03",
       "DungeonAchievement_VentoSacro",
@@ -788,6 +828,7 @@
       "MetricAchievement_WildStrength",
       "MetricAchievement_Wings",
       "MetricAchievement_YourShieldMyLiege",
+      "Multi-Achievement_Unlock_TinyBridge",
       "PowerUpAchievement_RerollDrop",
       "SimpleAchievement_Character_Antonio",
       "SimpleAchievement_Character_BigTroubler",
@@ -828,15 +869,6 @@
       "SimpleAchievement_Relic_UltimateOverkill",
       "SimpleAchievement_Relic_YellowSign"
     ],
-    "achievementAssetNames": {
-      "MetricAchievement_EnderUnlocked_DeathParade": "MetricAchievement_DrownerUnlocked_DeathParade",
-      "MetricAchievement_MakeASceme": "MetricAchievement_MakeAScene",
-      "SimpleAchievement_Character_MissingNo": "SimpleAchievement_Character_MIssingNo",
-      "MetricAchievement_Boost": "MetricAchievement_Gems_Boost",
-      "DungeonAchievement_Unlock_TinyBridge_01": "DungeonAchievement_Unlock_TinyBridge_01_Demo",
-      "SimpleAchievement_Relic_UltimateOverkill": "SimpleAchievement_Relic_UltraOverkill",
-      "EndRunAchievement_SkullOManic": "EndRunAchievement_SkullOManiac"
-    },
     "characters": [
       "FCC_Ambrojoe",
       "FCC_Antonio",
@@ -846,7 +878,6 @@
       "FCC_Christine",
       "FCC_Clerici",
       "FCC_Concetta",
-      "FCC_Divano",
       "FCC_Dommario",
       "FCC_Gallo",
       "FCC_Gennaro",
@@ -889,68 +920,11 @@
       "RelicConfig_RageVirus",
       "RelicConfig_Randomazzo",
       "RelicConfig_Randomizer",
-      "RelicConfig_Rilevatore",
       "RelicConfig_SeventhTrumpet",
       "RelicConfig_SorcerersTears",
       "RelicConfig_Tappo",
       "RelicConfig_UltimateOverkill",
-      "RelicConfig_UltraOverkill",
       "RelicConfig_YellowSign"
-    ],
-    "arcanas": [
-      "ArcanaConfig_AndAnother",
-      "ArcanaConfig_BattleStance",
-      "ArcanaConfig_ChainLink",
-      "ArcanaConfig_ChairGame",
-      "ArcanaConfig_CrawlerBrawler",
-      "ArcanaConfig_DuelWielding",
-      "ArcanaConfig_EbbAndCombo",
-      "ArcanaConfig_Execute",
-      "ArcanaConfig_ExperimentalMedicine",
-      "ArcanaConfig_ImNotLeaving",
-      "ArcanaConfig_InfiniteCombo",
-      "ArcanaConfig_JestersHat",
-      "ArcanaConfig_MakeAScene",
-      "ArcanaConfig_ManaBloom",
-      "ArcanaConfig_ManaSyphon",
-      "ArcanaConfig_OverTheTop",
-      "ArcanaConfig_QuickRecover",
-      "ArcanaConfig_SharpMind",
-      "ArcanaConfig_ShieldBash",
-      "ArcanaConfig_SwollenFist",
-      "ArcanaConfig_WildStrength",
-      "ArcanaConfig_YourShield"
-    ],
-    "dungeons": [
-      "Dungeon_CappellaMagna_01",
-      "Dungeon_CappellaMagna_02",
-      "Dungeon_DairyPlant_01",
-      "Dungeon_DairyPlant_02",
-      "Dungeon_DairyPlant_03",
-      "Dungeon_GalloBelow_01",
-      "Dungeon_GalloTower_01",
-      "Dungeon_InlaidLibrary_01",
-      "Dungeon_InlaidLibrary_02",
-      "Dungeon_InlaidLibrary_03",
-      "Dungeon_Madforest_01",
-      "Dungeon_Madforest_02",
-      "Dungeon_Madforest_03",
-      "Dungeon_Soda_01",
-      "Dungeon_Soda_02",
-      "Dungeon_TinyBridge_01",
-      "Dungeon_TinyBridge_02",
-      "Dungeon_TinyBridge_03",
-      "Dungeon_Tutorial"
-    ],
-    "buildings": [
-      "TownBuilding_Blacksmith",
-      "TownBuilding_Fortune",
-      "TownBuilding_Graveyard",
-      "TownBuilding_Inn",
-      "TownBuilding_Museum",
-      "TownBuilding_Shop",
-      "TownBuilding_TownHall",
-      "TownBuilding_WorldMap"
     ],
     "powerUps": [
       "PowerUp_Amount",
@@ -975,7 +949,6 @@
       "PowerUp_Speed"
     ],
     "gems": [
-      "GemConfig_AddType_Armor",
       "GemConfig_AddType_Attack",
       "GemConfig_AddType_Defense",
       "GemConfig_AddType_Mana",
@@ -1041,6 +1014,61 @@
       "GemConfig_UpgradeDamage",
       "GemConfig_YinYang"
     ],
+    "arcanas": [
+      "ArcanaConfig_AndAnother",
+      "ArcanaConfig_BattleStance",
+      "ArcanaConfig_ChainLink",
+      "ArcanaConfig_ChairGame",
+      "ArcanaConfig_CrawlerBrawler",
+      "ArcanaConfig_DuelWielding",
+      "ArcanaConfig_EbbAndCombo",
+      "ArcanaConfig_Execute",
+      "ArcanaConfig_ExperimentalMedicine",
+      "ArcanaConfig_ImNotLeaving",
+      "ArcanaConfig_InfiniteCombo",
+      "ArcanaConfig_JestersHat",
+      "ArcanaConfig_MakeAScene",
+      "ArcanaConfig_ManaSyphon",
+      "ArcanaConfig_OverTheTop",
+      "ArcanaConfig_QuickRecover",
+      "ArcanaConfig_SharpMind",
+      "ArcanaConfig_ShieldBash",
+      "ArcanaConfig_SwollenFist",
+      "ArcanaConfig_WildStrength",
+      "ArcanaConfig_YourShield"
+    ],
+    "dungeons": [
+      "Dungeon_CappellaMagna_01",
+      "Dungeon_CappellaMagna_02",
+      "Dungeon_DairyPlant_01",
+      "Dungeon_DairyPlant_02",
+      "Dungeon_DairyPlant_03",
+      "Dungeon_GalloBelow_01",
+      "Dungeon_GalloTower_01",
+      "Dungeon_InlaidLibrary_01",
+      "Dungeon_InlaidLibrary_02",
+      "Dungeon_InlaidLibrary_03",
+      "Dungeon_Madforest_01",
+      "Dungeon_Madforest_02",
+      "Dungeon_Madforest_03",
+      "Dungeon_Moongolow_teaser",
+      "Dungeon_Soda_01",
+      "Dungeon_Soda_02",
+      "Dungeon_TinyBridge_01",
+      "Dungeon_TinyBridge_02",
+      "Dungeon_TinyBridge_03",
+      "Dungeon_Tutorial"
+    ],
+    "buildings": [
+      "TownBuilding_Blacksmith",
+      "TownBuilding_Fortune",
+      "TownBuilding_Graveyard",
+      "TownBuilding_Inn",
+      "TownBuilding_Museum",
+      "TownBuilding_Shop",
+      "TownBuilding_TownHall",
+      "TownBuilding_WorldMap"
+    ],
     "cards": [
       "Card_A_0_Bone",
       "Card_A_0_CherryBomb",
@@ -1048,28 +1076,22 @@
       "Card_A_0_Garlic",
       "Card_A_0_GorgeousMoon",
       "Card_A_0_Knife",
-      "Card_A_0_MagicWand",
       "Card_A_0_Whip",
-      "Card_A_1_CherryBomb",
       "Card_A_1_FireWand",
-      "Card_A_1_Garlic",
       "Card_A_1_GattiAmari",
       "Card_A_1_KingBible",
       "Card_A_1_MagicWand",
       "Card_A_1_Runetracer",
       "Card_A_1_SoulEater",
       "Card_A_1_UnearthlyBolt",
-      "Card_A_2_Axe",
       "Card_A_2_BloodyTear",
       "Card_A_2_Carrello",
       "Card_A_2_CelestialDusting",
-      "Card_A_2_Cross",
       "Card_A_2_EightTheSparrow",
       "Card_A_2_GlassFandango",
       "Card_A_2_HolyWand",
       "Card_A_2_LaRobba",
       "Card_A_2_LightningRing",
-      "Card_A_2_UnearthlyBolt",
       "Card_A_2_UnholyVespers",
       "Card_A_2_ValkyrieTurner",
       "Card_A_2_ViciousHunger",
@@ -1078,14 +1100,10 @@
       "Card_A_3_HeavenSword",
       "Card_A_3_HellFire",
       "Card_A_3_NoFuture",
-      "Card_A_3_Peachone",
-      "Card_A_3_PhieraDerTuphello",
       "Card_A_3_SantaWater",
       "Card_A_3_ShadowPinion",
-      "Card_A_3_SoulEater",
       "Card_A_3_ThousandEdge",
       "Card_A_3_VentoSacro",
-      "Card_A_4_EbonyWings",
       "Card_A_4_Fuwalafuwaloo",
       "Card_A_4_LaBorra",
       "Card_A_4_Pentagram",
@@ -1093,19 +1111,15 @@
       "Card_A_4_Phieraggi",
       "Card_A_4_SpiritDisturbance",
       "Card_A_4_Thunderloop",
-      "Card_A_4_VentoSacro",
       "Card_A_5_Peachone",
-      "Card_A_5_Pentagram",
       "Card_A_5_Vandalier",
       "Card_A_6_EbonyWings",
-      "Card_A_6_SpiritDisturbance",
       "Card_AngeloSpietato",
       "Card_B_0_EmptyTome",
       "Card_B_0_RawMana",
       "Card_B_1_EmptyTome",
       "Card_B_2_EmptyTome",
       "Card_B_3_EmptyTome",
-      "Card_Blacksmith",
       "Card_Confuse",
       "Card_CursedLancet",
       "Card_D_0_Armor",
@@ -1114,7 +1128,6 @@
       "Card_D_3_Armor",
       "Card_D_3_ClockLancet",
       "Card_D_6_InfiniteCorridor",
-      "Card_DeckView",
       "Card_E_BagOfCoins",
       "Card_E_CloverPetal",
       "Card_E_CoinCard",
@@ -1125,108 +1138,22 @@
       "Card_E_Orologion",
       "Card_E_Rosary",
       "Card_E_Vacuum",
-      "Card_Evolution_AnimaofMortaccio_Triggered",
-      "Card_Evolution_BloodyTear_ProjectileWhip",
-      "Card_Evolution_BloodyTear_Triggered",
-      "Card_Evolution_CelestialVoulge_Triggered",
-      "Card_Evolution_CrimsonShroud_Triggered",
-      "Card_Evolution_DeathSpiral_Triggered",
-      "Card_Evolution_Fuwalafuwaloo_Impact",
-      "Card_Evolution_Fuwalafuwaloo_Projectile",
-      "Card_Evolution_Fuwalafuwaloo_Triggered",
-      "Card_Evolution_GorgeousMoon_Impact",
-      "Card_Evolution_GorgeousMoon_Triggered",
-      "Card_Evolution_HeavenSword_Impact",
-      "Card_Evolution_HeavenSword_Projectile",
-      "Card_Evolution_HeavenSword_Triggered",
-      "Card_Evolution_Hellfire_Triggered",
-      "Card_Evolution_HolyWand_Projectile",
-      "Card_Evolution_HolyWand_Triggered",
-      "Card_Evolution_InfiniteCorrdior_UnFreeze",
-      "Card_Evolution_InfiniteCorridor_Freeze",
-      "Card_Evolution_InfiniteCorridor_Triggered",
-      "Card_Evolution_LaBorra_Projectile_Fire",
-      "Card_Evolution_LaBorra_Projectile_Impact",
-      "Card_Evolution_LaBorra_Triggered",
-      "Card_Evolution_Mannajja_Triggered",
-      "Card_Evolution_NoFuture_Projectile",
-      "Card_Evolution_NoFuture_Projectile_Screen_Bounce",
-      "Card_Evolution_NoFuture_Triggered",
-      "Card_Evolution_Phieraggi_Hit_Impact",
-      "Card_Evolution_Phieraggi_Projectile_Fire",
-      "Card_Evolution_Phieraggi_Triggered",
-      "Card_Evolution_SeraphicCry_Triggered",
-      "Card_Evolution_SoulEater_Triggered",
-      "Card_Evolution_SpiritDisturbance_Dragon_LP",
-      "Card_Evolution_SpiritDisturbance_Projectile",
-      "Card_Evolution_SpiritDisturbance_Triggered",
-      "Card_Evolution_ThousandEdge_Projectile_Fired",
-      "Card_Evolution_ThousandEdge_Triggered",
-      "Card_Evolution_ThunderLoop_Triggered",
-      "Card_Evolution_UnholyVespers_HitImpact",
-      "Card_Evolution_UnholyVespers_Projectile",
-      "Card_Evolution_UnholyVespers_Triggered",
-      "Card_Evolution_ValkyrieTurner_Projectile_Fire",
-      "Card_Evolution_ValkyrieTurner_Projectile_LP",
-      "Card_Evolution_ValkyrieTurner_Triggered",
-      "Card_Evolution_Vandalier_Projectile_Fire",
-      "Card_Evolution_Vandalier_Triggered",
-      "Card_Evolution_ViciousHunger_Projectile_Fired",
-      "Card_Evolution_ViciousHunger_Projectile_Impact",
-      "Card_Evolution_ViciousHunger_Triggered",
-      "Card_Hand",
-      "Card_ItemPickup_Rosary_Triggered",
-      "Card_Leda_Damage_Triggered",
-      "Card_M_0_RawMana",
       "Card_M_0_Wings",
       "Card_M_3_SongOfMana",
-      "Card_M_4_SongOfMana",
       "Card_M_5_Mannajja",
-      "Card_M_KaromasMana",
       "Card_ManaBomb",
       "Card_Muddle",
-      "Card_Passive_Armour_D1_Triggered",
-      "Card_Passive_Armour_D2_Triggered",
-      "Card_Passive_Armour_D3_Triggered",
-      "Card_Passive_Armour_Triggered",
-      "Card_Passive_AttractOrb_Triggered",
-      "Card_Passive_Bracer_Triggered",
-      "Card_Passive_Candelabrador_Triggered",
-      "Card_Passive_Clover_Triggered",
-      "Card_Passive_CoinCard_Triggered",
-      "Card_Passive_Crown_Triggered",
-      "Card_Passive_Duplicator_Triggered",
-      "Card_Passive_EmptyTome_Triggered",
-      "Card_Passive_GoldRing_Triggered",
-      "Card_Passive_HollowHeart_Triggered",
-      "Card_Passive_KaromasMana_Triggered",
-      "Card_Passive_Pummarola_Triggered",
-      "Card_Passive_SilverRing_Triggered",
-      "Card_Passive_SkullOManic_Triggered",
-      "Card_Passive_SpellBinder_Triggered",
-      "Card_Passive_Spinach_Triggered",
-      "Card_Passive_StoneMask_Triggered",
-      "Card_Passive_Tiramisu_Triggered",
-      "Card_Passive_TorronasBox_Triggered",
-      "Card_Passive_Vacuum_Triggered",
-      "Card_Passive_Wings_Triggered",
-      "Card_Pickup",
-      "Card_Reward",
-      "Card_RewardChest",
       "Card_S_0_Candelabrador",
       "Card_S_0_Crown",
       "Card_S_0_HollowHeart",
       "Card_S_0_Pummarola",
       "Card_S_0_SkullOManic",
-      "Card_S_0_SkullOmanic",
-      "Card_S_0_SpellBinder",
       "Card_S_0_Spinach",
       "Card_S_0_StoneMask",
       "Card_S_1_Attractorb",
       "Card_S_1_Candelabrador",
       "Card_S_1_Crown",
       "Card_S_1_Duplicator",
-      "Card_S_1_GoldRing",
       "Card_S_1_HollowHeart",
       "Card_S_1_Pummarola",
       "Card_S_1_SpellBinder",
@@ -1240,104 +1167,1415 @@
       "Card_S_2_Duplicator",
       "Card_S_2_HollowHeart",
       "Card_S_2_Pummarola",
-      "Card_S_2_SilverRing",
       "Card_S_2_Spinach",
       "Card_S_2_StoneMask",
-      "Card_S_2_Tirajisu",
       "Card_S_2_Tiramisu",
       "Card_S_KaromasMana",
       "Card_Shatter",
-      "Card_Test_0Cost",
-      "Card_Test_1Cost",
-      "Card_Test_2Cost",
-      "Card_Test_3Cost",
-      "Card_Test_Amount",
-      "Card_Test_Area",
-      "Card_Test_BigDamage",
-      "Card_Test_Block",
-      "Card_Test_Draw",
-      "Card_Test_DrawCard",
-      "Card_Test_Evo_Base",
-      "Card_Test_Evo_Evolved",
-      "Card_Test_Gain",
-      "Card_Test_Heal",
-      "Card_Test_Leech",
-      "Card_Test_Might",
-      "Card_Test_SlashUp",
       "Card_W_Bracelet",
       "Card_W_Combo",
       "Card_W_GoldRing",
       "Card_W_SilverRing",
-      "Card_W_WildDefence",
-      "Card_W_Wings",
-      "Card_Weapon_Axe_Impact",
-      "Card_Weapon_Axe_Triggered",
-      "Card_Weapon_Bone_Triggered",
-      "Card_Weapon_Carello_Projectile",
-      "Card_Weapon_Carello_Triggered",
-      "Card_Weapon_CelestialDusting_Hit_Impact",
-      "Card_Weapon_CelestialDusting_Triggered",
-      "Card_Weapon_CherryBomb_Hit_Impact",
-      "Card_Weapon_CherryBomb_Projectile",
-      "Card_Weapon_CherryBomb_Triggered",
-      "Card_Weapon_ClockLancet_Freeze",
-      "Card_Weapon_ClockLancet_Triggered",
-      "Card_Weapon_ClockLancet_UI_Tick",
-      "Card_Weapon_ClockLancet_UI_Tock",
-      "Card_Weapon_ClockLancet_UnFreeze",
-      "Card_Weapon_Cross_Hit_Impact",
-      "Card_Weapon_Cross_Projectile",
-      "Card_Weapon_Cross_Triggered",
-      "Card_Weapon_Cygnus_Triggered",
-      "Card_Weapon_EbonyWings_Projectile_Fire",
-      "Card_Weapon_EbonyWings_Projectile_Flap_LP",
-      "Card_Weapon_EbonyWings_Projectile_Fly_Cheep",
-      "Card_Weapon_EbonyWings_Projectile_Fly_Exit",
-      "Card_Weapon_EbonyWings_Triggered",
-      "Card_Weapon_EightTheSparrow_Hit_Impact",
-      "Card_Weapon_EightTheSparrow_Projectile_Fire",
-      "Card_Weapon_EightTheSparrow_Triggered",
-      "Card_Weapon_FireWand_Triggered",
-      "Card_Weapon_Garlic_Triggered",
-      "Card_Weapon_GattiAmari_CatProjectile_Spawn",
-      "Card_Weapon_GattiAmari_FightScuffle_VFX",
-      "Card_Weapon_GattiAmari_HitImpact",
-      "Card_Weapon_GattiAmari_Triggered",
-      "Card_Weapon_GlassFandango_Triggered",
-      "Card_Weapon_KingBible_Hit_Impact",
-      "Card_Weapon_KingBible_Projectile",
-      "Card_Weapon_KingBible_Triggered",
-      "Card_Weapon_Knife_Hit_Impact",
-      "Card_Weapon_Knife_Triggered",
-      "Card_Weapon_LaRobba_Projectile",
-      "Card_Weapon_LaRobba_Triggered",
-      "Card_Weapon_LightningRing_Projectile",
-      "Card_Weapon_LightningRing_Triggered",
-      "Card_Weapon_MagicWand_Triggered",
-      "Card_Weapon_Peachone_Projectile_Fire",
-      "Card_Weapon_Peachone_Projectile_Flap_LP",
-      "Card_Weapon_Peachone_Projectile_Fly_Cheep",
-      "Card_Weapon_Peachone_Projectile_Fly_Exit",
-      "Card_Weapon_Peachone_Triggered",
-      "Card_Weapon_Pentagram_Triggered",
-      "Card_Weapon_PhieraDerThuphello_Hit_Impact",
-      "Card_Weapon_PhieraDerThuphello_Projectile_Fire",
-      "Card_Weapon_PhieraDerThuphello_Triggered",
-      "Card_Weapon_Runetracer_Projectile",
-      "Card_Weapon_Runetracer_Projectile_Screen_Bounce",
-      "Card_Weapon_Runetracer_Triggered",
-      "Card_Weapon_SantaJavelin_Triggered",
-      "Card_Weapon_SantaWater_Projectile_Hit_Impact",
-      "Card_Weapon_SantaWater_Triggered",
-      "Card_Weapon_ShadowPinion_Projectile_Drill_Appear",
-      "Card_Weapon_ShadowPinion_Triggered",
-      "Card_Weapon_SongOfMana_Triggered",
-      "Card_Weapon_UnearthlyBolt_Triggered",
-      "Card_Weapon_VentoSacro_Triggered",
-      "Card_Weapon_Whip_Triggered",
-      "Card_Weapon_ZhairPtytsia_Triggered",
-      "Card_WildCard_Joker_Triggered"
-    ]
+      "Card_W_WildDefence"
+    ],
+    "pack": {
+      "SimpleAchievement_Character_Antonio": "BaseGame",
+      "SimpleAchievement_Relic_PancakeOfPower": "BaseGame",
+      "DungeonAchievement_Inn": "BaseGame",
+      "DungeonAchievement_Unlock_MadForest_01": "BaseGame",
+      "SimpleAchievement_Relic_GemHammer": "BaseGame",
+      "MetricAchievement_HollowHeart": "BaseGame",
+      "MetricAchievement_Evo_BloodyTear": "BaseGame",
+      "MetricAchievement_Crown": "BaseGame",
+      "MetricAchievement_PowerUpShop": "BaseGame",
+      "DungeonAchievement_Unlock_InlaidLibrary_01": "BaseGame",
+      "SimpleAchievement_Relic_GuidingLight": "BaseGame",
+      "DungeonAchievement_Character_Pasqualina": "BaseGame",
+      "EndRunAchievement_Runetracer": "BaseGame",
+      "MetricAchievement_Evo_NoFuture": "BaseGame",
+      "MetricAchievement_Spellbinder": "BaseGame",
+      "MetricAchievement_StoneMask": "BaseGame",
+      "MetricAchievement_Rosary": "BaseGame",
+      "MetricAchievement_Orologion": "BaseGame",
+      "DungeonAchievement_Unlock_MadForest_02": "BaseGame",
+      "MetricAchievement_Character_Gennaro": "BaseGame",
+      "MetricAchievement_Bracer": "BaseGame",
+      "MetricAchievement_Evo_ThousandEdge": "BaseGame",
+      "SimpleAchievement_Relic_Polentir": "BaseGame",
+      "MetricAchievement_RelicMuseum": "BaseGame",
+      "MetricAchievement_Character_Arca": "BaseGame",
+      "MetricAchievement_FireWand": "BaseGame",
+      "MetricAchievement_Evo_HellFire": "BaseGame",
+      "MetricAchievement_ManaSython": "BaseGame",
+      "MetricAchievement_EmptyTome": "BaseGame",
+      "MetricAchievement_Evo_HolyWand": "BaseGame",
+      "MetricAchievement_SharpMind": "BaseGame",
+      "MetricAchievement_Character_Poe": "BaseGame",
+      "EndRunAchievement_Pummarola": "BaseGame",
+      "MetricAchievement_Garlic": "BaseGame",
+      "MetricAchievement_Evo_SoulEater": "BaseGame",
+      "MetricAchievement_Peachone": "BaseGame",
+      "MetricAchievement_EbonyWing": "BaseGame",
+      "MetricAchievement_Evo_Vandalier": "BaseGame",
+      "DungeonAchievement_Unlock_InlaidLibrary_02": "BaseGame",
+      "MetricAchievement_Vacuum": "BaseGame",
+      "MetricAchievement_AttractionOrb": "BaseGame",
+      "SimpleAchievement_Relic_GrimGrimoire": "BaseGame",
+      "Multi-Achievement_Unlock_TinyBridge": "BaseGame",
+      "MetricAchievement_Character_Dommario": "BaseGame",
+      "MetricAchievement_Evo_UnholyVespers": "BaseGame",
+      "SimpleAchievement_Relic_Overkill": "BaseGame",
+      "SimpleAchievement_Relic_Blacksmith": "BaseGame",
+      "EndRunAchievement_Character_Lama": "BaseGame",
+      "MetricAchievement_Evo_DeathSpiral": "BaseGame",
+      "EndRunAchievement_SkullOManic": "BaseGame",
+      "MetricAchievement_OverTheTop": "BaseGame",
+      "DungeonAchievement_Unlock_DairyPlant_01": "BaseGame",
+      "MetricAchievement_Character_Ramba": "BaseGame",
+      "MetricAchievement_Carrello": "BaseGame",
+      "MetricAchievement_Character_Porta": "BaseGame",
+      "MetricAchievement_LightningRing": "BaseGame",
+      "MetricAchievement_Duplicator": "BaseGame",
+      "MetricAchievement_Evo_Thunderloop": "BaseGame",
+      "MetricAchievement_MakeASceme": "BaseGame",
+      "DungeonAchievement_Unlock_MadForest_03": "BaseGame",
+      "MetricAchievement_Character_Mortuccio": "BaseGame",
+      "EndRunAchievement_Bone": "BaseGame",
+      "SimpleAchievement_Character_Pugnala": "BaseGame",
+      "EndRunAchievement_Tirajisu": "BaseGame",
+      "EndRunAchievement_EightTheSparrow": "BaseGame",
+      "EndRunAchievement_PhieraDerTuphello": "BaseGame",
+      "MetricAchievement_Evo_Phierragi": "BaseGame",
+      "MetricAchievement_AndAnother": "BaseGame",
+      "DungeonAchievement_Unlock_InlaidLibrary_03": "BaseGame",
+      "MetricAchievement_Character_Cavallo": "BaseGame",
+      "EndRunAchievement_CherryBomb": "BaseGame",
+      "SimpleAchievement_Character_Giovanna": "BaseGame",
+      "EndRunAchievement_GattiAmari": "BaseGame",
+      "MetricAchievement_Evo_ViciousHunger": "BaseGame",
+      "SimpleAchievement_Relic_Randomazzo": "BaseGame",
+      "MetricAchievement_SwollenFist": "BaseGame",
+      "DungeonAchievement_Unlock_DairyPlant_02": "BaseGame",
+      "SimpleAchievement_Relic_BombaInfernale": "BaseGame",
+      "MetricAchievement_Character_Krochi": "BaseGame",
+      "MetricAchievement_Cross": "BaseGame",
+      "MetricAchievement_Clover": "BaseGame",
+      "MetricAchievement_Evo_HeavenSword": "BaseGame",
+      "MetricAchievement_YourShieldMyLiege": "BaseGame",
+      "DungeonAchievement_Unlock_TinyBridge_02": "BaseGame",
+      "MetricAchievement_Character_Clerici": "BaseGame",
+      "MetricAchievement_Candelabrador": "BaseGame",
+      "MetricAchievement_Evo_LaBorra": "BaseGame",
+      "DungeonAchievement_Unlock_GalloTower_01": "BaseGame",
+      "SimpleAchievement_Relic_Jeweller": "BaseGame",
+      "SimpleAchievement_Relic_SorcerersTears": "BaseGame",
+      "MetricAchievement_Character_OSole": "BaseGame",
+      "EndRunAchievement_CelestialDusting": "BaseGame",
+      "SimpleAchievement_Character_Concetta": "BaseGame",
+      "EndRunAchievement_ShadowPinion": "BaseGame",
+      "MetricAchievement_Wings": "BaseGame",
+      "MetricAchievement_Evo_ValkyrieTurner": "BaseGame",
+      "DungeonAchievement_Character_Gallo": "BaseGame",
+      "MetricAchievement_ClockLancet": "BaseGame",
+      "MetricAchievement_Character_Christine": "BaseGame",
+      "MetricAchievement_Pentagram": "BaseGame",
+      "MetricAchievement_Evo_GorgeousMoon": "BaseGame",
+      "MetricAchievement_ShieldBash": "BaseGame",
+      "DungeonAchievement_Unlock_TinyBridge_03": "BaseGame",
+      "MetricAchievement_ChainLink": "BaseGame",
+      "DungeonAchievement_Unlock_DairyPlant_03": "BaseGame",
+      "SimpleAchievement_Character_Poppea": "BaseGame",
+      "EndRunAchievement_SongOfMana": "BaseGame",
+      "MetricAchievement_Evo_Mannajja": "BaseGame",
+      "SimpleAchievement_Relic_UltimateOverkill": "BaseGame",
+      "DungeonAchievement_Unlock_CappellaMagna_01": "BaseGame",
+      "MetricAchievement_JestersHat": "BaseGame",
+      "DungeonAchievement_Unlock_CappellaMagna_02": "BaseGame",
+      "MetricAchievement_WildCombo": "BaseGame",
+      "MetricAchievement_WildDefence": "BaseGame",
+      "MetricAchievement_WildAttack": "BaseGame",
+      "SimpleAchievement_Relic_Ovenkilt": "BaseGame",
+      "MetricAchievement_WildStrength": "BaseGame",
+      "MetricAchievement_ExperimentalMedicine": "BaseGame",
+      "DungeonAchievement_Gems_02_CompIL1": "BaseGame",
+      "DungeonAchievement_Gems_03_GalloTower": "BaseGame",
+      "DungeonAchievement_Gems_CompleteDP3": "BaseGame",
+      "DungeonAchievement_Gems_CompleteIL3": "BaseGame",
+      "DungeonAchievement_Gems_CompleteMF3": "BaseGame",
+      "MetricAchievement_Gems_Arcane": "BaseGame",
+      "MetricAchievement_Gems_Armor": "BaseGame",
+      "MetricAchievement_Gems_Blue": "BaseGame",
+      "MetricAchievement_Gems_Bombard": "BaseGame",
+      "MetricAchievement_Boost": "BaseGame",
+      "MetricAchievement_Gems_Calcium": "BaseGame",
+      "MetricAchievement_Gems_Charge": "BaseGame",
+      "MetricAchievement_Gems_Clone": "BaseGame",
+      "MetricAchievement_Gems_Demi": "BaseGame",
+      "MetricAchievement_Gems_Destroy": "BaseGame",
+      "MetricAchievement_Gems_Discharge": "BaseGame",
+      "MetricAchievement_Gems_Ditto": "BaseGame",
+      "MetricAchievement_Gems_Drain": "BaseGame",
+      "MetricAchievement_Gems_Draw": "BaseGame",
+      "MetricAchievement_Gems_Duration": "BaseGame",
+      "MetricAchievement_Gems_Echo": "BaseGame",
+      "MetricAchievement_Gems_Execute": "BaseGame",
+      "MetricAchievement_Gems_Free": "BaseGame",
+      "MetricAchievement_Gems_Hail": "BaseGame",
+      "MetricAchievement_Gems_Heal": "BaseGame",
+      "MetricAchievement_Gems_Jingle": "BaseGame",
+      "MetricAchievement_Gems_Leader": "BaseGame",
+      "MetricAchievement_Gems_Luck": "BaseGame",
+      "MetricAchievement_Gems_MagicHat": "BaseGame",
+      "MetricAchievement_Gems_Magnet": "BaseGame",
+      "MetricAchievement_Gems_ManaPlusMinus": "BaseGame",
+      "MetricAchievement_Gems_ManaPlusMinus2": "BaseGame",
+      "MetricAchievement_Gems_Midas": "BaseGame",
+      "MetricAchievement_Gems_Perserve": "BaseGame",
+      "MetricAchievement_Gems_Purple": "BaseGame",
+      "MetricAchievement_Gems_Rainbow": "BaseGame",
+      "MetricAchievement_Gems_Rally": "BaseGame",
+      "MetricAchievement_Gems_Red": "BaseGame",
+      "MetricAchievement_Gems_Refresh": "BaseGame",
+      "MetricAchievement_Gems_Remote": "BaseGame",
+      "DungeonAchievement_Unlock_Complete_MF3": "BaseGame",
+      "DungeonAchievement_Unlock_Complete_DP3": "BaseGame",
+      "DungeonAchievement_Unlock_Complete_IL3": "BaseGame",
+      "MetricAchievement_Gems_Retain": "BaseGame",
+      "MetricAchievement_Gems_Return": "BaseGame",
+      "MetricAchievement_Gems_Reverse": "BaseGame",
+      "MetricAchievement_Gems_Slayer": "BaseGame",
+      "MetricAchievement_Gems_Spike": "BaseGame",
+      "MetricAchievement_Gems_Sprightly": "BaseGame",
+      "MetricAchievement_Gems_Steal": "BaseGame",
+      "MetricAchievement_Gems_Swift": "BaseGame",
+      "MetricAchievement_Gems_Thief": "BaseGame",
+      "MetricAchievement_Gems_TripleDamage": "BaseGame",
+      "MetricAchievement_Gems_Uncrackable": "BaseGame",
+      "MetricAchievement_Gems_Wild": "BaseGame",
+      "MetricAchievement_Gems_XCost": "BaseGame",
+      "DungeonAchievement_Gems_Mild": "BaseGame",
+      "MetricAchievement_Gems_Yellow": "BaseGame",
+      "MetricAchievement_Plunder": "BaseGame",
+      "DungeonAchievement_Gems_01_CompMF1F1": "BaseGame",
+      "SimpleAchievement_Character_MissingNo": "BaseGame",
+      "SimpleAchievement_Character_ZiAssunta": "BaseGame",
+      "MetricAchievement_ImNotLeaving": "BaseGame",
+      "SimpleAchievement_Relic_YellowSign": "BaseGame",
+      "DungeonAchievement_FirstTime_MF1_F1": "BaseGame",
+      "DungeonAchievement_FirstTime_MF1_F2": "BaseGame",
+      "DungeonAchievement_Unlock_ShopTier2": "BaseGame",
+      "DungeonAchievement_Unlock_ShopTier3": "BaseGame",
+      "MetricAchievement_Armor_01": "BaseGame",
+      "MetricAchievement_Armor_02": "BaseGame",
+      "MetricAchievement_Armor_03": "BaseGame",
+      "MetricAchievement_Candelabrador_01": "BaseGame",
+      "SimpleAchievement_Relic_RageVirus": "BaseGame",
+      "SimpleAchievement_Relic_Randomizer": "BaseGame",
+      "SimpleAchievement_Relic_SlateOfIndecision": "BaseGame",
+      "SimpleAchievement_Relic_BraveStory": "BaseGame",
+      "SimpleAchievement_Relic_MagicBanger": "BaseGame",
+      "SimpleAchievement_Relic_PossessedSneakers": "BaseGame",
+      "SimpleAchievement_Relic_FccPamphlet": "BaseGame",
+      "SimpleAchievement_Relic_Gemcyclopedia": "BaseGame",
+      "SimpleAchievement_Relic_Darkasso": "BaseGame",
+      "SimpleAchievement_Relic_MilkyWayMap": "BaseGame",
+      "SimpleAchievement_Relic_Rilevatore": "BaseGame",
+      "SimpleAchievement_Relic_DeckBox": "BaseGame",
+      "MetricAchievement_Candelabrador_02": "BaseGame",
+      "MetricAchievement_ChickenShop": "BaseGame",
+      "MetricAchievement_Crown_02": "BaseGame",
+      "MetricAchievement_EmptyTome_01": "BaseGame",
+      "MetricAchievement_CoinPurse": "BaseGame",
+      "MetricAchievement_CloverPettle": "BaseGame",
+      "MetricAchievement_Duplicator_02": "BaseGame",
+      "MetricAchievement_EmptyTome_02": "BaseGame",
+      "MetricAchievement_EmptyTome_03": "BaseGame",
+      "SimpleAchievement_Relic_InnKey": "BaseGame",
+      "MetricAchievement_Hollowheart_02": "BaseGame",
+      "MetricAchievement_LargeCoinBag": "BaseGame",
+      "MetricAchievement_ManaSlab": "BaseGame",
+      "MetricAchievement_Pummarola_02": "BaseGame",
+      "MetricAchievement_Spinach_01": "BaseGame",
+      "MetricAchievement_Spinach_02": "BaseGame",
+      "PowerUpAchievement_RerollDrop": "BaseGame",
+      "DungeonAchievement_VentoSacro": "BaseGame",
+      "DungeonAchievement_BlacksmithPlaceholder": "BaseGame",
+      "MetricAchievement_Event_DuplicationTable": "BaseGame",
+      "MetricAchievement_Event_DuplicationTableEvent": "BaseGame",
+      "DungeonAchievement_JewelerPlaceholder": "BaseGame",
+      "MetricAchievement_Event_ChickenShop": "BaseGame",
+      "MetricAchievement_Event_ManaOfferingTable": "BaseGame",
+      "MetricAchievement_Event_GFH": "BaseGame",
+      "DungeonAchievement_Unlock_TinyBridge_01": "BaseGame",
+      "MetricAchievement_MantishAmbushEncountered": "BaseGame",
+      "ArcanaConfig_AndAnother": "BaseGame",
+      "ArcanaConfig_BattleStance": "BaseGame",
+      "ArcanaConfig_ChainLink": "BaseGame",
+      "ArcanaConfig_DuelWielding": "BaseGame",
+      "ArcanaConfig_Execute": "BaseGame",
+      "ArcanaConfig_ExperimentalMedicine": "BaseGame",
+      "ArcanaConfig_ImNotLeaving": "BaseGame",
+      "ArcanaConfig_JestersHat": "BaseGame",
+      "ArcanaConfig_MakeAScene": "BaseGame",
+      "ArcanaConfig_ManaSyphon": "BaseGame",
+      "ArcanaConfig_OverTheTop": "BaseGame",
+      "ArcanaConfig_QuickRecover": "BaseGame",
+      "ArcanaConfig_SharpMind": "BaseGame",
+      "ArcanaConfig_ShieldBash": "BaseGame",
+      "ArcanaConfig_SwollenFist": "BaseGame",
+      "ArcanaConfig_WildStrength": "BaseGame",
+      "ArcanaConfig_YourShield": "BaseGame",
+      "Card_A_0_Bone": "BaseGame",
+      "Card_A_0_GorgeousMoon": "BaseGame",
+      "Card_A_0_Knife": "BaseGame",
+      "Card_A_1_MagicWand": "BaseGame",
+      "Card_A_0_Whip": "BaseGame",
+      "Card_A_0_CherryBomb": "BaseGame",
+      "Card_A_1_FireWand": "BaseGame",
+      "Card_A_0_Garlic": "BaseGame",
+      "Card_A_1_GattiAmari": "BaseGame",
+      "Card_A_1_KingBible": "BaseGame",
+      "Card_A_1_Runetracer": "BaseGame",
+      "Card_A_3_Axe": "BaseGame",
+      "Card_A_2_BloodyTear": "BaseGame",
+      "Card_A_2_Carrello": "BaseGame",
+      "Card_A_2_CelestialDusting": "BaseGame",
+      "Card_A_0_Cross": "BaseGame",
+      "Card_A_2_EightTheSparrow": "BaseGame",
+      "Card_A_2_GlassFandango": "BaseGame",
+      "Card_A_2_HolyWand": "BaseGame",
+      "Card_A_2_LightningRing": "BaseGame",
+      "Card_A_2_UnholyVespers": "BaseGame",
+      "Card_A_2_ValkyrieTurner": "BaseGame",
+      "Card_A_2_ViciousHunger": "BaseGame",
+      "Card_A_3_DeathSpiral": "BaseGame",
+      "Card_A_3_HeavenSword": "BaseGame",
+      "Card_A_3_HellFire": "BaseGame",
+      "Card_A_3_NoFuture": "BaseGame",
+      "Card_A_5_Peachone": "BaseGame",
+      "Card_A_4_PhieraDerTuphello": "BaseGame",
+      "Card_A_3_SantaWater": "BaseGame",
+      "Card_A_3_ShadowPinion": "BaseGame",
+      "Card_A_1_SoulEater": "BaseGame",
+      "Card_A_3_ThousandEdge": "BaseGame",
+      "Card_A_6_EbonyWings": "BaseGame",
+      "Card_A_4_Fuwalafuwaloo": "BaseGame",
+      "Card_A_4_LaBorra": "BaseGame",
+      "Card_A_4_Phieraggi": "BaseGame",
+      "Card_A_4_Thunderloop": "BaseGame",
+      "Card_A_3_VentoSacro": "BaseGame",
+      "Card_A_4_Pentagram": "BaseGame",
+      "Card_A_5_Vandalier": "BaseGame",
+      "Card_AngeloSpietato": "BaseGame",
+      "Card_B_0_EmptyTome": "BaseGame",
+      "Card_B_1_EmptyTome": "BaseGame",
+      "Card_B_2_EmptyTome": "BaseGame",
+      "Card_B_3_EmptyTome": "BaseGame",
+      "Card_Confuse": "BaseGame",
+      "Card_CursedLancet": "BaseGame",
+      "Card_D_0_Armor": "BaseGame",
+      "Card_D_1_Armor": "BaseGame",
+      "Card_D_2_Armor": "BaseGame",
+      "Card_D_3_Armor": "BaseGame",
+      "Card_D_3_ClockLancet": "BaseGame",
+      "Card_D_6_InfiniteCorridor": "BaseGame",
+      "Card_E_BagOfCoins": "BaseGame",
+      "Card_E_CloverPetal": "BaseGame",
+      "Card_E_CoinPurse": "BaseGame",
+      "Card_E_LargeBagOfCoins": "BaseGame",
+      "Card_E_LittleClover": "BaseGame",
+      "Card_E_LittleHeart": "BaseGame",
+      "Card_E_Orologion": "BaseGame",
+      "Card_E_Rosary": "BaseGame",
+      "Card_E_Vacuum": "BaseGame",
+      "Card_B_0_RawMana": "BaseGame",
+      "Card_M_3_SongOfMana": "BaseGame",
+      "Card_M_5_Mannajja": "BaseGame",
+      "Card_ManaBomb": "BaseGame",
+      "Card_Muddle": "BaseGame",
+      "Card_S_0_Candelabrador": "BaseGame",
+      "Card_S_0_Crown": "BaseGame",
+      "Card_S_0_HollowHeart": "BaseGame",
+      "Card_S_0_Pummarola": "BaseGame",
+      "Card_S_0_SkullOManic": "BaseGame",
+      "Card_S_1_SpellBinder": "BaseGame",
+      "Card_S_0_Spinach": "BaseGame",
+      "Card_S_0_StoneMask": "BaseGame",
+      "Card_S_1_Attractorb": "BaseGame",
+      "Card_S_1_Candelabrador": "BaseGame",
+      "Card_S_1_Crown": "BaseGame",
+      "Card_S_1_Duplicator": "BaseGame",
+      "Card_W_GoldRing": "BaseGame",
+      "Card_S_1_HollowHeart": "BaseGame",
+      "Card_S_1_Pummarola": "BaseGame",
+      "Card_S_1_Spinach": "BaseGame",
+      "Card_S_1_StoneMask": "BaseGame",
+      "Card_S_2_Attractorb": "BaseGame",
+      "Card_S_2_Bracer": "BaseGame",
+      "Card_S_2_Candelabrador": "BaseGame",
+      "Card_S_2_Clover": "BaseGame",
+      "Card_S_2_Crown": "BaseGame",
+      "Card_S_2_Duplicator": "BaseGame",
+      "Card_S_2_HollowHeart": "BaseGame",
+      "Card_S_2_Pummarola": "BaseGame",
+      "Card_W_SilverRing": "BaseGame",
+      "Card_S_2_Spinach": "BaseGame",
+      "Card_S_2_StoneMask": "BaseGame",
+      "Card_S_2_Tiramisu": "BaseGame",
+      "Card_Shatter": "BaseGame",
+      "Card_W_Bracelet": "BaseGame",
+      "Card_W_Combo": "BaseGame",
+      "Card_W_WildDefence": "BaseGame",
+      "Card_M_0_Wings": "BaseGame",
+      "FCC_Antonio": "BaseGame",
+      "FCC_Arca": "BaseGame",
+      "FCC_Cavallo": "BaseGame",
+      "FCC_Christine": "BaseGame",
+      "FCC_Clerici": "BaseGame",
+      "FCC_Concetta": "BaseGame",
+      "FCC_Dommario": "BaseGame",
+      "FCC_Gallo": "BaseGame",
+      "FCC_Gennaro": "BaseGame",
+      "FCC_Giovanna": "BaseGame",
+      "FCC_Imelda": "BaseGame",
+      "FCC_Krochi": "BaseGame",
+      "FCC_Lama": "BaseGame",
+      "FCC_MissingNo": "BaseGame",
+      "FCC_Mortaccio": "BaseGame",
+      "FCC_OSole": "BaseGame",
+      "FCC_Pasqualina": "BaseGame",
+      "FCC_Poe": "BaseGame",
+      "FCC_Poppea": "BaseGame",
+      "FCC_Porta": "BaseGame",
+      "FCC_Pugnala": "BaseGame",
+      "FCC_Ramba": "BaseGame",
+      "Dungeon_CappellaMagna_01": "BaseGame",
+      "Dungeon_CappellaMagna_02": "BaseGame",
+      "Dungeon_DairyPlant_01": "BaseGame",
+      "Dungeon_DairyPlant_02": "BaseGame",
+      "Dungeon_DairyPlant_03": "BaseGame",
+      "Dungeon_GalloTower_01": "BaseGame",
+      "Dungeon_InlaidLibrary_01": "BaseGame",
+      "Dungeon_InlaidLibrary_02": "BaseGame",
+      "Dungeon_InlaidLibrary_03": "BaseGame",
+      "Dungeon_Madforest_01": "BaseGame",
+      "Dungeon_Madforest_02": "BaseGame",
+      "Dungeon_Madforest_03": "BaseGame",
+      "Dungeon_TinyBridge_01": "BaseGame",
+      "Dungeon_TinyBridge_02": "BaseGame",
+      "Dungeon_TinyBridge_03": "BaseGame",
+      "Dungeon_Tutorial": "BaseGame",
+      "GemConfig_Area": "BaseGame",
+      "GemConfig_Armor": "BaseGame",
+      "GemConfig_DoubleDamage": "BaseGame",
+      "GemConfig_Heal": "BaseGame",
+      "GemConfig_Luck": "BaseGame",
+      "GemConfig_Mana_Minus1": "BaseGame",
+      "GemConfig_Mana_Plus1": "BaseGame",
+      "GemConfig_Might": "BaseGame",
+      "GemConfig_Mild": "BaseGame",
+      "GemConfig_Steal": "BaseGame",
+      "GemConfig_Charge": "BaseGame",
+      "GemConfig_CloneCard": "BaseGame",
+      "GemConfig_Discharge": "BaseGame",
+      "GemConfig_Leader": "BaseGame",
+      "GemConfig_Magnetic": "BaseGame",
+      "GemConfig_Midas": "BaseGame",
+      "GemConfig_Slayer": "BaseGame",
+      "GemConfig_Spike": "BaseGame",
+      "GemConfig_Arcane": "BaseGame",
+      "GemConfig_Demi": "BaseGame",
+      "GemConfig_Evolve": "BaseGame",
+      "GemConfig_FreeToPlay": "BaseGame",
+      "GemConfig_Jingle": "BaseGame",
+      "GemConfig_SetCostType_Wild": "BaseGame",
+      "GemConfig_SetCostType_XCost": "BaseGame",
+      "GemConfig_Uncrackable": "BaseGame",
+      "GemConfig_Amount": "BaseGame",
+      "GemConfig_Bombard": "BaseGame",
+      "GemConfig_Calcium": "BaseGame",
+      "GemConfig_Destroy": "BaseGame",
+      "GemConfig_Drain": "BaseGame",
+      "GemConfig_Draw": "BaseGame",
+      "GemConfig_Echo": "BaseGame",
+      "GemConfig_Hail": "BaseGame",
+      "GemConfig_MagicHat": "BaseGame",
+      "GemConfig_Mana_Minus2": "BaseGame",
+      "GemConfig_Preserve": "BaseGame",
+      "GemConfig_Rally": "BaseGame",
+      "GemConfig_Remote": "BaseGame",
+      "GemConfig_ReverseCombo": "BaseGame",
+      "GemConfig_Sprightly": "BaseGame",
+      "GemConfig_Thief": "BaseGame",
+      "GemConfig_TripleDamage": "BaseGame",
+      "GemConfig_YinYang": "BaseGame",
+      "GemConfig_AddType_Defense": "BaseGame",
+      "GemConfig_AddType_Attack": "BaseGame",
+      "GemConfig_AddType_Mana": "BaseGame",
+      "GemConfig_AddType_Rainbow": "BaseGame",
+      "GemConfig_AddType_Special": "BaseGame",
+      "GemConfig_Boost": "BaseGame",
+      "GemConfig_Duration": "BaseGame",
+      "GemConfig_Mana_Plus2": "BaseGame",
+      "GemConfig_Nduja": "BaseGame",
+      "GemConfig_Plunder": "BaseGame",
+      "GemConfig_Refresh": "BaseGame",
+      "GemConfig_Retain": "BaseGame",
+      "GemConfig_ReturnToHand": "BaseGame",
+      "GemConfig_Swift": "BaseGame",
+      "GemConfig_UpgradeDamage": "BaseGame",
+      "PowerUp_Amount": "BaseGame",
+      "PowerUp_Area": "BaseGame",
+      "PowerUp_Armor": "BaseGame",
+      "PowerUp_Banish": "BaseGame",
+      "PowerUp_CharacterSlot": "BaseGame",
+      "PowerUp_Charm": "BaseGame",
+      "PowerUp_Cooldown": "BaseGame",
+      "PowerUp_Curse": "BaseGame",
+      "PowerUp_Duration": "BaseGame",
+      "PowerUp_Greed": "BaseGame",
+      "PowerUp_Growth": "BaseGame",
+      "PowerUp_Luck": "BaseGame",
+      "PowerUp_Magnet": "BaseGame",
+      "PowerUp_MaxHealth": "BaseGame",
+      "PowerUp_Might": "BaseGame",
+      "PowerUp_Recovery": "BaseGame",
+      "PowerUp_Reroll": "BaseGame",
+      "PowerUp_Revival": "BaseGame",
+      "PowerUp_Skip": "BaseGame",
+      "PowerUp_Speed": "BaseGame",
+      "RelicConfig_Blacksmith": "BaseGame",
+      "RelicConfig_BombaInfernale": "BaseGame",
+      "RelicConfig_BraveStory": "BaseGame",
+      "RelicConfig_Darkasso": "BaseGame",
+      "RelicConfig_DeckBox": "BaseGame",
+      "RelicConfig_FccPamphlet": "BaseGame",
+      "RelicConfig_GemHammer": "BaseGame",
+      "RelicConfig_GrimGrimoire": "BaseGame",
+      "RelicConfig_GuidingLight": "BaseGame",
+      "RelicConfig_InnKey": "BaseGame",
+      "RelicConfig_Jeweller": "BaseGame",
+      "RelicConfig_MagicBanger": "BaseGame",
+      "RelicConfig_MilkyWayMap": "BaseGame",
+      "RelicConfig_Ovenkilt": "BaseGame",
+      "RelicConfig_Overkill": "BaseGame",
+      "RelicConfig_PancakeOfPower": "BaseGame",
+      "RelicConfig_Polentir": "BaseGame",
+      "RelicConfig_PossessedSneakers": "BaseGame",
+      "RelicConfig_RageVirus": "BaseGame",
+      "RelicConfig_Randomazzo": "BaseGame",
+      "RelicConfig_Randomizer": "BaseGame",
+      "RelicConfig_DamageIndicators": "BaseGame",
+      "RelicConfig_SorcerersTears": "BaseGame",
+      "RelicConfig_UltimateOverkill": "BaseGame",
+      "RelicConfig_YellowSign": "BaseGame",
+      "TownBuilding_Blacksmith": "BaseGame",
+      "TownBuilding_Fortune": "BaseGame",
+      "TownBuilding_Graveyard": "BaseGame",
+      "TownBuilding_Inn": "BaseGame",
+      "TownBuilding_Museum": "BaseGame",
+      "TownBuilding_Shop": "BaseGame",
+      "TownBuilding_TownHall": "BaseGame",
+      "TownBuilding_WorldMap": "BaseGame",
+      "DungeonAchievement_Arcana_EbbAndCombo": "Blueberries",
+      "DungeonAchievement_FirstTime_Soda2": "Blueberries",
+      "DungeonAchievement_GalloBelowUnlock": "Blueberries",
+      "DungeonAchievement_Gems_Afterlife": "Blueberries",
+      "DungeonAchievement_Gems_GainMana": "Blueberries",
+      "DungeonAchievement_Gems_Scavenge": "Blueberries",
+      "DungeonAchievement_Gems_Switch": "Blueberries",
+      "DungeonAchievement_KaromasMana": "Blueberries",
+      "DungeonAchievement_MoonGolow_0_Unlock": "Blueberries",
+      "DungeonAchievement_MoonGolow_1_Unlock": "Blueberries",
+      "DungeonAchievement_MoonGolow_2_Unlock": "Blueberries",
+      "DungeonAchievement_Unlock_Soda_01": "Blueberries",
+      "DungeonAchievement_Unlock_Soda_02": "Blueberries",
+      "EndRunAchievement_Arcana_CrawlerBrawler": "Blueberries",
+      "EndRunAchievement_LaRobba": "Blueberries",
+      "EndRunAchievement_UnearthlyBolt": "Blueberries",
+      "MetricAchievement_Ambrojoe": "Blueberries",
+      "MetricAchievement_Arcana_ChairGame": "Blueberries",
+      "MetricAchievement_Arcana_InfiniteCombo": "Blueberries",
+      "MetricAchievement_Character_Leda": "Blueberries",
+      "MetricAchievement_DrownerUnlocked_DeathParade": "Blueberries",
+      "MetricAchievement_EnderUnlocked_DeathParade": "Blueberries",
+      "MetricAchievement_Evo_SpiritDisturbance": "Blueberries",
+      "MetricAchievement_Gems_Adaptability": "Blueberries",
+      "MetricAchievement_TricksterUnlocked_DeathParade": "Blueberries",
+      "SimpleAchievement_Character_BigTroubler": "Blueberries",
+      "SimpleAchievement_Relic_GalileosHand": "Blueberries",
+      "SimpleAchievement_Relic_Tappo": "Blueberries",
+      "ArcanaConfig_ChairGame": "Blueberries",
+      "ArcanaConfig_CrawlerBrawler": "Blueberries",
+      "ArcanaConfig_EbbAndCombo": "Blueberries",
+      "ArcanaConfig_InfiniteCombo": "Blueberries",
+      "Card_A_2_LaRobba": "Blueberries",
+      "Card_A_1_UnearthlyBolt": "Blueberries",
+      "Card_A_4_SpiritDisturbance": "Blueberries",
+      "Card_E_CoinCard": "Blueberries",
+      "Card_S_KaromasMana": "Blueberries",
+      "FCC_Ambrojoe": "Blueberries",
+      "FCC_BigTroubler": "Blueberries",
+      "FCC_Leda": "Blueberries",
+      "Dungeon_GalloBelow_01": "Blueberries",
+      "Dungeon_Soda_01": "Blueberries",
+      "Dungeon_Soda_02": "Blueberries",
+      "GemConfig_Afterlife": "Blueberries",
+      "GemConfig_ReRoll": "Blueberries",
+      "GemConfig_Scavenge": "Blueberries",
+      "GemConfig_SetCostType_Adaptability": "Blueberries",
+      "GemConfig_Switch": "Blueberries",
+      "RelicConfig_GalileosHand": "Blueberries",
+      "RelicConfig_Tappo": "Blueberries",
+      "DungeonAchievement_Base_Game_Complete": "MoongolowTeaser",
+      "SimpleAchievement_Relic_SeventhTrumpet": "MoongolowTeaser",
+      "Dungeon_Moongolow_teaser": "MoongolowTeaser",
+      "RelicConfig_SeventhTrumpet": "MoongolowTeaser"
+    },
+    "deprecated": [
+      "ArcanaConfig_BattleStance",
+      "ArcanaConfig_DuelWielding",
+      "ArcanaConfig_Execute",
+      "ArcanaConfig_ImNotLeaving",
+      "ArcanaConfig_QuickRecover"
+    ],
+    "achievementAssetNames": {
+      "Multi-Achievement_Unlock_TinyBridge": "Multi-Achievement_Unlock_TinyBridge_01",
+      "EndRunAchievement_SkullOManic": "EndRunAchievement_SkullOManiac",
+      "MetricAchievement_MakeASceme": "MetricAchievement_MakeAScene",
+      "SimpleAchievement_Relic_UltimateOverkill": "SimpleAchievement_Relic_UltraOverkill",
+      "MetricAchievement_Boost": "MetricAchievement_Gems_Boost",
+      "SimpleAchievement_Character_MissingNo": "SimpleAchievement_Character_MIssingNo",
+      "DungeonAchievement_Unlock_TinyBridge_01": "DungeonAchievement_Unlock_TinyBridge_01_Demo"
+    },
+    "unlockedBy": {
+      "Card_E_LargeBagOfCoins": "MetricAchievement_LargeCoinBag",
+      "FCC_Imelda": "DungeonAchievement_Inn",
+      "Card_S_1_Attractorb": "MetricAchievement_AttractionOrb",
+      "RelicConfig_GemHammer": "SimpleAchievement_Relic_GemHammer",
+      "ArcanaConfig_AndAnother": "MetricAchievement_AndAnother",
+      "ArcanaConfig_ChainLink": "MetricAchievement_ChainLink",
+      "ArcanaConfig_JestersHat": "MetricAchievement_JestersHat",
+      "ArcanaConfig_MakeAScene": "MetricAchievement_MakeASceme",
+      "ArcanaConfig_ManaSyphon": "MetricAchievement_ManaSython",
+      "ArcanaConfig_OverTheTop": "MetricAchievement_OverTheTop",
+      "ArcanaConfig_SharpMind": "MetricAchievement_SharpMind",
+      "ArcanaConfig_SwollenFist": "MetricAchievement_SwollenFist",
+      "ArcanaConfig_WildStrength": "MetricAchievement_WildStrength",
+      "ArcanaConfig_YourShield": "MetricAchievement_YourShieldMyLiege",
+      "Card_A_0_Bone": "EndRunAchievement_Bone",
+      "Card_A_0_CherryBomb": "EndRunAchievement_CherryBomb",
+      "Card_A_1_FireWand": "MetricAchievement_FireWand",
+      "Card_A_0_Garlic": "MetricAchievement_Garlic",
+      "Card_A_1_GattiAmari": "EndRunAchievement_GattiAmari",
+      "Card_A_1_Runetracer": "EndRunAchievement_Runetracer",
+      "Card_A_2_Carrello": "MetricAchievement_Carrello",
+      "Card_A_2_CelestialDusting": "EndRunAchievement_CelestialDusting",
+      "Card_A_0_Cross": "MetricAchievement_Cross",
+      "Card_A_2_EightTheSparrow": "EndRunAchievement_EightTheSparrow",
+      "Card_A_2_LightningRing": "MetricAchievement_LightningRing",
+      "Card_A_5_Peachone": "MetricAchievement_Peachone",
+      "Card_A_4_PhieraDerTuphello": "EndRunAchievement_PhieraDerTuphello",
+      "Card_A_3_ShadowPinion": "EndRunAchievement_ShadowPinion",
+      "Card_A_6_EbonyWings": "MetricAchievement_EbonyWing",
+      "Card_A_3_VentoSacro": "DungeonAchievement_VentoSacro",
+      "Card_A_4_Pentagram": "MetricAchievement_Pentagram",
+      "Card_D_3_ClockLancet": "MetricAchievement_ClockLancet",
+      "Card_M_3_SongOfMana": "EndRunAchievement_SongOfMana",
+      "Card_D_1_Armor": "MetricAchievement_Armor_01",
+      "Card_D_2_Armor": "MetricAchievement_Armor_02",
+      "Card_D_3_Armor": "MetricAchievement_Armor_03",
+      "Card_E_CloverPetal": "MetricAchievement_CloverPettle",
+      "Card_E_CoinPurse": "MetricAchievement_CoinPurse",
+      "Card_E_Orologion": "MetricAchievement_Orologion",
+      "Card_E_Rosary": "MetricAchievement_Rosary",
+      "Card_E_Vacuum": "MetricAchievement_Vacuum",
+      "FCC_Arca": "MetricAchievement_Character_Arca",
+      "FCC_Cavallo": "MetricAchievement_Character_Cavallo",
+      "FCC_Christine": "MetricAchievement_Character_Christine",
+      "FCC_Clerici": "MetricAchievement_Character_Clerici",
+      "FCC_Concetta": "SimpleAchievement_Character_Concetta",
+      "FCC_Dommario": "MetricAchievement_Character_Dommario",
+      "FCC_Gallo": "DungeonAchievement_Character_Gallo",
+      "FCC_Gennaro": "MetricAchievement_Character_Gennaro",
+      "FCC_Giovanna": "SimpleAchievement_Character_Giovanna",
+      "FCC_Krochi": "MetricAchievement_Character_Krochi",
+      "FCC_Lama": "EndRunAchievement_Character_Lama",
+      "FCC_MissingNo": "SimpleAchievement_Character_MissingNo",
+      "FCC_Mortaccio": "MetricAchievement_Character_Mortuccio",
+      "FCC_OSole": "MetricAchievement_Character_OSole",
+      "FCC_Pasqualina": "DungeonAchievement_Character_Pasqualina",
+      "FCC_Poe": "MetricAchievement_Character_Poe",
+      "FCC_Poppea": "SimpleAchievement_Character_Poppea",
+      "FCC_Porta": "MetricAchievement_Character_Porta",
+      "FCC_Pugnala": "SimpleAchievement_Character_Pugnala",
+      "FCC_Ramba": "MetricAchievement_Character_Ramba",
+      "Card_B_0_EmptyTome": "MetricAchievement_EmptyTome",
+      "Card_B_1_EmptyTome": "MetricAchievement_EmptyTome_01",
+      "Card_B_2_EmptyTome": "MetricAchievement_EmptyTome_02",
+      "Card_B_3_EmptyTome": "MetricAchievement_EmptyTome_03",
+      "Card_B_0_RawMana": "MetricAchievement_EmptyTome",
+      "Card_S_0_Candelabrador": "MetricAchievement_Candelabrador",
+      "Card_S_0_SkullOManic": "EndRunAchievement_SkullOManic",
+      "Card_S_1_SpellBinder": "MetricAchievement_Spellbinder",
+      "Card_S_1_Candelabrador": "MetricAchievement_Candelabrador_01",
+      "Card_S_1_Crown": "MetricAchievement_Crown",
+      "Card_S_1_Duplicator": "MetricAchievement_Duplicator",
+      "Card_W_GoldRing": "SimpleAchievement_Relic_YellowSign",
+      "Card_S_1_HollowHeart": "MetricAchievement_HollowHeart",
+      "Card_S_1_Pummarola": "EndRunAchievement_Pummarola",
+      "Card_S_1_StoneMask": "MetricAchievement_StoneMask",
+      "Card_S_2_Bracer": "MetricAchievement_Bracer",
+      "Card_S_2_Candelabrador": "MetricAchievement_Candelabrador_02",
+      "Card_S_2_Clover": "MetricAchievement_Clover",
+      "Card_S_2_Crown": "MetricAchievement_Crown_02",
+      "Card_S_2_Duplicator": "MetricAchievement_Duplicator_02",
+      "Card_S_2_HollowHeart": "MetricAchievement_Hollowheart_02",
+      "Card_S_2_Pummarola": "MetricAchievement_Pummarola_02",
+      "Card_W_SilverRing": "SimpleAchievement_Relic_YellowSign",
+      "Card_S_2_Spinach": "MetricAchievement_Spinach_02",
+      "Card_S_2_Tiramisu": "EndRunAchievement_Tirajisu",
+      "Card_W_Bracelet": "MetricAchievement_WildAttack",
+      "Card_W_Combo": "MetricAchievement_WildCombo",
+      "Card_W_WildDefence": "MetricAchievement_WildDefence",
+      "Card_M_0_Wings": "MetricAchievement_Wings",
+      "GemConfig_Area": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_Armor": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_Heal": "MetricAchievement_Gems_Heal",
+      "GemConfig_Luck": "MetricAchievement_Gems_Luck",
+      "GemConfig_Mana_Minus1": "MetricAchievement_Gems_ManaPlusMinus",
+      "GemConfig_Mana_Plus1": "MetricAchievement_Gems_ManaPlusMinus",
+      "GemConfig_Might": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_Steal": "MetricAchievement_Gems_Steal",
+      "GemConfig_Charge": "MetricAchievement_Gems_Charge",
+      "GemConfig_CloneCard": "MetricAchievement_Gems_Clone",
+      "GemConfig_Discharge": "MetricAchievement_Gems_Discharge",
+      "GemConfig_Leader": "MetricAchievement_Gems_Leader",
+      "GemConfig_Midas": "MetricAchievement_Gems_Midas",
+      "GemConfig_Slayer": "MetricAchievement_Gems_Slayer",
+      "GemConfig_Spike": "MetricAchievement_Gems_Spike",
+      "GemConfig_Arcane": "MetricAchievement_Gems_Arcane",
+      "GemConfig_Demi": "MetricAchievement_Gems_Demi",
+      "GemConfig_Evolve": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_FreeToPlay": "MetricAchievement_Gems_Free",
+      "GemConfig_Jingle": "MetricAchievement_Gems_Jingle",
+      "GemConfig_Mild": "DungeonAchievement_Gems_Mild",
+      "GemConfig_SetCostType_Wild": "MetricAchievement_Gems_Wild",
+      "GemConfig_Thief": "MetricAchievement_Gems_Thief",
+      "GemConfig_TripleDamage": "MetricAchievement_Gems_TripleDamage",
+      "GemConfig_Uncrackable": "MetricAchievement_Gems_Uncrackable",
+      "GemConfig_Amount": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_Bombard": "MetricAchievement_Gems_Bombard",
+      "GemConfig_Calcium": "MetricAchievement_Gems_Calcium",
+      "GemConfig_Drain": "MetricAchievement_Gems_Drain",
+      "GemConfig_Draw": "DungeonAchievement_Gems_01_CompMF1F1",
+      "GemConfig_Echo": "MetricAchievement_Gems_Echo",
+      "GemConfig_Hail": "MetricAchievement_Gems_Hail",
+      "GemConfig_MagicHat": "MetricAchievement_Gems_MagicHat",
+      "GemConfig_Magnetic": "MetricAchievement_Gems_Magnet",
+      "GemConfig_Mana_Minus2": "MetricAchievement_Gems_ManaPlusMinus2",
+      "GemConfig_Rally": "DungeonAchievement_Gems_CompleteIL3",
+      "GemConfig_Remote": "MetricAchievement_Gems_Remote",
+      "GemConfig_ReturnToHand": "MetricAchievement_Gems_Return",
+      "GemConfig_SetCostType_XCost": "MetricAchievement_Gems_XCost",
+      "GemConfig_Sprightly": "MetricAchievement_Gems_Sprightly",
+      "GemConfig_YinYang": "DungeonAchievement_Gems_CompleteMF3",
+      "GemConfig_AddType_Defense": "MetricAchievement_Gems_Blue",
+      "GemConfig_AddType_Attack": "MetricAchievement_Gems_Red",
+      "GemConfig_AddType_Mana": "MetricAchievement_Gems_Purple",
+      "GemConfig_AddType_Rainbow": "MetricAchievement_Gems_Rainbow",
+      "GemConfig_AddType_Special": "MetricAchievement_Gems_Yellow",
+      "GemConfig_Boost": "MetricAchievement_Boost",
+      "GemConfig_Destroy": "MetricAchievement_Gems_Destroy",
+      "GemConfig_Duration": "MetricAchievement_Gems_Duration",
+      "GemConfig_Mana_Plus2": "MetricAchievement_Gems_ManaPlusMinus2",
+      "GemConfig_Nduja": "DungeonAchievement_Gems_02_CompIL1",
+      "GemConfig_Plunder": "MetricAchievement_Plunder",
+      "GemConfig_Preserve": "DungeonAchievement_Gems_CompleteDP3",
+      "GemConfig_Refresh": "MetricAchievement_Gems_Refresh",
+      "GemConfig_Retain": "MetricAchievement_Gems_Retain",
+      "GemConfig_ReverseCombo": "MetricAchievement_Gems_Reverse",
+      "GemConfig_Swift": "MetricAchievement_Gems_Swift",
+      "PowerUp_Amount": "DungeonAchievement_Unlock_ShopTier2",
+      "PowerUp_Banish": "DungeonAchievement_Unlock_ShopTier3",
+      "PowerUp_CharacterSlot": "DungeonAchievement_Unlock_ShopTier2",
+      "PowerUp_Cooldown": "DungeonAchievement_Unlock_ShopTier2",
+      "PowerUp_Curse": "DungeonAchievement_Unlock_ShopTier3",
+      "PowerUp_Greed": "DungeonAchievement_Unlock_InlaidLibrary_02",
+      "PowerUp_Magnet": "DungeonAchievement_Unlock_ShopTier3",
+      "PowerUp_Revival": "DungeonAchievement_Unlock_ShopTier3",
+      "PowerUp_Skip": "DungeonAchievement_Unlock_DairyPlant_01",
+      "PowerUp_Speed": "DungeonAchievement_Unlock_ShopTier3",
+      "RelicConfig_Blacksmith": "SimpleAchievement_Relic_Blacksmith",
+      "RelicConfig_BombaInfernale": "SimpleAchievement_Relic_BombaInfernale",
+      "RelicConfig_GrimGrimoire": "SimpleAchievement_Relic_GrimGrimoire",
+      "RelicConfig_GuidingLight": "SimpleAchievement_Relic_GuidingLight",
+      "RelicConfig_InnKey": "SimpleAchievement_Relic_InnKey",
+      "RelicConfig_Jeweller": "SimpleAchievement_Relic_Jeweller",
+      "RelicConfig_Ovenkilt": "SimpleAchievement_Relic_Ovenkilt",
+      "RelicConfig_Overkill": "SimpleAchievement_Relic_Overkill",
+      "RelicConfig_PancakeOfPower": "SimpleAchievement_Relic_PancakeOfPower",
+      "RelicConfig_Polentir": "SimpleAchievement_Relic_Polentir",
+      "RelicConfig_Randomazzo": "SimpleAchievement_Relic_Randomazzo",
+      "RelicConfig_SorcerersTears": "SimpleAchievement_Relic_SorcerersTears",
+      "RelicConfig_UltimateOverkill": "SimpleAchievement_Relic_UltimateOverkill",
+      "TownBuilding_Inn": "DungeonAchievement_Inn",
+      "TownBuilding_Museum": "MetricAchievement_RelicMuseum",
+      "TownBuilding_Shop": "MetricAchievement_PowerUpShop",
+      "Dungeon_CappellaMagna_01": "DungeonAchievement_Unlock_CappellaMagna_01",
+      "Dungeon_CappellaMagna_02": "DungeonAchievement_Unlock_CappellaMagna_02",
+      "Dungeon_DairyPlant_01": "DungeonAchievement_Unlock_DairyPlant_01",
+      "Dungeon_DairyPlant_02": "DungeonAchievement_Unlock_DairyPlant_02",
+      "Dungeon_DairyPlant_03": "DungeonAchievement_Unlock_DairyPlant_03",
+      "Dungeon_GalloTower_01": "DungeonAchievement_Unlock_GalloTower_01",
+      "Dungeon_InlaidLibrary_01": "DungeonAchievement_Unlock_InlaidLibrary_01",
+      "Dungeon_InlaidLibrary_02": "DungeonAchievement_Unlock_InlaidLibrary_02",
+      "Dungeon_InlaidLibrary_03": "DungeonAchievement_Unlock_InlaidLibrary_03",
+      "Dungeon_Madforest_02": "DungeonAchievement_Unlock_MadForest_02",
+      "Dungeon_Madforest_03": "DungeonAchievement_Unlock_MadForest_03",
+      "Dungeon_TinyBridge_01": "Multi-Achievement_Unlock_TinyBridge",
+      "Dungeon_TinyBridge_02": "DungeonAchievement_Unlock_TinyBridge_02",
+      "Dungeon_TinyBridge_03": "DungeonAchievement_Unlock_TinyBridge_03",
+      "ArcanaConfig_ChairGame": "MetricAchievement_Arcana_ChairGame",
+      "ArcanaConfig_CrawlerBrawler": "EndRunAchievement_Arcana_CrawlerBrawler",
+      "ArcanaConfig_EbbAndCombo": "DungeonAchievement_Arcana_EbbAndCombo",
+      "ArcanaConfig_InfiniteCombo": "MetricAchievement_Arcana_InfiniteCombo",
+      "Card_A_2_LaRobba": "EndRunAchievement_LaRobba",
+      "Card_A_1_UnearthlyBolt": "EndRunAchievement_UnearthlyBolt",
+      "Card_S_KaromasMana": "DungeonAchievement_KaromasMana",
+      "FCC_Ambrojoe": "MetricAchievement_Ambrojoe",
+      "FCC_BigTroubler": "SimpleAchievement_Character_BigTroubler",
+      "FCC_Leda": "MetricAchievement_Character_Leda",
+      "GemConfig_Afterlife": "DungeonAchievement_Gems_Afterlife",
+      "GemConfig_Scavenge": "DungeonAchievement_Gems_Scavenge",
+      "GemConfig_SetCostType_Adaptability": "MetricAchievement_Gems_Adaptability",
+      "GemConfig_Switch": "DungeonAchievement_Gems_Switch",
+      "RelicConfig_GalileosHand": "SimpleAchievement_Relic_GalileosHand",
+      "RelicConfig_Tappo": "SimpleAchievement_Relic_Tappo",
+      "Dungeon_GalloBelow_01": "DungeonAchievement_GalloBelowUnlock",
+      "Dungeon_Soda_01": "DungeonAchievement_MoonGolow_1_Unlock",
+      "Dungeon_Soda_02": "DungeonAchievement_MoonGolow_2_Unlock",
+      "RelicConfig_SeventhTrumpet": "SimpleAchievement_Relic_SeventhTrumpet",
+      "Dungeon_Moongolow_teaser": "DungeonAchievement_Base_Game_Complete",
+      "FCC_Zi'Assunta": "SimpleAchievement_Character_ZiAssunta"
+    },
+    "unlocks": {
+      "MetricAchievement_LargeCoinBag": [
+        "Card_E_LargeBagOfCoins"
+      ],
+      "DungeonAchievement_Inn": [
+        "FCC_Imelda",
+        "TownBuilding_Inn"
+      ],
+      "MetricAchievement_AttractionOrb": [
+        "Card_S_1_Attractorb"
+      ],
+      "SimpleAchievement_Relic_GemHammer": [
+        "RelicConfig_GemHammer"
+      ],
+      "MetricAchievement_AndAnother": [
+        "ArcanaConfig_AndAnother"
+      ],
+      "MetricAchievement_ChainLink": [
+        "ArcanaConfig_ChainLink"
+      ],
+      "MetricAchievement_JestersHat": [
+        "ArcanaConfig_JestersHat"
+      ],
+      "MetricAchievement_MakeASceme": [
+        "ArcanaConfig_MakeAScene"
+      ],
+      "MetricAchievement_ManaSython": [
+        "ArcanaConfig_ManaSyphon"
+      ],
+      "MetricAchievement_OverTheTop": [
+        "ArcanaConfig_OverTheTop"
+      ],
+      "MetricAchievement_SharpMind": [
+        "ArcanaConfig_SharpMind"
+      ],
+      "MetricAchievement_SwollenFist": [
+        "ArcanaConfig_SwollenFist"
+      ],
+      "MetricAchievement_WildStrength": [
+        "ArcanaConfig_WildStrength"
+      ],
+      "MetricAchievement_YourShieldMyLiege": [
+        "ArcanaConfig_YourShield"
+      ],
+      "EndRunAchievement_Bone": [
+        "Card_A_0_Bone"
+      ],
+      "EndRunAchievement_CherryBomb": [
+        "Card_A_0_CherryBomb"
+      ],
+      "MetricAchievement_FireWand": [
+        "Card_A_1_FireWand"
+      ],
+      "MetricAchievement_Garlic": [
+        "Card_A_0_Garlic"
+      ],
+      "EndRunAchievement_GattiAmari": [
+        "Card_A_1_GattiAmari"
+      ],
+      "EndRunAchievement_Runetracer": [
+        "Card_A_1_Runetracer"
+      ],
+      "MetricAchievement_Carrello": [
+        "Card_A_2_Carrello"
+      ],
+      "EndRunAchievement_CelestialDusting": [
+        "Card_A_2_CelestialDusting"
+      ],
+      "MetricAchievement_Cross": [
+        "Card_A_0_Cross"
+      ],
+      "EndRunAchievement_EightTheSparrow": [
+        "Card_A_2_EightTheSparrow"
+      ],
+      "MetricAchievement_LightningRing": [
+        "Card_A_2_LightningRing"
+      ],
+      "MetricAchievement_Peachone": [
+        "Card_A_5_Peachone"
+      ],
+      "EndRunAchievement_PhieraDerTuphello": [
+        "Card_A_4_PhieraDerTuphello"
+      ],
+      "EndRunAchievement_ShadowPinion": [
+        "Card_A_3_ShadowPinion"
+      ],
+      "MetricAchievement_EbonyWing": [
+        "Card_A_6_EbonyWings"
+      ],
+      "DungeonAchievement_VentoSacro": [
+        "Card_A_3_VentoSacro"
+      ],
+      "MetricAchievement_Pentagram": [
+        "Card_A_4_Pentagram"
+      ],
+      "MetricAchievement_ClockLancet": [
+        "Card_D_3_ClockLancet"
+      ],
+      "EndRunAchievement_SongOfMana": [
+        "Card_M_3_SongOfMana"
+      ],
+      "MetricAchievement_Armor_01": [
+        "Card_D_1_Armor"
+      ],
+      "MetricAchievement_Armor_02": [
+        "Card_D_2_Armor"
+      ],
+      "MetricAchievement_Armor_03": [
+        "Card_D_3_Armor"
+      ],
+      "MetricAchievement_CloverPettle": [
+        "Card_E_CloverPetal"
+      ],
+      "MetricAchievement_CoinPurse": [
+        "Card_E_CoinPurse"
+      ],
+      "MetricAchievement_Orologion": [
+        "Card_E_Orologion"
+      ],
+      "MetricAchievement_Rosary": [
+        "Card_E_Rosary"
+      ],
+      "MetricAchievement_Vacuum": [
+        "Card_E_Vacuum"
+      ],
+      "MetricAchievement_Character_Arca": [
+        "FCC_Arca"
+      ],
+      "MetricAchievement_Character_Cavallo": [
+        "FCC_Cavallo"
+      ],
+      "MetricAchievement_Character_Christine": [
+        "FCC_Christine"
+      ],
+      "MetricAchievement_Character_Clerici": [
+        "FCC_Clerici"
+      ],
+      "SimpleAchievement_Character_Concetta": [
+        "FCC_Concetta"
+      ],
+      "MetricAchievement_Character_Dommario": [
+        "FCC_Dommario"
+      ],
+      "DungeonAchievement_Character_Gallo": [
+        "FCC_Gallo"
+      ],
+      "MetricAchievement_Character_Gennaro": [
+        "FCC_Gennaro"
+      ],
+      "SimpleAchievement_Character_Giovanna": [
+        "FCC_Giovanna"
+      ],
+      "MetricAchievement_Character_Krochi": [
+        "FCC_Krochi"
+      ],
+      "EndRunAchievement_Character_Lama": [
+        "FCC_Lama"
+      ],
+      "SimpleAchievement_Character_MissingNo": [
+        "FCC_MissingNo"
+      ],
+      "MetricAchievement_Character_Mortuccio": [
+        "FCC_Mortaccio"
+      ],
+      "MetricAchievement_Character_OSole": [
+        "FCC_OSole"
+      ],
+      "DungeonAchievement_Character_Pasqualina": [
+        "FCC_Pasqualina"
+      ],
+      "MetricAchievement_Character_Poe": [
+        "FCC_Poe"
+      ],
+      "SimpleAchievement_Character_Poppea": [
+        "FCC_Poppea"
+      ],
+      "MetricAchievement_Character_Porta": [
+        "FCC_Porta"
+      ],
+      "SimpleAchievement_Character_Pugnala": [
+        "FCC_Pugnala"
+      ],
+      "MetricAchievement_Character_Ramba": [
+        "FCC_Ramba"
+      ],
+      "MetricAchievement_EmptyTome": [
+        "Card_B_0_EmptyTome",
+        "Card_B_0_RawMana"
+      ],
+      "MetricAchievement_EmptyTome_01": [
+        "Card_B_1_EmptyTome"
+      ],
+      "MetricAchievement_EmptyTome_02": [
+        "Card_B_2_EmptyTome"
+      ],
+      "MetricAchievement_EmptyTome_03": [
+        "Card_B_3_EmptyTome"
+      ],
+      "MetricAchievement_Candelabrador": [
+        "Card_S_0_Candelabrador"
+      ],
+      "EndRunAchievement_SkullOManic": [
+        "Card_S_0_SkullOManic"
+      ],
+      "MetricAchievement_Spellbinder": [
+        "Card_S_1_SpellBinder"
+      ],
+      "MetricAchievement_Candelabrador_01": [
+        "Card_S_1_Candelabrador"
+      ],
+      "MetricAchievement_Crown": [
+        "Card_S_1_Crown"
+      ],
+      "MetricAchievement_Duplicator": [
+        "Card_S_1_Duplicator"
+      ],
+      "SimpleAchievement_Relic_YellowSign": [
+        "Card_W_GoldRing",
+        "Card_W_SilverRing"
+      ],
+      "MetricAchievement_HollowHeart": [
+        "Card_S_1_HollowHeart"
+      ],
+      "EndRunAchievement_Pummarola": [
+        "Card_S_1_Pummarola"
+      ],
+      "MetricAchievement_StoneMask": [
+        "Card_S_1_StoneMask"
+      ],
+      "MetricAchievement_Bracer": [
+        "Card_S_2_Bracer"
+      ],
+      "MetricAchievement_Candelabrador_02": [
+        "Card_S_2_Candelabrador"
+      ],
+      "MetricAchievement_Clover": [
+        "Card_S_2_Clover"
+      ],
+      "MetricAchievement_Crown_02": [
+        "Card_S_2_Crown"
+      ],
+      "MetricAchievement_Duplicator_02": [
+        "Card_S_2_Duplicator"
+      ],
+      "MetricAchievement_Hollowheart_02": [
+        "Card_S_2_HollowHeart"
+      ],
+      "MetricAchievement_Pummarola_02": [
+        "Card_S_2_Pummarola"
+      ],
+      "MetricAchievement_Spinach_02": [
+        "Card_S_2_Spinach"
+      ],
+      "EndRunAchievement_Tirajisu": [
+        "Card_S_2_Tiramisu"
+      ],
+      "MetricAchievement_WildAttack": [
+        "Card_W_Bracelet"
+      ],
+      "MetricAchievement_WildCombo": [
+        "Card_W_Combo"
+      ],
+      "MetricAchievement_WildDefence": [
+        "Card_W_WildDefence"
+      ],
+      "MetricAchievement_Wings": [
+        "Card_M_0_Wings"
+      ],
+      "DungeonAchievement_Gems_01_CompMF1F1": [
+        "GemConfig_Area",
+        "GemConfig_Armor",
+        "GemConfig_Might",
+        "GemConfig_Evolve",
+        "GemConfig_Amount",
+        "GemConfig_Draw"
+      ],
+      "MetricAchievement_Gems_Heal": [
+        "GemConfig_Heal"
+      ],
+      "MetricAchievement_Gems_Luck": [
+        "GemConfig_Luck"
+      ],
+      "MetricAchievement_Gems_ManaPlusMinus": [
+        "GemConfig_Mana_Minus1",
+        "GemConfig_Mana_Plus1"
+      ],
+      "MetricAchievement_Gems_Steal": [
+        "GemConfig_Steal"
+      ],
+      "MetricAchievement_Gems_Charge": [
+        "GemConfig_Charge"
+      ],
+      "MetricAchievement_Gems_Clone": [
+        "GemConfig_CloneCard"
+      ],
+      "MetricAchievement_Gems_Discharge": [
+        "GemConfig_Discharge"
+      ],
+      "MetricAchievement_Gems_Leader": [
+        "GemConfig_Leader"
+      ],
+      "MetricAchievement_Gems_Midas": [
+        "GemConfig_Midas"
+      ],
+      "MetricAchievement_Gems_Slayer": [
+        "GemConfig_Slayer"
+      ],
+      "MetricAchievement_Gems_Spike": [
+        "GemConfig_Spike"
+      ],
+      "MetricAchievement_Gems_Arcane": [
+        "GemConfig_Arcane"
+      ],
+      "MetricAchievement_Gems_Demi": [
+        "GemConfig_Demi"
+      ],
+      "MetricAchievement_Gems_Free": [
+        "GemConfig_FreeToPlay"
+      ],
+      "MetricAchievement_Gems_Jingle": [
+        "GemConfig_Jingle"
+      ],
+      "DungeonAchievement_Gems_Mild": [
+        "GemConfig_Mild"
+      ],
+      "MetricAchievement_Gems_Wild": [
+        "GemConfig_SetCostType_Wild"
+      ],
+      "MetricAchievement_Gems_Thief": [
+        "GemConfig_Thief"
+      ],
+      "MetricAchievement_Gems_TripleDamage": [
+        "GemConfig_TripleDamage"
+      ],
+      "MetricAchievement_Gems_Uncrackable": [
+        "GemConfig_Uncrackable"
+      ],
+      "MetricAchievement_Gems_Bombard": [
+        "GemConfig_Bombard"
+      ],
+      "MetricAchievement_Gems_Calcium": [
+        "GemConfig_Calcium"
+      ],
+      "MetricAchievement_Gems_Drain": [
+        "GemConfig_Drain"
+      ],
+      "MetricAchievement_Gems_Echo": [
+        "GemConfig_Echo"
+      ],
+      "MetricAchievement_Gems_Hail": [
+        "GemConfig_Hail"
+      ],
+      "MetricAchievement_Gems_MagicHat": [
+        "GemConfig_MagicHat"
+      ],
+      "MetricAchievement_Gems_Magnet": [
+        "GemConfig_Magnetic"
+      ],
+      "MetricAchievement_Gems_ManaPlusMinus2": [
+        "GemConfig_Mana_Minus2",
+        "GemConfig_Mana_Plus2"
+      ],
+      "DungeonAchievement_Gems_CompleteIL3": [
+        "GemConfig_Rally"
+      ],
+      "MetricAchievement_Gems_Remote": [
+        "GemConfig_Remote"
+      ],
+      "MetricAchievement_Gems_Return": [
+        "GemConfig_ReturnToHand"
+      ],
+      "MetricAchievement_Gems_XCost": [
+        "GemConfig_SetCostType_XCost"
+      ],
+      "MetricAchievement_Gems_Sprightly": [
+        "GemConfig_Sprightly"
+      ],
+      "DungeonAchievement_Gems_CompleteMF3": [
+        "GemConfig_YinYang"
+      ],
+      "MetricAchievement_Gems_Blue": [
+        "GemConfig_AddType_Defense"
+      ],
+      "MetricAchievement_Gems_Red": [
+        "GemConfig_AddType_Attack"
+      ],
+      "MetricAchievement_Gems_Purple": [
+        "GemConfig_AddType_Mana"
+      ],
+      "MetricAchievement_Gems_Rainbow": [
+        "GemConfig_AddType_Rainbow"
+      ],
+      "MetricAchievement_Gems_Yellow": [
+        "GemConfig_AddType_Special"
+      ],
+      "MetricAchievement_Boost": [
+        "GemConfig_Boost"
+      ],
+      "MetricAchievement_Gems_Destroy": [
+        "GemConfig_Destroy"
+      ],
+      "MetricAchievement_Gems_Duration": [
+        "GemConfig_Duration"
+      ],
+      "DungeonAchievement_Gems_02_CompIL1": [
+        "GemConfig_Nduja"
+      ],
+      "MetricAchievement_Plunder": [
+        "GemConfig_Plunder"
+      ],
+      "DungeonAchievement_Gems_CompleteDP3": [
+        "GemConfig_Preserve"
+      ],
+      "MetricAchievement_Gems_Refresh": [
+        "GemConfig_Refresh"
+      ],
+      "MetricAchievement_Gems_Retain": [
+        "GemConfig_Retain"
+      ],
+      "MetricAchievement_Gems_Reverse": [
+        "GemConfig_ReverseCombo"
+      ],
+      "MetricAchievement_Gems_Swift": [
+        "GemConfig_Swift"
+      ],
+      "DungeonAchievement_Unlock_ShopTier2": [
+        "PowerUp_Amount",
+        "PowerUp_CharacterSlot",
+        "PowerUp_Cooldown"
+      ],
+      "DungeonAchievement_Unlock_ShopTier3": [
+        "PowerUp_Banish",
+        "PowerUp_Curse",
+        "PowerUp_Magnet",
+        "PowerUp_Revival",
+        "PowerUp_Speed"
+      ],
+      "DungeonAchievement_Unlock_InlaidLibrary_02": [
+        "PowerUp_Greed",
+        "Dungeon_InlaidLibrary_02"
+      ],
+      "DungeonAchievement_Unlock_DairyPlant_01": [
+        "PowerUp_Skip",
+        "Dungeon_DairyPlant_01"
+      ],
+      "SimpleAchievement_Relic_Blacksmith": [
+        "RelicConfig_Blacksmith"
+      ],
+      "SimpleAchievement_Relic_BombaInfernale": [
+        "RelicConfig_BombaInfernale"
+      ],
+      "SimpleAchievement_Relic_GrimGrimoire": [
+        "RelicConfig_GrimGrimoire"
+      ],
+      "SimpleAchievement_Relic_GuidingLight": [
+        "RelicConfig_GuidingLight"
+      ],
+      "SimpleAchievement_Relic_InnKey": [
+        "RelicConfig_InnKey"
+      ],
+      "SimpleAchievement_Relic_Jeweller": [
+        "RelicConfig_Jeweller"
+      ],
+      "SimpleAchievement_Relic_Ovenkilt": [
+        "RelicConfig_Ovenkilt"
+      ],
+      "SimpleAchievement_Relic_Overkill": [
+        "RelicConfig_Overkill"
+      ],
+      "SimpleAchievement_Relic_PancakeOfPower": [
+        "RelicConfig_PancakeOfPower"
+      ],
+      "SimpleAchievement_Relic_Polentir": [
+        "RelicConfig_Polentir"
+      ],
+      "SimpleAchievement_Relic_Randomazzo": [
+        "RelicConfig_Randomazzo"
+      ],
+      "SimpleAchievement_Relic_SorcerersTears": [
+        "RelicConfig_SorcerersTears"
+      ],
+      "SimpleAchievement_Relic_UltimateOverkill": [
+        "RelicConfig_UltimateOverkill"
+      ],
+      "MetricAchievement_RelicMuseum": [
+        "TownBuilding_Museum"
+      ],
+      "MetricAchievement_PowerUpShop": [
+        "TownBuilding_Shop"
+      ],
+      "DungeonAchievement_Unlock_CappellaMagna_01": [
+        "Dungeon_CappellaMagna_01"
+      ],
+      "DungeonAchievement_Unlock_CappellaMagna_02": [
+        "Dungeon_CappellaMagna_02"
+      ],
+      "MetricAchievement_MantishAmbushEncountered": [
+        "EnemyEncounter:Encounter_1ABstDE",
+        "EnemyEncounter:Encounter_1AEyeE",
+        "EnemyEncounter:Encounter_1AFiE",
+        "EnemyEncounter:Encounter_1AGAKE",
+        "EnemyEncounter:Encounter_1AMinE",
+        "EnemyEncounter:Encounter_1AGCE",
+        "EnemyEncounter:Encounter_1AGSE",
+        "EnemyEncounter:Encounter_1AGhE",
+        "EnemyEncounter:Encounter_1AQME",
+        "EnemyEncounter:Encounter_1AManE"
+      ],
+      "MetricAchievement_ChickenShop": [
+        "PassiveEvent:PassiveEvent_ChickenOfferingTable"
+      ],
+      "MetricAchievement_Event_DuplicationTableEvent": [
+        "PassiveEvent:PassiveEvent_DuplicateOfferingTable"
+      ],
+      "MetricAchievement_Event_GFH": [
+        "PassiveEvent:PassiveEvent_GunForHire"
+      ],
+      "MetricAchievement_Event_ManaOfferingTable": [
+        "PassiveEvent:PassiveEvent_ManaOfferingTable"
+      ],
+      "DungeonAchievement_Unlock_DairyPlant_02": [
+        "Dungeon_DairyPlant_02"
+      ],
+      "DungeonAchievement_Unlock_DairyPlant_03": [
+        "Dungeon_DairyPlant_03"
+      ],
+      "DungeonAchievement_Unlock_GalloTower_01": [
+        "Dungeon_GalloTower_01"
+      ],
+      "DungeonAchievement_Unlock_InlaidLibrary_01": [
+        "Dungeon_InlaidLibrary_01"
+      ],
+      "DungeonAchievement_Unlock_InlaidLibrary_03": [
+        "Dungeon_InlaidLibrary_03"
+      ],
+      "DungeonAchievement_Unlock_MadForest_02": [
+        "Dungeon_Madforest_02"
+      ],
+      "DungeonAchievement_Unlock_MadForest_03": [
+        "Dungeon_Madforest_03"
+      ],
+      "Multi-Achievement_Unlock_TinyBridge": [
+        "Dungeon_TinyBridge_01"
+      ],
+      "DungeonAchievement_Unlock_TinyBridge_02": [
+        "Dungeon_TinyBridge_02"
+      ],
+      "DungeonAchievement_Unlock_TinyBridge_03": [
+        "Dungeon_TinyBridge_03"
+      ],
+      "MetricAchievement_Arcana_ChairGame": [
+        "ArcanaConfig_ChairGame"
+      ],
+      "EndRunAchievement_Arcana_CrawlerBrawler": [
+        "ArcanaConfig_CrawlerBrawler"
+      ],
+      "DungeonAchievement_Arcana_EbbAndCombo": [
+        "ArcanaConfig_EbbAndCombo"
+      ],
+      "MetricAchievement_Arcana_InfiniteCombo": [
+        "ArcanaConfig_InfiniteCombo"
+      ],
+      "EndRunAchievement_LaRobba": [
+        "Card_A_2_LaRobba"
+      ],
+      "EndRunAchievement_UnearthlyBolt": [
+        "Card_A_1_UnearthlyBolt"
+      ],
+      "DungeonAchievement_KaromasMana": [
+        "Card_S_KaromasMana"
+      ],
+      "MetricAchievement_Ambrojoe": [
+        "FCC_Ambrojoe"
+      ],
+      "SimpleAchievement_Character_BigTroubler": [
+        "FCC_BigTroubler"
+      ],
+      "MetricAchievement_Character_Leda": [
+        "FCC_Leda"
+      ],
+      "DungeonAchievement_Gems_Afterlife": [
+        "GemConfig_Afterlife"
+      ],
+      "DungeonAchievement_Gems_Scavenge": [
+        "GemConfig_Scavenge"
+      ],
+      "MetricAchievement_Gems_Adaptability": [
+        "GemConfig_SetCostType_Adaptability"
+      ],
+      "DungeonAchievement_Gems_Switch": [
+        "GemConfig_Switch"
+      ],
+      "SimpleAchievement_Relic_GalileosHand": [
+        "RelicConfig_GalileosHand"
+      ],
+      "SimpleAchievement_Relic_Tappo": [
+        "RelicConfig_Tappo"
+      ],
+      "DungeonAchievement_GalloBelowUnlock": [
+        "Dungeon_GalloBelow_01"
+      ],
+      "DungeonAchievement_MoonGolow_1_Unlock": [
+        "Dungeon_Soda_01"
+      ],
+      "DungeonAchievement_MoonGolow_2_Unlock": [
+        "Dungeon_Soda_02"
+      ],
+      "SimpleAchievement_Relic_SeventhTrumpet": [
+        "RelicConfig_SeventhTrumpet"
+      ],
+      "DungeonAchievement_Base_Game_Complete": [
+        "Dungeon_Moongolow_teaser"
+      ],
+      "SimpleAchievement_Character_ZiAssunta": [
+        "FCC_Zi'Assunta"
+      ]
+    }
   },
   "characterUnlocks": {
     "FCC_Antonio": "SimpleAchievement_Character_Antonio",
@@ -1364,7 +2602,8 @@
     "FCC_MissingNo": "SimpleAchievement_Character_MissingNo",
     "FCC_Ambrojoe": "MetricAchievement_Ambrojoe",
     "FCC_Leda": "MetricAchievement_Character_Leda",
-    "FCC_BigTroubler": "SimpleAchievement_Character_BigTroubler"
+    "FCC_BigTroubler": "SimpleAchievement_Character_BigTroubler",
+    "FCC_Zi'Assunta": "SimpleAchievement_Character_ZiAssunta"
   },
   "unlockHints": {
     "DungeonAchievement_Arcana_EbbAndCombo": "Ebb and Combo: Get a Combo of 15 in Moongolow.",
@@ -1530,34 +2769,27 @@
     "DungeonAchievement_Unlock_ShopTier3": "Power-up shop tier 3 (after Weeny Bridge)",
     "SimpleAchievement_Character_MissingNo": "MissingN0: defeat Red Death",
     "MetricAchievement_Character_Leda": "Leda: defeat Leda in Gallo Dungeons",
-    "DungeonAchievement_Unlock_MadForest_01": "Mad Forest (first dungeon)"
+    "DungeonAchievement_Unlock_MadForest_01": "Mad Forest (first dungeon)",
+    "DungeonAchievement_Unlock_TinyBridge_01": "Teeny Bridge: Reach Level 15 in Inlaid Library."
   },
   "relicUnlocks": {
-    "RelicConfig_PancakeOfPower": "SimpleAchievement_Relic_PancakeOfPower",
     "RelicConfig_GemHammer": "SimpleAchievement_Relic_GemHammer",
-    "RelicConfig_GuidingLight": "SimpleAchievement_Relic_GuidingLight",
-    "RelicConfig_Polentir": "SimpleAchievement_Relic_Polentir",
-    "RelicConfig_GrimGrimoire": "SimpleAchievement_Relic_GrimGrimoire",
-    "RelicConfig_Overkill": "SimpleAchievement_Relic_Overkill",
     "RelicConfig_Blacksmith": "SimpleAchievement_Relic_Blacksmith",
     "RelicConfig_BombaInfernale": "SimpleAchievement_Relic_BombaInfernale",
+    "RelicConfig_GrimGrimoire": "SimpleAchievement_Relic_GrimGrimoire",
+    "RelicConfig_GuidingLight": "SimpleAchievement_Relic_GuidingLight",
+    "RelicConfig_InnKey": "SimpleAchievement_Relic_InnKey",
     "RelicConfig_Jeweller": "SimpleAchievement_Relic_Jeweller",
+    "RelicConfig_Ovenkilt": "SimpleAchievement_Relic_Ovenkilt",
+    "RelicConfig_Overkill": "SimpleAchievement_Relic_Overkill",
+    "RelicConfig_PancakeOfPower": "SimpleAchievement_Relic_PancakeOfPower",
+    "RelicConfig_Polentir": "SimpleAchievement_Relic_Polentir",
+    "RelicConfig_Randomazzo": "SimpleAchievement_Relic_Randomazzo",
     "RelicConfig_SorcerersTears": "SimpleAchievement_Relic_SorcerersTears",
     "RelicConfig_UltimateOverkill": "SimpleAchievement_Relic_UltimateOverkill",
-    "RelicConfig_Ovenkilt": "SimpleAchievement_Relic_Ovenkilt",
-    "RelicConfig_SeventhTrumpet": "SimpleAchievement_Relic_SeventhTrumpet",
     "RelicConfig_GalileosHand": "SimpleAchievement_Relic_GalileosHand",
     "RelicConfig_Tappo": "SimpleAchievement_Relic_Tappo",
-    "RelicConfig_BraveStory": "SimpleAchievement_Relic_BraveStory",
-    "RelicConfig_Darkasso": "SimpleAchievement_Relic_Darkasso",
-    "RelicConfig_FccPamphlet": "SimpleAchievement_Relic_FccPamphlet",
-    "RelicConfig_InnKey": "SimpleAchievement_Relic_InnKey",
-    "RelicConfig_MagicBanger": "SimpleAchievement_Relic_MagicBanger",
-    "RelicConfig_PossessedSneakers": "SimpleAchievement_Relic_PossessedSneakers",
-    "RelicConfig_RageVirus": "SimpleAchievement_Relic_RageVirus",
-    "RelicConfig_Randomazzo": "SimpleAchievement_Relic_Randomazzo",
-    "RelicConfig_Randomizer": "SimpleAchievement_Relic_Randomizer",
-    "RelicConfig_YellowSign": "SimpleAchievement_Relic_YellowSign"
+    "RelicConfig_SeventhTrumpet": "SimpleAchievement_Relic_SeventhTrumpet"
   },
   "relicGroups": [
     {
@@ -1565,29 +2797,240 @@
       "ids": [
         "RelicConfig_DamageIndicators",
         "RelicConfig_DeckBox",
-        "RelicConfig_MilkyWayMap",
-        "RelicConfig_Rilevatore"
+        "RelicConfig_MilkyWayMap"
       ]
     },
     {
       "name": "Found in dungeons",
       "ids": [
-        "RelicConfig_PancakeOfPower",
-        "RelicConfig_GemHammer",
-        "RelicConfig_GuidingLight",
-        "RelicConfig_Polentir",
-        "RelicConfig_GrimGrimoire",
-        "RelicConfig_Overkill",
         "RelicConfig_Blacksmith",
         "RelicConfig_BombaInfernale",
+        "RelicConfig_GemHammer",
+        "RelicConfig_GrimGrimoire",
+        "RelicConfig_GuidingLight",
+        "RelicConfig_InnKey",
         "RelicConfig_Jeweller",
-        "RelicConfig_SorcerersTears",
-        "RelicConfig_UltimateOverkill",
         "RelicConfig_Ovenkilt",
-        "RelicConfig_SeventhTrumpet",
+        "RelicConfig_Overkill",
+        "RelicConfig_PancakeOfPower",
+        "RelicConfig_Polentir",
+        "RelicConfig_Randomazzo",
+        "RelicConfig_SorcerersTears",
+        "RelicConfig_UltimateOverkill"
+      ]
+    },
+    {
+      "name": "Death Parade update",
+      "released": "2026-10-12",
+      "ids": [
         "RelicConfig_GalileosHand",
         "RelicConfig_Tappo"
       ]
+    },
+    {
+      "name": "Moongolow teaser",
+      "ids": [
+        "RelicConfig_SeventhTrumpet"
+      ]
     }
-  ]
+  ],
+  "unlockEffects": {
+    "MetricAchievement_LargeCoinBag": "Large Bag Of Coins",
+    "DungeonAchievement_Inn": "Imelda Belpaese, Inn (Crawler selection)",
+    "MetricAchievement_AttractionOrb": "Attractorb",
+    "SimpleAchievement_Relic_GemHammer": "Gem Hammer",
+    "MetricAchievement_AndAnother": "And Another",
+    "MetricAchievement_ChainLink": "Chain Link",
+    "MetricAchievement_JestersHat": "Jesters Hat",
+    "MetricAchievement_MakeASceme": "Make AScene",
+    "MetricAchievement_ManaSython": "Mana Syphon",
+    "MetricAchievement_OverTheTop": "Over The Top",
+    "MetricAchievement_SharpMind": "Sharp Mind",
+    "MetricAchievement_SwollenFist": "Swollen Fist",
+    "MetricAchievement_WildStrength": "Wild Strength",
+    "MetricAchievement_YourShieldMyLiege": "Your Shield",
+    "EndRunAchievement_Bone": "Bone",
+    "EndRunAchievement_CherryBomb": "Cherry Bomb",
+    "MetricAchievement_FireWand": "Fire Wand",
+    "MetricAchievement_Garlic": "Garlic",
+    "EndRunAchievement_GattiAmari": "Gatti Amari",
+    "EndRunAchievement_Runetracer": "Runetracer",
+    "MetricAchievement_Carrello": "Carrello",
+    "EndRunAchievement_CelestialDusting": "Celestial Dusting",
+    "MetricAchievement_Cross": "Cross",
+    "EndRunAchievement_EightTheSparrow": "Eight The Sparrow",
+    "MetricAchievement_LightningRing": "Lightning Ring",
+    "MetricAchievement_Peachone": "Peachone",
+    "EndRunAchievement_PhieraDerTuphello": "Phiera Der Tuphello",
+    "EndRunAchievement_ShadowPinion": "Shadow Pinion",
+    "MetricAchievement_EbonyWing": "Ebony Wings",
+    "DungeonAchievement_VentoSacro": "Vento Sacro",
+    "MetricAchievement_Pentagram": "Pentagram",
+    "MetricAchievement_ClockLancet": "Clock Lancet",
+    "EndRunAchievement_SongOfMana": "Song Of Mana",
+    "MetricAchievement_Armor_01": "Armor",
+    "MetricAchievement_Armor_02": "Armor",
+    "MetricAchievement_Armor_03": "Armor",
+    "MetricAchievement_CloverPettle": "Clover Petal",
+    "MetricAchievement_CoinPurse": "Coin Purse",
+    "MetricAchievement_Orologion": "Orologion",
+    "MetricAchievement_Rosary": "Rosary",
+    "MetricAchievement_Vacuum": "Vacuum",
+    "MetricAchievement_Character_Arca": "Arca Ladonna",
+    "MetricAchievement_Character_Cavallo": "Yatta Cavallo",
+    "MetricAchievement_Character_Christine": "Christine Davain",
+    "MetricAchievement_Character_Clerici": "Suor Clerici",
+    "SimpleAchievement_Character_Concetta": "Concetta Caciotta",
+    "MetricAchievement_Character_Dommario": "Dommario",
+    "DungeonAchievement_Character_Gallo": "Gallo",
+    "MetricAchievement_Character_Gennaro": "Gennaro Belpaese",
+    "SimpleAchievement_Character_Giovanna": "Giovanna Grana",
+    "MetricAchievement_Character_Krochi": "Krochi Freetto",
+    "EndRunAchievement_Character_Lama": "Lama Ladonna",
+    "SimpleAchievement_Character_MissingNo": "MissingN0",
+    "MetricAchievement_Character_Mortuccio": "Mortaccio",
+    "MetricAchievement_Character_OSole": "O'Sole Meeo",
+    "DungeonAchievement_Character_Pasqualina": "Pasqualina Belpaese",
+    "MetricAchievement_Character_Poe": "Poe Ratcho",
+    "SimpleAchievement_Character_Poppea": "Poppea Pecorina",
+    "MetricAchievement_Character_Porta": "Porta Ladonna",
+    "SimpleAchievement_Character_Pugnala": "Pugnala Provola",
+    "MetricAchievement_Character_Ramba": "Bianca Ramba",
+    "MetricAchievement_EmptyTome": "Empty Tome, Raw Mana",
+    "MetricAchievement_EmptyTome_01": "Empty Tome",
+    "MetricAchievement_EmptyTome_02": "Empty Tome",
+    "MetricAchievement_EmptyTome_03": "Empty Tome",
+    "MetricAchievement_Candelabrador": "Candelabrador",
+    "EndRunAchievement_SkullOManic": "Skull OManic",
+    "MetricAchievement_Spellbinder": "Spell Binder",
+    "MetricAchievement_Candelabrador_01": "Candelabrador",
+    "MetricAchievement_Crown": "Crown",
+    "MetricAchievement_Duplicator": "Duplicator",
+    "SimpleAchievement_Relic_YellowSign": "Gold Ring, Silver Ring",
+    "MetricAchievement_HollowHeart": "Hollow Heart",
+    "EndRunAchievement_Pummarola": "Pummarola",
+    "MetricAchievement_StoneMask": "Stone Mask",
+    "MetricAchievement_Bracer": "Bracer",
+    "MetricAchievement_Candelabrador_02": "Candelabrador",
+    "MetricAchievement_Clover": "Clover",
+    "MetricAchievement_Crown_02": "Crown",
+    "MetricAchievement_Duplicator_02": "Duplicator",
+    "MetricAchievement_Hollowheart_02": "Hollow Heart",
+    "MetricAchievement_Pummarola_02": "Pummarola",
+    "MetricAchievement_Spinach_02": "Spinach",
+    "EndRunAchievement_Tirajisu": "Tiramisu",
+    "MetricAchievement_WildAttack": "Bracelet",
+    "MetricAchievement_WildCombo": "Combo",
+    "MetricAchievement_WildDefence": "Wild Defence",
+    "MetricAchievement_Wings": "Wings",
+    "DungeonAchievement_Gems_01_CompMF1F1": "Area, Armor, Might, Evolve, Amount, Draw",
+    "MetricAchievement_Gems_Heal": "Heal",
+    "MetricAchievement_Gems_Luck": "Luck",
+    "MetricAchievement_Gems_ManaPlusMinus": "Mana Minus1, Mana Plus1",
+    "MetricAchievement_Gems_Steal": "Steal",
+    "MetricAchievement_Gems_Charge": "Charge",
+    "MetricAchievement_Gems_Clone": "Clone Card",
+    "MetricAchievement_Gems_Discharge": "Discharge",
+    "MetricAchievement_Gems_Leader": "Leader",
+    "MetricAchievement_Gems_Midas": "Midas",
+    "MetricAchievement_Gems_Slayer": "Slayer",
+    "MetricAchievement_Gems_Spike": "Spike",
+    "MetricAchievement_Gems_Arcane": "Arcane",
+    "MetricAchievement_Gems_Demi": "Demi",
+    "MetricAchievement_Gems_Free": "Free To Play",
+    "MetricAchievement_Gems_Jingle": "Jingle",
+    "DungeonAchievement_Gems_Mild": "Mild",
+    "MetricAchievement_Gems_Wild": "Set Cost Type Wild",
+    "MetricAchievement_Gems_Thief": "Thief",
+    "MetricAchievement_Gems_TripleDamage": "Triple Damage",
+    "MetricAchievement_Gems_Uncrackable": "Uncrackable",
+    "MetricAchievement_Gems_Bombard": "Bombard",
+    "MetricAchievement_Gems_Calcium": "Calcium",
+    "MetricAchievement_Gems_Drain": "Drain",
+    "MetricAchievement_Gems_Echo": "Echo",
+    "MetricAchievement_Gems_Hail": "Hail",
+    "MetricAchievement_Gems_MagicHat": "Magic Hat",
+    "MetricAchievement_Gems_Magnet": "Magnetic",
+    "MetricAchievement_Gems_ManaPlusMinus2": "Mana Minus2, Mana Plus2",
+    "DungeonAchievement_Gems_CompleteIL3": "Rally",
+    "MetricAchievement_Gems_Remote": "Remote",
+    "MetricAchievement_Gems_Return": "Return To Hand",
+    "MetricAchievement_Gems_XCost": "Set Cost Type XCost",
+    "MetricAchievement_Gems_Sprightly": "Sprightly",
+    "DungeonAchievement_Gems_CompleteMF3": "Yin Yang",
+    "MetricAchievement_Gems_Blue": "Add Type Defense",
+    "MetricAchievement_Gems_Red": "Add Type Attack",
+    "MetricAchievement_Gems_Purple": "Add Type Mana",
+    "MetricAchievement_Gems_Rainbow": "Add Type Rainbow",
+    "MetricAchievement_Gems_Yellow": "Add Type Special",
+    "MetricAchievement_Boost": "Boost",
+    "MetricAchievement_Gems_Destroy": "Destroy",
+    "MetricAchievement_Gems_Duration": "Duration",
+    "DungeonAchievement_Gems_02_CompIL1": "Nduja",
+    "MetricAchievement_Plunder": "Plunder",
+    "DungeonAchievement_Gems_CompleteDP3": "Preserve",
+    "MetricAchievement_Gems_Refresh": "Refresh",
+    "MetricAchievement_Gems_Retain": "Retain",
+    "MetricAchievement_Gems_Reverse": "Reverse Combo",
+    "MetricAchievement_Gems_Swift": "Swift",
+    "DungeonAchievement_Unlock_ShopTier2": "Amount, Crawler Slot, Cooldown",
+    "DungeonAchievement_Unlock_ShopTier3": "Banish, Curse, Magnet, Revival, Deal Count",
+    "DungeonAchievement_Unlock_InlaidLibrary_02": "Greed, Library West Wing",
+    "DungeonAchievement_Unlock_DairyPlant_01": "Skip, Dairy Plant",
+    "SimpleAchievement_Relic_Blacksmith": "Stardust Anvil",
+    "SimpleAchievement_Relic_BombaInfernale": "Bomba Infernale",
+    "SimpleAchievement_Relic_GrimGrimoire": "Grim Grimoire",
+    "SimpleAchievement_Relic_GuidingLight": "Guiding Light",
+    "SimpleAchievement_Relic_InnKey": "Inn Key",
+    "SimpleAchievement_Relic_Jeweller": "Lapidary Loupe",
+    "SimpleAchievement_Relic_Ovenkilt": "Ovenkilt",
+    "SimpleAchievement_Relic_Overkill": "Overkill",
+    "SimpleAchievement_Relic_PancakeOfPower": "Combo Stack",
+    "SimpleAchievement_Relic_Polentir": "Polentír",
+    "SimpleAchievement_Relic_Randomazzo": "Randomazzo",
+    "SimpleAchievement_Relic_SorcerersTears": "Sorceress' Tears",
+    "SimpleAchievement_Relic_UltimateOverkill": "Ultimate Ultra Overkill",
+    "MetricAchievement_RelicMuseum": "Relic Museum",
+    "MetricAchievement_PowerUpShop": "Power-up shop",
+    "DungeonAchievement_Unlock_CappellaMagna_01": "Cappella Magna",
+    "DungeonAchievement_Unlock_CappellaMagna_02": "Cappella Ultima",
+    "MetricAchievement_MantishAmbushEncountered": "10 enemy encounters",
+    "MetricAchievement_ChickenShop": "Chicken Offering Table",
+    "MetricAchievement_Event_DuplicationTableEvent": "Duplicate Offering Table",
+    "MetricAchievement_Event_GFH": "Gun For Hire",
+    "MetricAchievement_Event_ManaOfferingTable": "Mana Offering Table",
+    "DungeonAchievement_Unlock_DairyPlant_02": "Milk Factory",
+    "DungeonAchievement_Unlock_DairyPlant_03": "Curd Refinery",
+    "DungeonAchievement_Unlock_GalloTower_01": "Gallo Tower",
+    "DungeonAchievement_Unlock_InlaidLibrary_01": "Inlaid Library",
+    "DungeonAchievement_Unlock_InlaidLibrary_03": "Library Sanctum",
+    "DungeonAchievement_Unlock_MadForest_02": "Furious Forest",
+    "DungeonAchievement_Unlock_MadForest_03": "Berserk Wood",
+    "Multi-Achievement_Unlock_TinyBridge": "Teeny Bridge",
+    "DungeonAchievement_Unlock_TinyBridge_02": "Weeny Bridge",
+    "DungeonAchievement_Unlock_TinyBridge_03": "Meany Bridge",
+    "MetricAchievement_Arcana_ChairGame": "Chair Game",
+    "EndRunAchievement_Arcana_CrawlerBrawler": "Crawler Brawler",
+    "DungeonAchievement_Arcana_EbbAndCombo": "Ebb And Combo",
+    "MetricAchievement_Arcana_InfiniteCombo": "Infinite Combo",
+    "EndRunAchievement_LaRobba": "La Robba",
+    "EndRunAchievement_UnearthlyBolt": "Unearthly Bolt",
+    "DungeonAchievement_KaromasMana": "Karomas Mana",
+    "MetricAchievement_Ambrojoe": "Sir Ambrojoe",
+    "SimpleAchievement_Character_BigTroubler": "Big Troubler",
+    "MetricAchievement_Character_Leda": "Leda",
+    "DungeonAchievement_Gems_Afterlife": "Afterlife",
+    "DungeonAchievement_Gems_Scavenge": "Scavenge",
+    "MetricAchievement_Gems_Adaptability": "Set Cost Type Adaptability",
+    "DungeonAchievement_Gems_Switch": "Switch",
+    "SimpleAchievement_Relic_GalileosHand": "Galileo's Hand",
+    "SimpleAchievement_Relic_Tappo": "Tappo",
+    "DungeonAchievement_GalloBelowUnlock": "Gallo Dungeons",
+    "DungeonAchievement_MoonGolow_1_Unlock": "Moongolow",
+    "DungeonAchievement_MoonGolow_2_Unlock": "Moongohigh",
+    "SimpleAchievement_Relic_SeventhTrumpet": "Seventh Trumpet",
+    "DungeonAchievement_Base_Game_Complete": "??? (Moongolow teaser)",
+    "SimpleAchievement_Character_ZiAssunta": "Zi'Assunta",
+    "DungeonAchievement_Unlock_TinyBridge_01": "Teeny Bridge (via the combined unlock)"
+  }
 }

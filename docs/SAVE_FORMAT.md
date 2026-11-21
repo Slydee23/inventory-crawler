@@ -54,13 +54,17 @@ The game evidently re-serializes its object and compares, so output must match .
 - Known ID lists: `data/ids.json`, regenerated with `node tools/extract-ids.mjs <saves…>`
 
 ## Unlocks (from the game data)
-`tools/extract-apk-ids.mjs` reads the APK (Unity 6000.0.62f1, IL2CPP; bundles `assets/bin/Data/data.unity3d` + `datapack.unity3d`, UnityFS/LZ4) and finds 257 achievement/unlock IDs, 30 relics, 22 arcanas, 19 dungeons, 8 town buildings, 26 characters (+`FCC_Divano`, unused). Every ID seen in real saves appears in the APK.
+`tools/extract-apk-ids.mjs` reads the APK (Unity 6000.0.62f1, IL2CPP, no type trees). It unpacks `data.unity3d`/`datapack.unity3d` (UnityFS/LZ4), parses the SerializedFiles (object tables, MonoScript class names) and resolves PPtr references between MonoBehaviours. Everything below is read from the game data, not guessed.
 
-- Achievement objects have two name fields: asset name and save ID. They differ for 7 objects; the **second field is the save ID** (evidence: asset `DungeonAchievement_Unlock_TinyBridge_01_Demo` → ID `DungeonAchievement_Unlock_TinyBridge_01`). E.g. MissingNo: asset `…_MIssingNo` (typo), ID `SimpleAchievement_Character_MissingNo`.
-- Characters: unlock achievement + purchase (see `characterUnlocks` in `data/ids.json`; Imelda = `DungeonAchievement_Inn`, Mortaccio = `…_Character_Mortuccio`, Ambrojoe = `MetricAchievement_Ambrojoe`).
-- Power-up shop tiers: `MetricAchievement_PowerUpShop`, `DungeonAchievement_Unlock_ShopTier2`, `DungeonAchievement_Unlock_ShopTier3`.
-- Relics: owned = unlock achievement `SimpleAchievement_Relic_*` (see `relicUnlocks`), switched on = `RunMetaSaveData.EnabledRelics[{Key:"RelicConfig_*",Value:true}]`. Starter relics (Deck Box, Milky Way Map, Rilevatore, Damage Indicators) need no unlock — real saves have them enabled without the achievement. Display names differ: `RelicConfig_PancakeOfPower` = Combo Stack, `_Blacksmith` = Stardust Anvil, `_Jeweller` = Lapidary Loupe.
-- Dungeons: `DungeonAchievement_Unlock_*`.
+- **Content packs** = the game's databases: `BaseGame`, `Blueberries` (= Death Parade update: Ambrojoe, Leda, Big Troubler, Gallo Dungeons, Moongolow/Moongohigh, Galileo's Hand, Tappo) and `MoongolowTeaser` (??? dungeon, Seventh Trumpet). Only database-registered objects are used by the game.
+- **Save IDs**: objects have an asset name and a separate save-ID field. They differ for 7 achievements (e.g. asset `…_MIssingNo` → ID `SimpleAchievement_Character_MissingNo`), for relics (`RelicConfig_Rilevatore` → ID `RelicConfig_DamageIndicators`, `RelicConfig_UltraOverkill` → `RelicConfig_UltimateOverkill`) and gems (`GemConfig_AddType_Armor` → `GemConfig_AddType_Defense`).
+- **What unlocks what** (`apk.unlockedBy` / `apk.unlocks` in `data/ids.json`): content objects reference their unlock achievement.
+  - Characters: `characterUnlocks` (all 25 confirmed; Antonio needs none). A character needs its unlock (shows up in the tavern) + `CharactersPurchased` (playable).
+  - Power-ups: shop tier 1 = `MetricAchievement_PowerUpShop` (the shop building); tier 2 = `DungeonAchievement_Unlock_ShopTier2` (Amount, Crawler Slot, Cooldown); tier 3 = `…ShopTier3` (Banish, Curse, Magnet, Revival, Deal Count); Greed = `DungeonAchievement_Unlock_InlaidLibrary_02` (also unlocks Library West Wing); Skip = `DungeonAchievement_Unlock_DairyPlant_01` (also unlocks Dairy Plant). The wiki is wrong about Skip.
+  - Relics: `SimpleAchievement_Relic_*` (`relicUnlocks`); starter relics (Deck Box, Milky Way Map, Rilevatore) need none.
+  - Dungeons: `DungeonAchievement_Unlock_*`; Moongolow/Moongohigh (`Dungeon_Soda_01/02`) via `DungeonAchievement_MoonGolow_1/2_Unlock`; Teeny Bridge via a combined `Multi-Achievement_Unlock_TinyBridge` (parts: `…Unlock_TinyBridge_01` + demo).
+  - Gems, arcanas, cards, passive dungeon events (Gun for Hire, offering tables, chicken shop) and enemy encounters are linked the same way.
+- **Unused content**: 5 arcanas are named "(DEPRECATED)" by the game; 2 relic configs are broken (`BraveStory` has save ID "GrimGrimoire", `MagicBanger` "RelicConfig"); unlocks that unlock nothing, are not on the wiki and never appear in saves are hidden in the editor (`hidden` in `data/ids.json`). 6 relics exist but nothing unlocks them (Darkasso, FCC Pamphlet, Possessed Sneakers, Rage Virus, Randomizer, Yellow Sign) → Experimental.
 
 ## SettingsData — `Data`
 `Resolution`/`RefreshRate` (Unity Vector3 incl. derived `normalized`, `magnitude`, `sqrMagnitude`), volumes (float 0–1), many bool toggles, `LocaleIdentifier`, `InputActionBindings` (null), layout indices.
