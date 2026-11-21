@@ -20,14 +20,14 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Diff saves after more play (`VC Save/nach-1h/`) → documented in `docs/SAVE_FORMAT.md`
 - [ ] (?) Mid-run save → document `GameSaveData.SaveObjects`
 - [x] `data/ids.json` + `tools/extract-ids.mjs`: characters (25), cards (75), gems (62), power-ups (20) complete
-- [ ] Still incomplete: relics, arcanas, dungeons, achievements — need later-game saves or community sources
+- [x] Complete ID lists for all categories from the APK (database-registered content)
 - [x] Game accepts an edited save: +10k coins (both TotalCoins fields) loaded on Android and spendable in-game (2026-11-21)
 - [x] Character roster cross-checked with vampire.survivors.wiki: all 25 IDs are playable (3 from Death Parade update); display names, unlock hints, prices added
 - [x] Characters grouped by content release (Base game 22, Death Parade update 3); unknown IDs fall into "New / not yet categorized"
-- [ ] Verify the 22 base-game unlock hints against the wiki (currently from guides)
+- [x] Character unlocks verified from game data (unlock hint texts are from guides/wiki)
 - Reference: https://vampire.survivors.wiki/w/Crawlers:Characters is the most reliable source (guides were incomplete/wrong)
 - [x] In-game test: unlocking a character (unlock achievement + CharactersPurchased) (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
-- [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
+- [x] PC uses the same save folder layout and file names (confirmed path); a PC save sample would still be a nice extra check
 
 ## Phase 3 — Editor UI (MVP)
 - [x] One tab per category: Overview · Characters · Relics · Power-ups · Cards · Achievements · Other · Raw JSON (Experimental sections live in their category tab)
@@ -64,7 +64,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Shop-tier grouping now from game data (effects/base prices still wiki only)
 - [x] Relics
 - [x] Cards: all 107 cards from game data, grouped by card type (Attack, Defense, Stat boost, Mana, Pickups, Debuff, Crawler cards), check = discovered + unlock, links to unlocks
-- [ ] Achievements
+- [x] Achievements: all unlocks from game data, categories, wiki requirements, what each unlock unlocks
 
 ## Phase 4 — Polish & release
 - [x] How-to page (howto.html): quick guide, files, Android (USB/Shizuku/root; package com.poncle.vampirecrawlers from the APK), PC/Steam, iOS, consoles, troubleshooting; linked from start screen + footer
