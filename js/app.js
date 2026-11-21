@@ -1,7 +1,7 @@
 // App controller: file loading, tabs, export.
 
 import { SaveFile } from './save-file.js';
-import { h } from './ui/dom.js';
+import { h, setDisplayNames } from './ui/dom.js';
 import { viewsFor } from './ui/views.js';
 
 const $ = (id) => document.getElementById(id);
@@ -18,7 +18,7 @@ const state = {
 const idsReady = fetch('data/ids.json')
   .then((r) => (r.ok ? r.json() : {}))
   .catch(() => ({}))
-  .then((ids) => { state.ids = ids; });
+  .then((ids) => { state.ids = ids; setDisplayNames(ids.displayNames); });
 
 // ---------------------------------------------------------------- toast
 

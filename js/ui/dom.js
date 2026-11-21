@@ -27,8 +27,13 @@ function append(el, children) {
   }
 }
 
-/** "TotalCoins" -> "Total Coins", "PowerUp_MaxHealth" -> "Max Health". */
+/** @type {Record<string, string>} official display names by ID (from data/ids.json) */
+let displayNames = {};
+export function setDisplayNames(map) { displayNames = map ?? {}; }
+
+/** "TotalCoins" -> "Total Coins", "PowerUp_MaxHealth" -> "Max Health"; known IDs use their display name. */
 export function prettify(id) {
+  if (Object.hasOwn(displayNames, id)) return displayNames[id];
   const KNOWN_PREFIXES = /^(FCC|PowerUp|RelicConfig|GemConfig|Card_[A-Z]_\d+|Card_[A-Z](?=_)|Card|TownBuilding|SimpleAchievement|DungeonAchievement|MetricAchievement|PowerUpAchievement|Dungeon|ArcanaConfig|Arcana)_/;
   const name = String(id).replace(KNOWN_PREFIXES, '');
   return name

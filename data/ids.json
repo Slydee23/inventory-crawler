@@ -247,11 +247,63 @@
     "PowerUp_Skip": 5,
     "PowerUp_Speed": 2
   },
-  "experimental": {},
+  "experimental": {
+    "FCC_Ambrojoe": "in the game data, but not among the 22 playable Crawlers listed by guides — possibly unreleased/upcoming",
+    "FCC_BigTroubler": "in the game data, but not among the 22 playable Crawlers listed by guides — possibly unreleased/upcoming",
+    "FCC_Leda": "in the game data, but not among the 22 playable Crawlers listed by guides — possibly unreleased/upcoming"
+  },
   "hidden": {
     "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown"
   },
   "hints": {
-    "FCC_MissingNo": "Unlocked in-game by defeating Red Death once (not mentioned anywhere in the game)"
+    "FCC_Antonio": "Starting character (finish the tutorial)",
+    "FCC_Imelda": "Play the Mad Forest",
+    "FCC_Pasqualina": "Reach level 20 with Imelda in the Inlaid Library",
+    "FCC_Gennaro": "Defeat Mantichana in the Mad Forest",
+    "FCC_Arca": "Play Fire Wand cards 100 times",
+    "FCC_Porta": "Play Lightning Ring cards 100 times",
+    "FCC_Lama": "Clear a dungeon with 10% Curse or more",
+    "FCC_Poe": "Play Garlic cards 25 times",
+    "FCC_Dommario": "Collect 5,000 coins",
+    "FCC_Krochi": "Defeat 6,666 enemies in total",
+    "FCC_Pugnala": "Rescue from the coffin in Berserk Wood",
+    "FCC_Poppea": "Rescue from the coffin in the Milk Factory",
+    "FCC_Concetta": "Rescue from the coffin in Gallo Tower",
+    "FCC_Cavallo": "Defeat 250 Lion Heads",
+    "FCC_OSole": "Defeat 50 Dragon Shrimps (Gallo Tower)",
+    "FCC_Mortaccio": "Defeat 444 Skeletons",
+    "FCC_Ramba": "Defeat the Milk Elemental (Dairy Plant)",
+    "FCC_Clerici": "Recover 1,000 HP in total",
+    "FCC_Giovanna": "Rescue from the coffin in the Library Sanctum",
+    "FCC_Christine": "Reach level 35 in a run, then play the Pentagram card",
+    "FCC_Gallo": "Defeat Gallo in Gallo Tower",
+    "FCC_MissingNo": "Secret: defeat Red Death once"
+  },
+  "displayNames": {
+    "FCC_Antonio": "Antonio Belpaese",
+    "FCC_Imelda": "Imelda Belpaese",
+    "FCC_Pasqualina": "Pasqualina Belpaese",
+    "FCC_Gennaro": "Gennaro Belpaese",
+    "FCC_Arca": "Arca Ladonna",
+    "FCC_Porta": "Porta Ladonna",
+    "FCC_Lama": "Lama Ladonna",
+    "FCC_Poe": "Poe Ratcho",
+    "FCC_Dommario": "Dommario",
+    "FCC_Krochi": "Krochi Freetto",
+    "FCC_Pugnala": "Pugnala Provola",
+    "FCC_Poppea": "Poppea Pecorina",
+    "FCC_Concetta": "Concetta Caciotta",
+    "FCC_Cavallo": "Yatta Cavallo",
+    "FCC_OSole": "O'Sole Meeo",
+    "FCC_Mortaccio": "Mortaccio",
+    "FCC_Ramba": "Bianca Ramba",
+    "FCC_Clerici": "Suor Clerici",
+    "FCC_Giovanna": "Giovanna Grana",
+    "FCC_Christine": "Christine Davain",
+    "FCC_Gallo": "Gallo",
+    "FCC_MissingNo": "MissingN0",
+    "FCC_Ambrojoe": "Ambrojoe (?)",
+    "FCC_BigTroubler": "Big Troubler (?)",
+    "FCC_Leda": "Leda (?)"
   }
 }

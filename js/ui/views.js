@@ -246,41 +246,48 @@ function progressionView(ctx) {
   const kvKeys = (list) => (list ?? []).map((e) => e instanceof Map && e.get('Key'));
   const slotIds = kvKeys(arr(prog, 'CardGemSlots'));
 
+  // Experimental IDs (in the save but unconfirmed in the game) live in their own collapsed section.
+  // Hidden IDs (dev leftovers without effect) are never shown; they still round-trip untouched.
+  const experimental = ids.experimental ?? {};
+  const isHidden = (id) => Object.hasOwn(ids.hidden ?? {}, id);
+  const isExperimental = (id) => Object.hasOwn(experimental, id) && !isHidden(id);
+  const isRegular = (id) => !Object.hasOwn(experimental, id) && !isHidden(id);
+
   // Characters: present with Value true = purchased. Removing deletes the entry (as in a fresh save).
   const chars = arr(prog, 'CharactersPurchased');
-  const charIds = union(ids.characters, kvKeys(chars), slotIds.filter((k) => k?.startsWith('FCC_')));
+  const allChars = union(ids.characters, kvKeys(chars), slotIds.filter((k) => k?.startsWith('FCC_')));
+  const charChecklist = (list) => idChecklist(ctx, {
+    ids: list,
+    isOn: (id) => kvGet(chars, id) === true,
+    set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
+    hints: ids.hints ?? {},
+  });
   const charPanel = chars && panel('Characters', 'CharactersPurchased',
-    idChecklist(ctx, {
-      ids: charIds,
-      isOn: (id) => kvGet(chars, id) === true,
-      set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
-      hints: ids.hints ?? {},
-    }),
-    h('p', { class: 'note' }, 'Keep at least one character. Hover a name for unlock hints.'));
-
-  // Experimental IDs (e.g. leftovers that don't exist in the game UI) live in their own section.
-  const experimental = ids.experimental ?? {};
-  const isExperimental = (id) => Object.hasOwn(experimental, id);
-  // Hidden IDs (dev leftovers without effect) are never shown; they still round-trip untouched.
-  const isHidden = (id) => Object.hasOwn(ids.hidden ?? {}, id);
-  const notExperimental = (id) => !isExperimental(id) && !isHidden(id);
+    charChecklist(allChars.filter(isRegular)),
+    h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.'));
 
   // Power-up levels: [{Key, Value: level}], absent = level 0.
   const levels = arr(prog, 'PowerUpLevelsUnlocked');
   const enabled = arr(prog, 'PowerUpEnabled');
   const allPowerUps = union(ids.powerUps, kvKeys(levels), kvKeys(enabled));
   const levelPanel = levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
-    kvLevelList(ctx, levels, allPowerUps.filter(notExperimental), ids.powerUpMaxLevels ?? {}, 10),
+    kvLevelList(ctx, levels, allPowerUps.filter(isRegular), ids.powerUpMaxLevels ?? {}, 10),
     h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.'));
 
-  const expPowerUps = allPowerUps.filter((id) => isExperimental(id) && !isHidden(id));
-  const experimentalPanel = expPowerUps.length > 0 && h('details', { class: 'panel experimental' },
+  // Experimental section
+  const expChars = chars ? allChars.filter(isExperimental) : [];
+  const expPowerUps = allPowerUps.filter(isExperimental);
+  const experimentalPanel = (expChars.length > 0 || expPowerUps.length > 0) && h('details', { class: 'panel experimental' },
     h('summary', { class: 'panel-title' }, 'Experimental', h('small', null, 'unused or unconfirmed game data')),
     h('p', { class: 'warn-box' },
-      '⚠ These entries exist in the save but have no counterpart in the game UI. Changing them may do nothing — or break your save. Keep a backup.'),
-    expPowerUps.map((id) => h('p', { class: 'note' }, h('code', null, id), ` — ${experimental[id]}`)),
-    levels && kvLevelList(ctx, levels, expPowerUps, ids.powerUpMaxLevels ?? {}, 5),
-    enabled && kvToggleList(enabled, ctx, { keep: isExperimental }));
+      '⚠ These entries exist in the save but are not confirmed to work in the game. Changing them may do nothing — or break your save. Keep a backup.'),
+    h('ul', { class: 'exp-list' },
+      [...expChars, ...expPowerUps].map((id) => h('li', { class: 'note' }, h('code', null, id), ` — ${experimental[id]}`))),
+    expChars.length > 0 && h('h3', { class: 'sub-title' }, 'Characters'),
+    expChars.length > 0 && charChecklist(expChars),
+    expPowerUps.length > 0 && h('h3', { class: 'sub-title' }, 'Power-ups'),
+    expPowerUps.length > 0 && levels && kvLevelList(ctx, levels, expPowerUps, ids.powerUpMaxLevels ?? {}, 5),
+    expPowerUps.length > 0 && enabled && kvToggleList(enabled, ctx, { keep: isExperimental }));
 
   // Relics: present = owned, Value = enabled. Unchecking keeps the relic but disables it.
   const relics = arr(run, 'EnabledRelics');
@@ -309,7 +316,7 @@ function progressionView(ctx) {
   return h('div', null,
     charPanel,
     levelPanel,
-    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: notExperimental })),
+    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: isRegular })),
     relicPanel,
     cardPanel,
     panel('Achievements', 'AchievementsUnlocked', kvToggleList(prog.get('AchievementsUnlocked'), ctx),
