@@ -384,7 +384,7 @@
     "RelicConfig_SorcerersTears": "Adds a Hurry button to the world map · Gallo Tower",
     "RelicConfig_UltimateOverkill": "Limit breaks Overkill · Curd Refinery",
     "RelicConfig_Ovenkilt": "Overkill in any encounter · Cappella Ultima",
-    "RelicConfig_SeventhTrumpet": "Adds an Endless button to the world map",
+    "RelicConfig_SeventhTrumpet": "Adds an Endless button to the world map · found in \"???\" (wiki) · preview content of the upcoming Moongolow update — may not be regularly obtainable yet",
     "RelicConfig_GalileosHand": "Adds a Cap Hand Size button to the world map · Moongohigh",
     "RelicConfig_Tappo": "Prevents the Drowner from appearing in normal stages · Gallo Dungeons",
     "RelicConfig_InnKey": "Not on the wiki, but the game has an unlock for it",
@@ -2761,7 +2761,7 @@
     "SimpleAchievement_Relic_Overkill": "Overkill: Find the Overkill Relic.",
     "SimpleAchievement_Relic_PancakeOfPower": "Combo Stack: Found these Pancakes in the Tutorial.",
     "SimpleAchievement_Relic_Polentir": "Polentír: Find the Polentír Relic.",
-    "SimpleAchievement_Relic_SeventhTrumpet": "Seventh Trumpet: Find the Seventh Trumpet Relic.",
+    "SimpleAchievement_Relic_SeventhTrumpet": "Seventh Trumpet: Find the Seventh Trumpet Relic. · preview content of the upcoming Moongolow update — may not be regularly obtainable yet",
     "SimpleAchievement_Relic_SorcerersTears": "Sorceress' Tears: Find the Sorceress' Tears Relic.",
     "SimpleAchievement_Relic_Tappo": "Tappo: Find the Tappo Relic.",
     "SimpleAchievement_Relic_UltimateOverkill": "Ultimate Ultra Overkill: Find the Ultimate Ultra Overkill Relic.",
@@ -2770,7 +2770,8 @@
     "SimpleAchievement_Character_MissingNo": "MissingN0: defeat Red Death",
     "MetricAchievement_Character_Leda": "Leda: defeat Leda in Gallo Dungeons",
     "DungeonAchievement_Unlock_MadForest_01": "Mad Forest (first dungeon)",
-    "DungeonAchievement_Unlock_TinyBridge_01": "Teeny Bridge: Reach Level 15 in Inlaid Library."
+    "DungeonAchievement_Unlock_TinyBridge_01": "Teeny Bridge: Reach Level 15 in Inlaid Library.",
+    "DungeonAchievement_Base_Game_Complete": "Unlocks the \"???\" dungeon (Moongolow teaser) · preview content of the upcoming Moongolow update — may not be regularly obtainable yet"
   },
   "relicUnlocks": {
     "RelicConfig_GemHammer": "SimpleAchievement_Relic_GemHammer",
@@ -2828,7 +2829,7 @@
       ]
     },
     {
-      "name": "Moongolow teaser",
+      "name": "Moongolow teaser (preview content)",
       "ids": [
         "RelicConfig_SeventhTrumpet"
       ]
