@@ -11,3 +11,6 @@ Thumbs.db
 .vscode/
 .claude/settings.local.json
 VC Save/
+
+# Game files (APK/OBB) for local ID research - never commit
+game-files/
