@@ -59,6 +59,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
 - [x] In-game: edited power-up levels are accepted; PowerUp_Speed = Deal Count confirmed
+- [x] In-game test 2026-11-21: a save with EVERYTHING unlocked via the editor (all categories) loads fine and shows everything unlocked
 - [ ] Optional: check "Refund Power Ups" refunds edited levels sensibly
 - [x] Shop-tier grouping now from game data (effects/base prices still wiki only)
 - [x] Relics
