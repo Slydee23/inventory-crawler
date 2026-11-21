@@ -441,3 +441,5 @@ details.experimental[open] > summary { margin-bottom: 16px; }
 .gold-panel .panel-title { font-size: 24px; }
 .gold-panel .coin-icon { width: 40px; height: 40px; }
 .gold-panel .coins input { font: 700 26px ui-monospace, monospace; color: var(--gold-hi); width: 240px; }
+
+.unlock-toggle { margin-bottom: 10px; max-width: 360px; border-color: var(--gold); }

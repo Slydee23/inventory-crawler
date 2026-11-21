@@ -53,6 +53,14 @@ The game evidently re-serializes its object and compares, so output must match .
 - Achievements: `SimpleAchievement_`, `DungeonAchievement_`, `MetricAchievement_`, `PowerUpAchievement_`
 - Known ID lists: `data/ids.json`, regenerated with `node tools/extract-ids.mjs <saves…>`
 
+## Unlocks (from the game data)
+`tools/extract-apk-ids.mjs` reads the APK (Unity 6000.0.62f1, IL2CPP; bundles `assets/bin/Data/data.unity3d` + `datapack.unity3d`, UnityFS/LZ4) and finds 257 achievement/unlock IDs, 30 relics, 22 arcanas, 19 dungeons, 8 town buildings, 26 characters (+`FCC_Divano`, unused). Every ID seen in real saves appears in the APK.
+
+- Achievement objects have two name fields: asset name and save ID. They differ for 7 objects; the **second field is the save ID** (evidence: asset `DungeonAchievement_Unlock_TinyBridge_01_Demo` → ID `DungeonAchievement_Unlock_TinyBridge_01`). E.g. MissingNo: asset `…_MIssingNo` (typo), ID `SimpleAchievement_Character_MissingNo`.
+- Characters: unlock achievement + purchase (see `characterUnlocks` in `data/ids.json`; Imelda = `DungeonAchievement_Inn`, Mortaccio = `…_Character_Mortuccio`, Ambrojoe = `MetricAchievement_Ambrojoe`).
+- Power-up shop tiers: `MetricAchievement_PowerUpShop`, `DungeonAchievement_Unlock_ShopTier2`, `DungeonAchievement_Unlock_ShopTier3`.
+- Relics: `SimpleAchievement_Relic_*`; dungeons: `DungeonAchievement_Unlock_*`.
+
 ## SettingsData — `Data`
 `Resolution`/`RefreshRate` (Unity Vector3 incl. derived `normalized`, `magnitude`, `sqrMagnitude`), volumes (float 0–1), many bool toggles, `LocaleIdentifier`, `InputActionBindings` (null), layout indices.
 

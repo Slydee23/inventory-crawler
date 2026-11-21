@@ -150,7 +150,7 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {} }) {
  * IDs that belong to no group end up in "New / not yet categorized", so new updates show up.
  * @param {string[]} allIds
  * @param {{ name: string, released?: string, ids: string[] }[] | undefined} groups
- * @param {(ids: string[]) => HTMLElement} renderList
+ * @param {(ids: string[], group?: object) => HTMLElement} renderList
  */
 function groupedSections(allIds, groups, renderList) {
   if (!Array.isArray(groups) || groups.length === 0) return renderList(allIds);
@@ -159,13 +159,13 @@ function groupedSections(allIds, groups, renderList) {
   for (const g of groups) {
     const members = allIds.filter((id) => g.ids.includes(id));
     members.forEach((id) => assigned.add(id));
-    if (members.length) sections.push({ name: g.name, released: g.released, members });
+    if (members.length) sections.push({ name: g.name, released: g.released, members, group: g });
   }
   const rest = allIds.filter((id) => !assigned.has(id));
   if (rest.length) sections.push({ name: 'New / not yet categorized', members: rest });
   return h('div', { class: 'groups' }, sections.map((s) => h('div', { class: 'group' },
     h('h3', { class: 'sub-title' }, s.name, s.released && h('small', null, ` · ${s.released}`)),
-    renderList(s.members))));
+    renderList(s.members, s.group))));
 }
 
 /**
@@ -307,6 +307,8 @@ function progression(ctx) {
   return {
     prog, run, ids, arr, kvKeys, experimental,
     slotIds: kvKeys(arr(prog, 'CardGemSlots')),
+    achievements: arr(prog, 'AchievementsUnlocked'),
+    isHidden,
     isExperimental: (id) => Object.hasOwn(experimental, id) && !isHidden(id),
     isRegular: (id) => !Object.hasOwn(experimental, id) && !isHidden(id),
   };
@@ -335,19 +337,26 @@ function charactersView(ctx) {
   const chars = p && p.arr(p.prog, 'CharactersPurchased');
   if (!chars) return notInSave('Characters');
   // Present with Value true = purchased. Removing deletes the entry (as in a fresh save).
-  const all = union(p.ids.characters, p.kvKeys(chars), p.slotIds.filter((k) => k?.startsWith('FCC_')));
+  const all = union(p.ids.characters, p.kvKeys(chars), p.slotIds.filter((k) => k?.startsWith('FCC_'))).filter((id) => !p.isHidden(id));
+  // A character needs its unlock achievement (shows up in the tavern) AND the purchase.
+  const unlocks = p.ids.characterUnlocks ?? {};
+  const ach = p.achievements;
+  const isUnlocked = (id) => !unlocks[id] || !ach || kvGet(ach, unlocks[id]) === true;
   const checklist = (list) => idChecklist(ctx, {
     ids: list,
-    isOn: (id) => kvGet(chars, id) === true,
-    set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
-    hints: p.ids.hints ?? {},
+    isOn: (id) => kvGet(chars, id) === true && isUnlocked(id),
+    set: (id, on) => {
+      if (on) kvSet(chars, id, true); else kvDelete(chars, id);
+      if (unlocks[id] && ach) { if (on) kvSet(ach, unlocks[id], true); else kvDelete(ach, unlocks[id]); }
+    },
+    hints: Object.fromEntries(list.map((id) => [id,
+      [p.ids.hints?.[id], unlocks[id] && `Sets: purchase + ${unlocks[id]}`].filter(Boolean).join(' · ')])),
   });
   const exp = all.filter(p.isExperimental);
   return h('div', null,
     panel('Characters', 'CharactersPurchased',
       groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist),
-      h('p', { class: 'warn-box' }, '⚠ Checking a character marks it as purchased. It only appears in the tavern if its in-game unlock (achievement) is also done — editing those unlocks is not supported yet. Tested: MissingN0 stays locked without its unlock.'),
-      h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.')),
+      h('p', { class: 'note' }, 'Checking a character sets its in-game unlock AND the purchase, so it appears in the tavern. Keep at least one character. Hover a name for details.')),
     experimentalPanel(p, exp, checklist(exp)));
 }
 
@@ -378,8 +387,18 @@ function powerUpsView(ctx) {
   return h('div', null,
     levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
       groupedSections(all.filter(p.isRegular), p.ids.powerUpGroups,
-        (list) => kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {})),
-      h('p', { class: 'note' }, 'Max levels from the in-game shop / wiki. Hover a power-up for its effect, unlock condition and base price (the in-game price rises with each purchase).')),
+        (list, group) => h('div', null,
+          group?.unlock && p.achievements && h('label', { class: 'toggle unlock-toggle', title: group.unlock },
+            h('input', {
+              type: 'checkbox', checked: kvGet(p.achievements, group.unlock) === true,
+              onchange: (e) => {
+                if (e.target.checked) kvSet(p.achievements, group.unlock, true); else kvDelete(p.achievements, group.unlock);
+                ctx.changed();
+              },
+            }),
+            h('span', null, 'Unlocked in shop', h('small', null, group.unlock))),
+          kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {}))),
+      h('p', { class: 'note' }, 'A level only shows in-game if its shop tier is unlocked ("Unlocked in shop"). Max levels from the in-game shop. Hover a power-up for its effect and base price (the in-game price rises with each purchase).')),
     enabled && panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: p.isRegular })),
     experimentalPanel(p, exp,
       levels && kvLevelList(ctx, levels, exp, maxLevels, 5),
@@ -404,11 +423,33 @@ function cardsView(ctx) {
     }));
 }
 
+/** Category of an achievement/unlock ID (by naming convention of the game data). */
+function achievementCategory(id) {
+  if (/_Character_|^MetricAchievement_Ambrojoe$/.test(id)) return 'Characters';
+  if (/_Relic_/.test(id)) return 'Relics';
+  if (/ShopTier|PowerUpShop|RelicMuseum|_Inn$|Blacksmith|Jewel|_ChickenShop$|^PowerUpAchievement_/.test(id)) return 'Village & shops';
+  if (/^DungeonAchievement_(Unlock_|MoonGolow|GalloBelow|FirstTime|Base_Game|VentoSacro)/.test(id)) return 'Dungeons & progress';
+  if (/_Gems_|^MetricAchievement_Boost$/.test(id)) return 'Gems';
+  if (/_Arcana_|_(AndAnother|ChainLink|ExperimentalMedicine|ImNotLeaving|JestersHat|MakeAScene|MakeASceme|ManaSython|OverTheTop|SharpMind|ShieldBash|SwollenFist|WildStrength|YourShieldMyLiege)$/.test(id)) return 'Arcanas';
+  if (/_Evo_/.test(id)) return 'Evolutions';
+  if (/_Event_|Unlocked_DeathParade|Encountered$/.test(id)) return 'Events & enemies';
+  return 'Cards & items';
+}
+const ACHIEVEMENT_CATEGORIES = ['Characters', 'Relics', 'Village & shops', 'Dungeons & progress', 'Cards & items', 'Gems', 'Arcanas', 'Evolutions', 'Events & enemies'];
+
 function achievementsView(ctx) {
   const p = progression(ctx);
-  if (!p) return notInSave('Achievements');
-  return panel('Achievements', 'AchievementsUnlocked', kvToggleList(p.prog.get('AchievementsUnlocked'), ctx),
-    h('p', { class: 'note' }, 'Only achievements already in your save are listed.'));
+  const ach = p && p.achievements;
+  if (!ach) return notInSave('Achievements');
+  const all = union(p.ids.apk?.achievements ?? [], p.ids.achievements, p.kvKeys(ach)).filter(Boolean);
+  const groups = ACHIEVEMENT_CATEGORIES.map((name) => ({ name, ids: all.filter((id) => achievementCategory(id) === name) }));
+  return panel('Achievements & unlocks', 'AchievementsUnlocked',
+    h('p', { class: 'note' }, `All ${all.length} unlocks found in the game data. Most content in Vampire Crawlers (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these.`),
+    groupedSections(all, groups, (list) => idChecklist(ctx, {
+      ids: list,
+      isOn: (id) => kvGet(ach, id) === true,
+      set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
+    })));
 }
 
 function otherView(ctx) {

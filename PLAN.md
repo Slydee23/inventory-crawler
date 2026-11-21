@@ -46,8 +46,11 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 ## Phase 3b — Category deep-dives (like Characters: full ID list, wiki names, hints, update groups)
 - [~] Characters — in-game test: purchase alone is NOT enough (MissingN0 not playable). Each character also needs its unlock achievement (e.g. `SimpleAchievement_Character_Antonio`; Imelda via `DungeonAchievement_Inn`?). Wiki Crawlers:Unlocks lists ~182 unlocks by display name only, no internal IDs
 - [x] In-game test power-ups: levels of already unlocked power-ups apply; locked ones (e.g. Deal Count, shop tier 3) stay hidden → power-ups also need their unlock
-- [ ] **Unlocks editor** (characters, power-up tiers, relics, gems, …) — the key missing feature
-- [ ] Get full internal ID lists (achievements, relics, cards): scan game data (APK) for ID strings and/or collect late-game saves from testers
+- [x] **Unlocks**: APK scan (`tools/extract-apk-ids.mjs`) → 257 unlock IDs; Characters tab sets unlock + purchase; power-up tiers have "Unlocked in shop"; Achievements tab lists all unlocks by category
+- [ ] In-game test: MissingN0 playable with unlock + purchase; Deal Count visible after ShopTier3 unlock
+- [ ] Greed ("After Inlaid Library"): find its unlock achievement
+- [ ] Relics tab: all 30 relics with their unlock achievements
+- [x] Full internal ID lists from the APK (all save IDs cross-checked)
 - [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
 - [ ] In-game test: edited power-up levels are accepted (e.g. Might 1, Deal Count 1); confirms PowerUp_Speed = Deal Count; check "Refund Power Ups" behaviour
