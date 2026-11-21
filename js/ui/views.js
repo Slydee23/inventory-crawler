@@ -393,8 +393,9 @@ function relicsView(ctx) {
   const ach = p.achievements;
   const owned = (id) => !unlocks[id] || !ach || kvGet(ach, unlocks[id]) === true;
   const all = union(p.ids.relics, p.kvKeys(relics)).filter((id) => id && !p.isHidden(id));
-  const checklist = (list) => idChecklist(ctx, {
+  const checklist = (list, _group, onCount) => idChecklist(ctx, {
     ids: list,
+    onCount,
     isOn: (id) => kvGet(relics, id) === true && owned(id),
     set: (id, on) => {
       if (on) kvSet(relics, id, true); else kvDelete(relics, id);
@@ -406,7 +407,7 @@ function relicsView(ctx) {
   const exp = all.filter(p.isExperimental);
   return h('div', null,
     panel('Relics', 'EnabledRelics',
-      checklist(all.filter(p.isRegular)),
+      groupedSections(all.filter(p.isRegular), p.ids.relicGroups, checklist, { key: 'relics' }),
       h('p', { class: 'note' }, 'Checking a relic unlocks it and switches it on. Hover a relic for its effect and where it is found (from the wiki).')),
     experimentalPanel(p, exp, checklist(exp)));
 }
@@ -435,7 +436,15 @@ function powerUpsView(ctx) {
             h('span', null, 'Unlocked in shop', h('small', null, group.unlock))),
           kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {}, onCount)), { key: 'powerups' }),
       h('p', { class: 'note' }, 'A level only shows in-game if its shop tier is unlocked ("Unlocked in shop"). Max levels from the in-game shop. Hover a power-up for its effect and base price (the in-game price rises with each purchase).')),
-    enabled && panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: p.isRegular })),
+    enabled && panel('Power-ups enabled', 'PowerUpEnabled',
+      groupedSections(p.kvKeys(enabled).filter((id) => id && p.isRegular(id)), [{ name: 'On/off in the shop', ids: p.kvKeys(enabled) }],
+        (list, _group, onCount) => idChecklist(ctx, {
+          ids: list,
+          onCount,
+          isOn: (id) => kvGet(enabled, id) === true,
+          set: (id, on) => kvSet(enabled, id, on), // entry stays, only the switch changes
+          hints: p.ids.hints ?? {},
+        }), { key: 'powerups-enabled' })),
     experimentalPanel(p, exp,
       levels && kvLevelList(ctx, levels, exp, maxLevels, 5),
       enabled && kvToggleList(enabled, ctx, { keep: p.isExperimental })));
@@ -446,9 +455,15 @@ function cardsView(ctx) {
   const discovered = p && p.arr(p.prog, 'DiscoveredCards');
   if (!discovered) return notInSave('Cards');
   // Plain string list; characters are listed here as cards too.
+  const all = union(p.ids.cards, p.ids.characters, discovered, p.slotIds).filter((id) => id && p.isRegular(id));
+  const groups = [
+    { name: 'Cards', ids: all.filter((id) => id.startsWith('Card_')) },
+    { name: 'Crawler cards', ids: all.filter((id) => id.startsWith('FCC_')) },
+  ];
   return panel('Discovered cards', 'DiscoveredCards',
-    idChecklist(ctx, {
-      ids: union(p.ids.cards, p.ids.characters, discovered, p.slotIds).filter(p.isRegular),
+    groupedSections(all, groups, (list, _group, onCount) => idChecklist(ctx, {
+      ids: list,
+      onCount,
       isOn: (id) => discovered.includes(id),
       set: (id, on) => {
         const i = discovered.indexOf(id);
@@ -456,7 +471,7 @@ function cardsView(ctx) {
         if (!on && i >= 0) discovered.splice(i, 1);
       },
       hints: p.ids.hints ?? {},
-    }));
+    }), { key: 'cards' }));
 }
 
 /** Category of an achievement/unlock ID (by naming convention of the game data). */

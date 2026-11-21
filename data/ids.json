@@ -1558,5 +1558,36 @@
     "RelicConfig_Randomazzo": "SimpleAchievement_Relic_Randomazzo",
     "RelicConfig_Randomizer": "SimpleAchievement_Relic_Randomizer",
     "RelicConfig_YellowSign": "SimpleAchievement_Relic_YellowSign"
-  }
+  },
+  "relicGroups": [
+    {
+      "name": "Starter relics",
+      "ids": [
+        "RelicConfig_DamageIndicators",
+        "RelicConfig_DeckBox",
+        "RelicConfig_MilkyWayMap",
+        "RelicConfig_Rilevatore"
+      ]
+    },
+    {
+      "name": "Found in dungeons",
+      "ids": [
+        "RelicConfig_PancakeOfPower",
+        "RelicConfig_GemHammer",
+        "RelicConfig_GuidingLight",
+        "RelicConfig_Polentir",
+        "RelicConfig_GrimGrimoire",
+        "RelicConfig_Overkill",
+        "RelicConfig_Blacksmith",
+        "RelicConfig_BombaInfernale",
+        "RelicConfig_Jeweller",
+        "RelicConfig_SorcerersTears",
+        "RelicConfig_UltimateOverkill",
+        "RelicConfig_Ovenkilt",
+        "RelicConfig_SeventhTrumpet",
+        "RelicConfig_GalileosHand",
+        "RelicConfig_Tappo"
+      ]
+    }
+  ]
 }
