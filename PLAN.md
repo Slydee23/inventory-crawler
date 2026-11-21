@@ -17,17 +17,20 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Helpers for .NET formats: floats with `.0`, TimeSpan `PlayTime`, `[{Key,Value}]` dictionaries
 
 ## Phase 2 — Research game data (needs more saves)
-- [ ] (?) Diff saves after 1h play (`VC Save/nach-1h/`) → document new fields in `docs/SAVE_FORMAT.md`
+- [x] Diff saves after more play (`VC Save/nach-1h/`) → documented in `docs/SAVE_FORMAT.md`
 - [ ] (?) Mid-run save → document `GameSaveData.SaveObjects`
-- [ ] Build `data/*.json` ID lists (characters, cards, relics, arcanas, power-ups, gems, dungeons, achievements) — from saves, wiki/community sources
+- [x] `data/ids.json` + `tools/extract-ids.mjs`: characters (25), cards (75), gems (62), power-ups (20) complete
+- [ ] Still incomplete: relics, arcanas, dungeons, achievements — need later-game saves or community sources
 - [ ] (?) Verify the game accepts an edited save (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
-## Phase 3 — Editor UI (MVP) — shell done, unlock editors waiting for Phase 2
+## Phase 3 — Editor UI (MVP)
 - [x] App shell: open file (picker + drag & drop), detect file type (profile / settings)
 - [x] Overview: profile info, playtime, checksum status
 - [x] Coins editor (keeps both TotalCoins fields in sync)
-- [~] Unlock editors: toggles for entries already in the save work; adding new entries + "unlock all" needs ID lists (Phase 2)
+- [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
+- [ ] Gem editors (frequencies, rarities, card gem slots) — after meaning is confirmed
+- [ ] Power-up max levels per power-up (ask user to read them from the shop)
 - [x] Settings editor (generic fields, volume sliders)
 - [x] Raw JSON view for everything else (lossless)
 - [x] Export: download edited file + original backup, validate before download

@@ -11,7 +11,14 @@ const state = {
   save: null,
   dirty: false,
   tab: null,
+  /** Known game IDs (data/ids.json); empty lists if it fails to load. */
+  ids: {},
 };
+
+const idsReady = fetch('data/ids.json')
+  .then((r) => (r.ok ? r.json() : {}))
+  .catch(() => ({}))
+  .then((ids) => { state.ids = ids; });
 
 // ---------------------------------------------------------------- toast
 
@@ -32,6 +39,7 @@ async function openFile(file) {
   if (state.dirty && !confirm('Discard unsaved changes?')) return;
   try {
     const text = await file.text();
+    await idsReady;
     state.save = await SaveFile.load(text, file.name);
     state.dirty = false;
     state.tab = null;
@@ -81,7 +89,7 @@ function renderTabs() {
     onclick: () => { state.tab = v.id; renderTabs(); },
   }, v.label)));
   const view = views.find((v) => v.id === state.tab);
-  $('view').replaceChildren(view.render({ save: state.save, changed, toast }));
+  $('view').replaceChildren(view.render({ save: state.save, ids: state.ids, changed, toast }));
 }
 
 function changed() {

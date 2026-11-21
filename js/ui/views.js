@@ -1,9 +1,9 @@
 // Editor views. Each view is a function (ctx) => HTMLElement.
-// ctx = { save: SaveFile, changed(): void, toast(msg, isError?): void }
+// ctx = { save: SaveFile, ids: KnownIds, changed(): void, toast(msg, isError?): void }
 
 import { h, prettify, formatDuration } from './dom.js';
 import { JsonNumber, stringify, parse } from '../json-lossless.js';
-import { getIn, parseTimeSpan } from '../save-file.js';
+import { getIn, parseTimeSpan, kvGet, kvSet, kvDelete } from '../save-file.js';
 
 const INT32_MAX = 2147483647;
 
@@ -92,9 +92,78 @@ function kvToggleList(list, ctx) {
   return h('div', { class: 'toggle-list' }, items);
 }
 
-function chips(values) {
-  if (!Array.isArray(values) || values.length === 0) return h('p', { class: 'empty' }, 'Nothing here yet.');
-  return h('div', { class: 'chips' }, values.map((v) => h('span', { class: 'chip', title: String(v) }, prettify(v))));
+/** Sorted union of known IDs and IDs found in the save. */
+function union(...lists) {
+  return [...new Set(lists.flat().filter((x) => typeof x === 'string'))]
+    .sort((a, b) => prettify(a).localeCompare(prettify(b)));
+}
+
+/**
+ * Checklist over a set of IDs with search and select-all / select-none.
+ * @param {{ ids: string[], isOn: (id: string) => boolean, set: (id: string, on: boolean) => void,
+ *           warnOn?: Record<string, string> }} opts
+ */
+function idChecklist(ctx, { ids, isOn, set, warnOn = {} }) {
+  const list = h('div', { class: 'toggle-list' });
+  const counter = h('span', { class: 'badge' });
+  let filter = '';
+
+  const updateCount = () => { counter.textContent = `${ids.filter(isOn).length} / ${ids.length}`; };
+  const render = () => {
+    const q = filter.toLowerCase();
+    list.replaceChildren(...ids
+      .filter((id) => !q || id.toLowerCase().includes(q) || prettify(id).toLowerCase().includes(q))
+      .map((id) => h('label', { class: 'toggle', title: warnOn[id] ?? id },
+        h('input', {
+          type: 'checkbox', checked: isOn(id),
+          onchange: (e) => { set(id, e.target.checked); updateCount(); ctx.changed(); },
+        }),
+        h('span', null, prettify(id), warnOn[id] && ' ⚠', h('small', null, id)))));
+    updateCount();
+  };
+  const setAll = (on) => {
+    const targets = ids.filter((id) => !(on && warnOn[id])); // never bulk-enable risky entries
+    for (const id of targets) if (isOn(id) !== on) set(id, on);
+    render();
+    ctx.changed();
+  };
+
+  render();
+  return h('div', null,
+    h('div', { class: 'list-tools' },
+      ids.length > 12 && h('input', {
+        type: 'search', placeholder: 'Search…', 'aria-label': 'Search',
+        oninput: (e) => { filter = e.target.value; render(); },
+      }),
+      h('button', { class: 'btn btn-small', type: 'button', onclick: () => setAll(true) }, 'All'),
+      h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(false) }, 'None'),
+      counter),
+    list);
+}
+
+/** Number inputs for a `[{Key, Value: int}]` dictionary; 0 removes the entry. */
+function kvLevelList(ctx, list, ids, { max }) {
+  const rows = ids.map((id) => {
+    const cur = kvGet(list, id);
+    return h('label', { class: 'field' },
+      h('span', { class: 'field-label' }, prettify(id), h('small', null, id)),
+      h('input', {
+        type: 'number', min: '0', max: String(max), step: '1', value: String(cur instanceof JsonNumber ? cur.value : 0),
+        onchange: (e) => {
+          const n = Number(e.target.value);
+          if (!Number.isInteger(n) || n < 0 || n > max) {
+            ctx.toast(`${prettify(id)}: enter a whole number from 0 to ${max}`, true);
+            const now = kvGet(list, id);
+            e.target.value = String(now instanceof JsonNumber ? now.value : 0);
+            return;
+          }
+          if (n === 0) kvDelete(list, id);
+          else kvSet(list, id, JsonNumber.int(n));
+          ctx.changed();
+        },
+      }));
+  });
+  return h('div', { class: 'fields' }, rows);
 }
 
 function stat(label, value) {
@@ -162,13 +231,61 @@ function progressionView(ctx) {
   const prog = ctx.save.data.get('ProgressionSaveData');
   const run = ctx.save.data.get('RunMetaSaveData');
   if (!(prog instanceof Map)) return panel('Progression', null, h('p', { class: 'empty' }, 'Not found in this save.'));
-  const note = 'Only entries already in your save are listed. Unlocking new ones comes once all game IDs are known.';
+  const ids = ctx.ids;
+  const arr = (map, key) => (map instanceof Map && Array.isArray(map.get(key)) ? map.get(key) : null);
+  const kvKeys = (list) => (list ?? []).map((e) => e instanceof Map && e.get('Key'));
+  const slotIds = kvKeys(arr(prog, 'CardGemSlots'));
+
+  // Characters: present with Value true = purchased. Removing deletes the entry (as in a fresh save).
+  const chars = arr(prog, 'CharactersPurchased');
+  const charIds = union(ids.characters, kvKeys(chars), slotIds.filter((k) => k?.startsWith('FCC_')));
+  const charPanel = chars && panel('Characters', 'CharactersPurchased',
+    idChecklist(ctx, {
+      ids: charIds,
+      isOn: (id) => kvGet(chars, id) === true,
+      set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
+      warnOn: { FCC_MissingNo: 'Secret/glitch character — unlock at your own risk (not included in "All")' },
+    }),
+    h('p', { class: 'note' }, 'Keep at least one character. "All" skips entries marked ⚠.'));
+
+  // Power-up levels: [{Key, Value: level}], absent = level 0.
+  const levels = arr(prog, 'PowerUpLevelsUnlocked');
+  const levelPanel = levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
+    kvLevelList(ctx, levels, union(ids.powerUps, kvKeys(levels), kvKeys(arr(prog, 'PowerUpEnabled'))), { max: 10 }),
+    h('p', { class: 'note' }, 'In-game maximum levels differ per power-up and are not verified yet — stay within what the shop shows.'));
+
+  // Relics: present = owned, Value = enabled. Unchecking keeps the relic but disables it.
+  const relics = arr(run, 'EnabledRelics');
+  const relicPanel = relics && panel('Relics', 'EnabledRelics',
+    idChecklist(ctx, {
+      ids: union(ids.relics, kvKeys(relics)),
+      isOn: (id) => kvGet(relics, id) === true,
+      set: (id, on) => (on || kvGet(relics, id) !== undefined) && kvSet(relics, id, on),
+    }),
+    h('p', { class: 'note' }, 'Only relics seen in real saves are listed so far.'));
+
+  // Discovered cards: plain string list.
+  const discovered = arr(prog, 'DiscoveredCards');
+  const cardPanel = discovered && panel('Discovered cards', 'DiscoveredCards',
+    idChecklist(ctx, {
+      ids: union(ids.cards, ids.characters, discovered, slotIds),
+      isOn: (id) => discovered.includes(id),
+      set: (id, on) => {
+        const i = discovered.indexOf(id);
+        if (on && i < 0) discovered.push(id);
+        if (!on && i >= 0) discovered.splice(i, 1);
+      },
+      warnOn: { FCC_MissingNo: 'Secret/glitch character' },
+    }));
+
   return h('div', null,
-    panel('Characters', 'CharactersPurchased', kvToggleList(prog.get('CharactersPurchased'), ctx), h('p', { class: 'note' }, note)),
-    panel('Power-ups', 'PowerUpEnabled', kvToggleList(prog.get('PowerUpEnabled'), ctx)),
-    run instanceof Map && panel('Relics', 'EnabledRelics', kvToggleList(run.get('EnabledRelics'), ctx)),
-    panel('Achievements', 'AchievementsUnlocked', kvToggleList(prog.get('AchievementsUnlocked'), ctx)),
-    panel('Discovered cards', 'DiscoveredCards', chips(prog.get('DiscoveredCards'))),
+    charPanel,
+    levelPanel,
+    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(prog.get('PowerUpEnabled'), ctx)),
+    relicPanel,
+    cardPanel,
+    panel('Achievements', 'AchievementsUnlocked', kvToggleList(prog.get('AchievementsUnlocked'), ctx),
+      h('p', { class: 'note' }, 'Only achievements already in your save are listed.')),
     panel('Flags & counters', 'ProgressionSaveData', fieldsEditor(prog, ctx, { exclude: ['TotalCoins'] })),
     run instanceof Map && panel('Run options', 'RunMetaSaveData', fieldsEditor(run, ctx)));
 }

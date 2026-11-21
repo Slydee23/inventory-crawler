@@ -29,7 +29,7 @@ function append(el, children) {
 
 /** "TotalCoins" -> "Total Coins", "PowerUp_MaxHealth" -> "Max Health". */
 export function prettify(id) {
-  const KNOWN_PREFIXES = /^(FCC|PowerUp|RelicConfig|GemConfig|Card_[A-Z]_\d+|SimpleAchievement|DungeonAchievement|MetricAchievement|Dungeon|ArcanaConfig|Arcana)_/;
+  const KNOWN_PREFIXES = /^(FCC|PowerUp|RelicConfig|GemConfig|Card_[A-Z]_\d+|Card_[A-Z](?=_)|Card|TownBuilding|SimpleAchievement|DungeonAchievement|MetricAchievement|PowerUpAchievement|Dungeon|ArcanaConfig|Arcana)_/;
   const name = String(id).replace(KNOWN_PREFIXES, '');
   return name
     .replace(/_/g, ' ')
