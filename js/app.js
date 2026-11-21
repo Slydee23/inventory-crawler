@@ -49,7 +49,10 @@ async function openFile(file) {
     }
   } catch (e) {
     console.error(e);
-    toast(`Could not read file: ${e.message}`, true);
+    const notASave = e instanceof SyntaxError || /Not a Vampire Crawlers save/.test(e.message);
+    toast(notASave
+      ? `"${file.name}" is not a Vampire Crawlers save. Pick SaveProfile0.save or SettingsData.save.`
+      : `Could not read file: ${e.message}`, true);
   }
 }
 

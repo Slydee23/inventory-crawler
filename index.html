@@ -19,7 +19,8 @@
     <section id="start" class="panel start">
       <h2 class="panel-title">Open your save</h2>
       <label id="dropzone" class="dropzone" tabindex="0">
-        <input id="file-input" type="file" accept=".save,application/json" hidden>
+        <!-- no "accept" filter: iOS greys out unknown extensions like .save; content is validated on load -->
+        <input id="file-input" type="file" hidden>
         <span class="dropzone-icon" aria-hidden="true">⛧</span>
         <span class="dropzone-text">Drop <code>SaveProfile0.save</code> or <code>SettingsData.save</code> here</span>
         <span class="btn">Choose file</span>
