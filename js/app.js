@@ -15,7 +15,9 @@ const state = {
   ids: {},
 };
 
-const idsReady = fetch('data/ids.json')
+// Versioned URL (see tools/stamp-version.mjs) so browsers never use a stale data file
+const appVersion = document.querySelector('meta[name="app-version"]')?.content ?? '';
+const idsReady = fetch(`data/ids.json?v=${appVersion}`)
   .then((r) => (r.ok ? r.json() : {}))
   .catch(() => ({}))
   .then((ids) => { state.ids = ids; setDisplayNames(ids.displayNames); });

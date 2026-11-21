@@ -53,5 +53,6 @@ PLAN.md             project plan & progress
 - Unlock model: almost everything is gated by entries in `AchievementsUnlocked`. A character needs its unlock achievement AND `CharactersPurchased`; a power-up tier needs `MetricAchievement_PowerUpShop` / `DungeonAchievement_Unlock_ShopTier2/3`.
 
 ## Commands
+- **Before every commit that changes js/, css/ or data/:** `node tools/stamp-version.mjs` (cache busting: GitHub Pages lets browsers cache 10 min; this stamps a content hash into index.html import map + URLs). `tests/version.test.js` fails if forgotten.
 - Run tests: `node --test tests/`
 - Local preview: `npx --yes http-server -c-1 .` (or any static server; ES modules don't work from `file://`)
