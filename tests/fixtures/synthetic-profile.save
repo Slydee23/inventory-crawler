@@ -1,0 +1,112 @@
+{
+  "Version": 1,
+  "Checksum": "bJ6D6KynpKk4ZCEBuEWRCrmQPyQ=",
+  "Data": {
+    "ProfileId": "SaveProfile0",
+    "saveSystemVersion": "0.30.0",
+    "BuildSKU": 0,
+    "GameSaveData": {
+      "ProfileId": "SaveProfile0",
+      "SaveObjects": []
+    },
+    "ProfileSaveData": {
+      "ProfileId": "SaveProfile0",
+      "CurrentState": 2,
+      "TotalCoins": 123,
+      "MainCharacterId": "00000000000000000000000000000000",
+      "SaveTimeStamp": "2026-01-01T12:00:00.000000Z",
+      "PlayTime": "01:02:03.4560000",
+      "SaveSlotIdx": 0
+    },
+    "RunMetaSaveData": {
+      "SelectedDungeonID": "Dungeon_Tutorial",
+      "SelectedPartyFccIds": [
+        "FCC_Antonio"
+      ],
+      "ActiveArcanasIds": [],
+      "EquippedArcanaIds": [],
+      "EnabledRelics": [
+        {
+          "Key": "RelicConfig_DeckBox",
+          "Value": true
+        }
+      ],
+      "EndlessModeActive": false,
+      "HandSizeLimitActive": false,
+      "HurryModeActive": false,
+      "IsJewellerDisabled": false
+    },
+    "ProgressionSaveData": {
+      "IsTutorialComplete": true,
+      "IsWildCardTutorialComplete": false,
+      "TotalCoins": 123,
+      "ChestsSpawned": 0,
+      "CharactersPurchased": [
+        {
+          "Key": "FCC_Antonio",
+          "Value": true
+        }
+      ],
+      "PowerUpLevelsUnlocked": [],
+      "PowerUpEnabled": [
+        {
+          "Key": "PowerUp_Might",
+          "Value": true
+        },
+        {
+          "Key": "PowerUp_Armor",
+          "Value": false
+        }
+      ],
+      "AchievementsUnlocked": [],
+      "DiscoveredCards": [
+        "Card_A_0_Knife",
+        "Card_A_1_KingBible"
+      ],
+      "CardGemSlots": [
+        {
+          "Key": "Card_A_0_Knife",
+          "Value": 1
+        }
+      ],
+      "GemFrequencies": [
+        {
+          "Key": "GemConfig_Area",
+          "Value": 0
+        }
+      ],
+      "SealedGems": [],
+      "UnlocksHideCompleted": false,
+      "HasUpgraded": false
+    },
+    "MetricsSaveData": {
+      "collectionData": [
+        {
+          "collectionID": 0,
+          "dictionarySaveData": {
+            "doubleMetrics": [
+              {
+                "ID": "TotalDamageDealt",
+                "Value": 1735.5
+              }
+            ],
+            "longMetrics": [
+              {
+                "ID": "Card_A_0_Knife_Discovered",
+                "Value": 47
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "TestFloats": {
+      "x": 2400.0,
+      "y": 0.9119215,
+      "big": 6926400.0,
+      "neg": -0.5,
+      "Note": "synthetic fixture, no real player data",
+      "Nothing": null
+    }
+  }
+}

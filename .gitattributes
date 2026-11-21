@@ -1,0 +1,5 @@
+# Keep LF everywhere regardless of the user's core.autocrlf setting.
+* text=auto eol=lf
+
+# Save files must stay byte-exact (checksum depends on formatting).
+*.save binary
