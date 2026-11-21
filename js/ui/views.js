@@ -104,15 +104,18 @@ function union(...lists) {
 /**
  * Checklist over a set of IDs with search and select-all / select-none.
  * @param {{ ids: string[], isOn: (id: string) => boolean, set: (id: string, on: boolean) => void,
- *           warnOn?: Record<string, string>, hints?: Record<string, string> }} opts
+ *           warnOn?: Record<string, string>, hints?: Record<string, string>, onCount?: (text: string) => void }} opts
  *   warnOn: risky IDs (⚠, skipped by "All"); hints: informational tooltip text
  */
-function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {} }) {
+function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {}, onCount }) {
   const list = h('div', { class: 'toggle-list' });
   const counter = h('span', { class: 'badge' });
   let filter = '';
 
-  const updateCount = () => { counter.textContent = `${ids.filter(isOn).length} / ${ids.length}`; };
+  const updateCount = () => {
+    counter.textContent = `${ids.filter(isOn).length} / ${ids.length}`;
+    onCount?.(counter.textContent);
+  };
   const render = () => {
     const q = filter.toLowerCase();
     list.replaceChildren(...ids
@@ -152,7 +155,9 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {} }) {
  * @param {{ name: string, released?: string, ids: string[] }[] | undefined} groups
  * @param {(ids: string[], group?: object) => HTMLElement} renderList
  */
-function groupedSections(allIds, groups, renderList) {
+const groupOpenState = new Map(); // remembers expanded/collapsed groups across re-renders
+
+function groupedSections(allIds, groups, renderList, { key = '', open = true } = {}) {
   if (!Array.isArray(groups) || groups.length === 0) return renderList(allIds);
   const sections = [];
   const assigned = new Set();
@@ -163,9 +168,23 @@ function groupedSections(allIds, groups, renderList) {
   }
   const rest = allIds.filter((id) => !assigned.has(id));
   if (rest.length) sections.push({ name: 'New / not yet categorized', members: rest });
-  return h('div', { class: 'groups' }, sections.map((s) => h('div', { class: 'group' },
-    h('h3', { class: 'sub-title' }, s.name, s.released && h('small', null, ` · ${s.released}`)),
-    renderList(s.members, s.group))));
+  const details = sections.map((s) => {
+    const stateKey = `${key}:${s.name}`;
+    const count = h('span', { class: 'group-count badge' });
+    const el = h('details', {
+      class: 'group', open: groupOpenState.get(stateKey) ?? open,
+      ontoggle: (e) => groupOpenState.set(stateKey, e.target.open),
+    },
+      h('summary', { class: 'sub-title' }, s.name, s.released && h('small', null, ` · ${s.released}`), ' ', count),
+      renderList(s.members, s.group, (text) => { count.textContent = text; }));
+    return el;
+  });
+  const setAll = (open) => details.forEach((d) => { d.open = open; });
+  return h('div', { class: 'groups' },
+    details.length > 3 && h('div', { class: 'list-tools' },
+      h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(true) }, 'Expand all'),
+      h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(false) }, 'Collapse all')),
+    details);
 }
 
 /**
@@ -174,7 +193,7 @@ function groupedSections(allIds, groups, renderList) {
  * @param {Record<string, number>} maxById known maximum per ID; others use `fallbackMax` and get a ⚠
  * @param {Record<string, string>} [hints] tooltip text per ID
  */
-function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}) {
+function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}, onCount) {
   const levelOf = (id) => {
     const v = kvGet(list, id);
     return v instanceof JsonNumber ? v.value : 0;
@@ -184,6 +203,7 @@ function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}) {
     else kvSet(list, id, JsonNumber.int(n));
   };
   const inputs = new Map();
+  const updateCount = () => onCount?.(`${ids.filter((id) => levelOf(id) > 0).length} / ${ids.length}`);
   const rows = ids.map((id) => {
     const known = Number.isInteger(maxById[id]);
     const max = known ? maxById[id] : fallbackMax;
@@ -197,6 +217,7 @@ function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}) {
           return;
         }
         setLevel(id, n);
+        updateCount();
         ctx.changed();
       },
     });
@@ -213,8 +234,10 @@ function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}) {
       setLevel(id, n);
       inputs.get(id).value = String(n);
     }
+    updateCount();
     ctx.changed();
   };
+  updateCount();
   return h('div', null,
     h('div', { class: 'list-tools' },
       h('button', {
@@ -342,8 +365,9 @@ function charactersView(ctx) {
   const unlocks = p.ids.characterUnlocks ?? {};
   const ach = p.achievements;
   const isUnlocked = (id) => !unlocks[id] || !ach || kvGet(ach, unlocks[id]) === true;
-  const checklist = (list) => idChecklist(ctx, {
+  const checklist = (list, _group, onCount) => idChecklist(ctx, {
     ids: list,
+    onCount,
     isOn: (id) => kvGet(chars, id) === true && isUnlocked(id),
     set: (id, on) => {
       if (on) kvSet(chars, id, true); else kvDelete(chars, id);
@@ -355,7 +379,7 @@ function charactersView(ctx) {
   const exp = all.filter(p.isExperimental);
   return h('div', null,
     panel('Characters', 'CharactersPurchased',
-      groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist),
+      groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist, { key: 'characters' }),
       h('p', { class: 'note' }, 'Checking a character sets its in-game unlock AND the purchase, so it appears in the tavern. Keep at least one character. Hover a name for details.')),
     experimentalPanel(p, exp, checklist(exp)));
 }
@@ -387,7 +411,7 @@ function powerUpsView(ctx) {
   return h('div', null,
     levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
       groupedSections(all.filter(p.isRegular), p.ids.powerUpGroups,
-        (list, group) => h('div', null,
+        (list, group, onCount) => h('div', null,
           group?.unlock && p.achievements && h('label', { class: 'toggle unlock-toggle', title: group.unlock },
             h('input', {
               type: 'checkbox', checked: kvGet(p.achievements, group.unlock) === true,
@@ -397,7 +421,7 @@ function powerUpsView(ctx) {
               },
             }),
             h('span', null, 'Unlocked in shop', h('small', null, group.unlock))),
-          kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {}))),
+          kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {}, onCount)), { key: 'powerups' }),
       h('p', { class: 'note' }, 'A level only shows in-game if its shop tier is unlocked ("Unlocked in shop"). Max levels from the in-game shop. Hover a power-up for its effect and base price (the in-game price rises with each purchase).')),
     enabled && panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: p.isRegular })),
     experimentalPanel(p, exp,
@@ -445,8 +469,9 @@ function achievementsView(ctx) {
   const regular = all.filter(p.isRegular);
   const exp = all.filter(p.isExperimental);
   const groups = ACHIEVEMENT_CATEGORIES.map((name) => ({ name, ids: regular.filter((id) => achievementCategory(id) === name) }));
-  const checklist = (list) => idChecklist(ctx, {
+  const checklist = (list, _group, onCount) => idChecklist(ctx, {
     ids: list,
+    onCount,
     isOn: (id) => kvGet(ach, id) === true,
     set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
     hints: p.ids.unlockHints ?? {},
@@ -454,7 +479,7 @@ function achievementsView(ctx) {
   return h('div', null,
     panel('Achievements & unlocks', 'AchievementsUnlocked',
       h('p', { class: 'note' }, `${regular.length} unlocks of the game. Most content (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these. Hover an entry for its in-game requirement (from the wiki, where known).`),
-      groupedSections(regular, groups, checklist)),
+      groupedSections(regular, groups, checklist, { key: 'achievements', open: false })),
     experimentalPanel(p, exp, checklist(exp)));
 }
 

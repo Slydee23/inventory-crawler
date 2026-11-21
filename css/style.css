@@ -443,3 +443,12 @@ details.experimental[open] > summary { margin-bottom: 16px; }
 .gold-panel .coins input { font: 700 26px ui-monospace, monospace; color: var(--gold-hi); width: 240px; }
 
 .unlock-toggle { margin-bottom: 10px; max-width: 360px; border-color: var(--gold); }
+
+/* collapsible groups */
+details.group > summary.sub-title { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; margin: 14px 0 10px; }
+details.group > summary::-webkit-details-marker { display: none; }
+details.group > summary::before { content: '▸'; color: var(--blood-hi); width: 12px; }
+details.group[open] > summary::before { content: '▾'; }
+details.group:not([open]) > summary { margin-bottom: 4px; }
+.group-count:empty { display: none; }
+.groups > .list-tools { margin-bottom: 4px; }
