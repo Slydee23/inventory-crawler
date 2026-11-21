@@ -34,7 +34,7 @@ The game evidently re-serializes its object and compares, so output must match .
 - `ProfileSaveData` — `CurrentState`, `TotalCoins`, `MainCharacterId` (32-hex GUID), `SaveTimeStamp` (ISO UTC), `PlayTime` (.NET TimeSpan `hh:mm:ss.fffffff`), `SaveSlotIdx`
 - `RunMetaSaveData` — `SelectedDungeonID`, `SelectedPartyFccIds[]` (e.g. `FCC_Antonio`), `ActiveArcanasIds[]`, `EquippedArcanaIds[]`, `EnabledRelics[{Key,Value:bool}]`, mode flags (`EndlessModeActive`, `HandSizeLimitActive`, `HurryModeActive`, `IsJewellerDisabled`)
 - `ProgressionSaveData`
-  - `TotalCoins` (also duplicated in `ProfileSaveData.TotalCoins` — keep in sync? TODO)
+  - `TotalCoins` (duplicated in `ProfileSaveData.TotalCoins`; editor keeps both in sync — works in-game)
   - `CharactersPurchased[{Key:"FCC_*",Value:bool}]`
   - `PowerUpLevelsUnlocked[{Key:"PowerUp_*",Value:int level}]` — only bought power-ups appear (absent = level 0). Max levels (from the shop UI, see `data/ids.json` → `powerUpMaxLevels`): 5 = Area, Banish, Curse, Duration, Growth, Luck, MaxHealth, Might, Reroll, Skip; 3 = Amount, Armor, Greed, Recovery; 2 = CharacterSlot, Cooldown, Speed; 1 = Magnet, Revival. `PowerUp_Charm` is a development leftover without any effect → hidden in the editor (`data/ids.json` → `hidden`), left untouched in the file. `PowerUpEnabled[{Key,Value:bool}]` lists all 20 power-ups
   - `AchievementsUnlocked[{Key,Value:bool}]` — prefixes `SimpleAchievement_`, `DungeonAchievement_`, `MetricAchievement_`
@@ -60,5 +60,6 @@ The game evidently re-serializes its object and compares, so output must match .
 - Full ID lists still missing for relics, arcanas, dungeons, achievements (characters, cards, gems, power-ups are complete via `CardGemSlots`/`GemFrequencies`/`PowerUpEnabled`).
 - Is buying a character just `CharactersPurchased`, or does the shop also need an unlock achievement?
 - Meaning of `CurrentState`, `PowerUpLevelsUnlocked` format, `SaveObjects` content during a run.
-- Does the game reject a save on checksum mismatch, or just reset it?
+- Verified 2026-11-21: a save edited with InventoryCrawler (coins +10k, checksum recomputed) loads on Android and the coins can be spent.
+- Does the game reject a save on checksum mismatch, or just reset it? (untested)
 - Same format on PC/Switch/Xbox/iOS?

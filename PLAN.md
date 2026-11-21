@@ -21,7 +21,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] (?) Mid-run save → document `GameSaveData.SaveObjects`
 - [x] `data/ids.json` + `tools/extract-ids.mjs`: characters (25), cards (75), gems (62), power-ups (20) complete
 - [ ] Still incomplete: relics, arcanas, dungeons, achievements — need later-game saves or community sources
-- [~] (?) Verify the game accepts an edited save (user testing coins now) (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
+- [x] Game accepts an edited save: +10k coins (both TotalCoins fields) loaded on Android and spendable in-game (2026-11-21)
+- [ ] In-game test: unlocking a character via CharactersPurchased (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
 ## Phase 3 — Editor UI (MVP)
