@@ -260,7 +260,9 @@ function progressionView(ctx) {
   // Experimental IDs (e.g. leftovers that don't exist in the game UI) live in their own section.
   const experimental = ids.experimental ?? {};
   const isExperimental = (id) => Object.hasOwn(experimental, id);
-  const notExperimental = (id) => !isExperimental(id);
+  // Hidden IDs (dev leftovers without effect) are never shown; they still round-trip untouched.
+  const isHidden = (id) => Object.hasOwn(ids.hidden ?? {}, id);
+  const notExperimental = (id) => !isExperimental(id) && !isHidden(id);
 
   // Power-up levels: [{Key, Value: level}], absent = level 0.
   const levels = arr(prog, 'PowerUpLevelsUnlocked');
@@ -270,7 +272,7 @@ function progressionView(ctx) {
     kvLevelList(ctx, levels, allPowerUps.filter(notExperimental), ids.powerUpMaxLevels ?? {}, 10),
     h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.'));
 
-  const expPowerUps = allPowerUps.filter(isExperimental);
+  const expPowerUps = allPowerUps.filter((id) => isExperimental(id) && !isHidden(id));
   const experimentalPanel = expPowerUps.length > 0 && h('details', { class: 'panel experimental' },
     h('summary', { class: 'panel-title' }, 'Experimental', h('small', null, 'unused or unconfirmed game data')),
     h('p', { class: 'warn-box' },

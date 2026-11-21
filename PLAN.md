@@ -21,7 +21,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] (?) Mid-run save → document `GameSaveData.SaveObjects`
 - [x] `data/ids.json` + `tools/extract-ids.mjs`: characters (25), cards (75), gems (62), power-ups (20) complete
 - [ ] Still incomplete: relics, arcanas, dungeons, achievements — need later-game saves or community sources
-- [ ] (?) Verify the game accepts an edited save (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
+- [~] (?) Verify the game accepts an edited save (user testing coins now) (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
 ## Phase 3 — Editor UI (MVP)
@@ -31,7 +31,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
 - [ ] Gem editors (frequencies, rarities, card gem slots) — after meaning is confirmed
 - [x] Power-up max levels from shop screenshot
-- [x] `PowerUp_Charm` (not in the game shop) moved to a collapsed "Experimental" section — mechanism: `experimental` map in `data/ids.json`
+- [x] `PowerUp_Charm` = dev leftover without effect → hidden (`hidden` in `data/ids.json`). Collapsed "Experimental" section stays available via `experimental` map for future unconfirmed IDs
 - [x] Settings editor (generic fields, volume sliders)
 - [x] Raw JSON view for everything else (lossless)
 - [x] Export: download edited file + original backup, validate before download

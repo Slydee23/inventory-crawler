@@ -247,7 +247,8 @@
     "PowerUp_Skip": 5,
     "PowerUp_Speed": 2
   },
-  "experimental": {
-    "PowerUp_Charm": "listed in every save but not offered in the in-game power-up shop (probably a leftover from Vampire Survivors)"
+  "experimental": {},
+  "hidden": {
+    "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown"
   }
 }
