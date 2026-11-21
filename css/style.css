@@ -452,3 +452,21 @@ details.group[open] > summary::before { content: '▾'; }
 details.group:not([open]) > summary { margin-bottom: 4px; }
 .group-count:empty { display: none; }
 .groups > .list-tools { margin-bottom: 4px; }
+
+/* cross-links between linked entries (character <-> unlock, relic <-> unlock) */
+.tile-link {
+  display: inline-block;
+  margin-top: 3px;
+  font: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--gold-hi);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gold);
+}
+.tile-link:hover { color: #fff; border-bottom-style: solid; }
+.toggle.highlight {
+  border-color: var(--gold-hi);
+  box-shadow: 0 0 0 2px var(--gold-hi), 0 0 18px rgba(242, 193, 78, 0.6);
+  transition: box-shadow 0.3s;
+}

@@ -94,7 +94,19 @@ function renderTabs() {
     onclick: () => { state.tab = v.id; renderTabs(); },
   }, v.label)));
   const view = views.find((v) => v.id === state.tab);
-  $('view').replaceChildren(view.render({ save: state.save, ids: state.ids, changed, toast }));
+  $('view').replaceChildren(view.render({ save: state.save, ids: state.ids, changed, toast, navigate }));
+}
+
+/** Switch to a tab and highlight the entry with data-id = id (opening its collapsed group). */
+function navigate(tab, id) {
+  state.tab = tab;
+  renderTabs();
+  const el = [...$('view').querySelectorAll('[data-id]')].find((e) => e.dataset.id === id);
+  if (!el) return;
+  for (let d = el.closest('details'); d; d = d.parentElement?.closest('details')) d.open = true;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('highlight');
+  setTimeout(() => el.classList.remove('highlight'), 2500);
 }
 
 function changed() {

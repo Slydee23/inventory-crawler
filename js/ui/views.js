@@ -104,10 +104,11 @@ function union(...lists) {
 /**
  * Checklist over a set of IDs with search and select-all / select-none.
  * @param {{ ids: string[], isOn: (id: string) => boolean, set: (id: string, on: boolean) => void,
- *           warnOn?: Record<string, string>, hints?: Record<string, string>, onCount?: (text: string) => void }} opts
+ *           warnOn?: Record<string, string>, hints?: Record<string, string>, onCount?: (text: string) => void,
+ *           links?: Record<string, { label: string, title?: string, go: () => void }> }} opts
  *   warnOn: risky IDs (⚠, skipped by "All"); hints: informational tooltip text
  */
-function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {}, onCount }) {
+function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {}, onCount, links = {} }) {
   const list = h('div', { class: 'toggle-list' });
   const counter = h('span', { class: 'badge' });
   let filter = '';
@@ -120,12 +121,16 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {}, onCount }) 
     const q = filter.toLowerCase();
     list.replaceChildren(...ids
       .filter((id) => !q || id.toLowerCase().includes(q) || prettify(id).toLowerCase().includes(q))
-      .map((id) => h('label', { class: 'toggle', title: warnOn[id] ?? hints[id] ?? id },
+      .map((id) => h('label', { class: 'toggle', title: warnOn[id] ?? hints[id] ?? id, 'data-id': id },
         h('input', {
           type: 'checkbox', checked: isOn(id),
           onchange: (e) => { set(id, e.target.checked); updateCount(); ctx.changed(); },
         }),
-        h('span', null, prettify(id), warnOn[id] && ' ⚠', h('small', null, id)))));
+        h('span', null, prettify(id), warnOn[id] && ' ⚠', h('small', null, id),
+          links[id] && h('a', {
+            class: 'tile-link', href: '#', title: links[id].title ?? '',
+            onclick: (e) => { e.preventDefault(); e.stopPropagation(); links[id].go(); },
+          }, links[id].label)))));
     updateCount();
   };
   const setAll = (on) => {
@@ -310,6 +315,23 @@ function profileOverview(ctx) {
       stat('Dungeon', prettify(getIn(d, 'RunMetaSaveData', 'SelectedDungeonID') ?? '—')))));
 }
 
+// ---------------------------------------------------------------- cross-links
+
+/** { a: b } -> { b: a } */
+function invert(map) {
+  return Object.fromEntries(Object.entries(map ?? {}).map(([k, val]) => [val, k]));
+}
+
+/** Tile links for every id in `list` that has a target in `targetById` (opens `tab` at that target). */
+function linksTo(ctx, list, targetById, tab, label) {
+  if (!ctx.navigate) return {};
+  return Object.fromEntries(list.filter((id) => targetById[id]).map((id) => [id, {
+    label,
+    title: `Go to ${prettify(targetById[id])} (${targetById[id]})`,
+    go: () => ctx.navigate(tab, targetById[id]),
+  }]));
+}
+
 // ---------------------------------------------------------------- progression helpers
 
 /**
@@ -375,6 +397,7 @@ function charactersView(ctx) {
     },
     hints: Object.fromEntries(list.map((id) => [id,
       [p.ids.hints?.[id], unlocks[id] && `Sets: purchase + ${unlocks[id]}`].filter(Boolean).join(' · ')])),
+    links: linksTo(ctx, list, unlocks, 'achievements', '→ Unlock'),
   });
   const exp = all.filter(p.isExperimental);
   return h('div', null,
@@ -403,6 +426,7 @@ function relicsView(ctx) {
     },
     hints: Object.fromEntries(list.map((id) => [id,
       [p.ids.hints?.[id], unlocks[id] ? `Sets: ${unlocks[id]} + enabled` : 'Sets: enabled'].filter(Boolean).join(' · ')])),
+    links: linksTo(ctx, list, unlocks, 'achievements', '→ Unlock'),
   });
   const exp = all.filter(p.isExperimental);
   return h('div', null,
@@ -502,6 +526,10 @@ function achievementsView(ctx) {
     isOn: (id) => kvGet(ach, id) === true,
     set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
     hints: p.ids.unlockHints ?? {},
+    links: {
+      ...linksTo(ctx, list, invert(p.ids.characterUnlocks), 'characters', '→ Character'),
+      ...linksTo(ctx, list, invert(p.ids.relicUnlocks), 'relics', '→ Relic'),
+    },
   });
   return h('div', null,
     panel('Achievements & unlocks', 'AchievementsUnlocked',
