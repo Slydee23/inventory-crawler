@@ -104,9 +104,10 @@ function union(...lists) {
 /**
  * Checklist over a set of IDs with search and select-all / select-none.
  * @param {{ ids: string[], isOn: (id: string) => boolean, set: (id: string, on: boolean) => void,
- *           warnOn?: Record<string, string> }} opts
+ *           warnOn?: Record<string, string>, hints?: Record<string, string> }} opts
+ *   warnOn: risky IDs (⚠, skipped by "All"); hints: informational tooltip text
  */
-function idChecklist(ctx, { ids, isOn, set, warnOn = {} }) {
+function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {} }) {
   const list = h('div', { class: 'toggle-list' });
   const counter = h('span', { class: 'badge' });
   let filter = '';
@@ -116,7 +117,7 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {} }) {
     const q = filter.toLowerCase();
     list.replaceChildren(...ids
       .filter((id) => !q || id.toLowerCase().includes(q) || prettify(id).toLowerCase().includes(q))
-      .map((id) => h('label', { class: 'toggle', title: warnOn[id] ?? id },
+      .map((id) => h('label', { class: 'toggle', title: warnOn[id] ?? hints[id] ?? id },
         h('input', {
           type: 'checkbox', checked: isOn(id),
           onchange: (e) => { set(id, e.target.checked); updateCount(); ctx.changed(); },
@@ -253,9 +254,9 @@ function progressionView(ctx) {
       ids: charIds,
       isOn: (id) => kvGet(chars, id) === true,
       set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
-      warnOn: { FCC_MissingNo: 'Secret/glitch character — unlock at your own risk (not included in "All")' },
+      hints: ids.hints ?? {},
     }),
-    h('p', { class: 'note' }, 'Keep at least one character. "All" skips entries marked ⚠.'));
+    h('p', { class: 'note' }, 'Keep at least one character. Hover a name for unlock hints.'));
 
   // Experimental IDs (e.g. leftovers that don't exist in the game UI) live in their own section.
   const experimental = ids.experimental ?? {};
@@ -302,7 +303,7 @@ function progressionView(ctx) {
         if (on && i < 0) discovered.push(id);
         if (!on && i >= 0) discovered.splice(i, 1);
       },
-      warnOn: { FCC_MissingNo: 'Secret/glitch character' },
+      hints: ids.hints ?? {},
     }));
 
   return h('div', null,

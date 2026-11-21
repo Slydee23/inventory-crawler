@@ -11,3 +11,7 @@ Unofficial fan project, not affiliated with poncle.
 ## Credits
 
 Pixel font: [Silkscreen](https://github.com/googlefonts/silkscreen) by Jason Kottke, SIL Open Font License 1.1 (`fonts/OFL.txt`).
+
+## License
+
+[MIT](LICENSE) © 2026 Slydee. The pixel font is licensed separately under the SIL OFL 1.1.

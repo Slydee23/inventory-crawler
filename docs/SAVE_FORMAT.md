@@ -48,7 +48,7 @@ The game evidently re-serializes its object and compares, so output must match .
 - `MetricsSaveData.collectionData[{collectionID, dictionarySaveData:{doubleMetrics[{ID,Value}], longMetrics[{ID,Value}]}}]` — statistics. collectionID 0 = lifetime, 1 = current/last run, 2 = probably current floor/encounter set, 3 = this turn, 4 = this encounter. doubleMetrics use full double precision (`72.767441860465112`) — preserved by the lossless parser.
 
 ### ID conventions
-- Characters `FCC_<Name>` (25 known; `FCC_MissingNo` looks like a secret/glitch character)
+- Characters `FCC_<Name>` (25 known; `FCC_MissingNo` is a regular but secret character, unlocked by defeating Red Death once)
 - Cards `Card_<Type>_<n>_<Name>` — type letters seen: A (attack), D (defense), S (special), M (mana), B, E (pickups/coins), W (wild); some cards have no type (`Card_Confuse`, `Card_Shatter`, …)
 - Achievements: `SimpleAchievement_`, `DungeonAchievement_`, `MetricAchievement_`, `PowerUpAchievement_`
 - Known ID lists: `data/ids.json`, regenerated with `node tools/extract-ids.mjs <saves…>`

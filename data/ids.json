@@ -250,5 +250,8 @@
   "experimental": {},
   "hidden": {
     "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown"
+  },
+  "hints": {
+    "FCC_MissingNo": "Unlocked in-game by defeating Red Death once (not mentioned anywhere in the game)"
   }
 }
