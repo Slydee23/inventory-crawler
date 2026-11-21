@@ -72,7 +72,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] (later, low priority) iOS: how to get the save out of the game and back
   - Android path: `Android/data/com.poncle.vampirecrawler/…`. Android 11+ blocks third-party file managers from writing there → document: USB + PC (works), system "Files" app (device-dependent), Shizuku + ZArchiver/MiXplorer/Material Files (on-device)
 - [x] Warning badge + toast for untested save versions (`testedSaveVersions` in data/ids.json; currently 0.30.0 = game 1.6.5)
-- [ ] README with screenshots, disclaimer
+- [x] README with features, screenshots (synthetic save), how-to, privacy, credits, disclaimer
 - [ ] Release v1.0
 
 ## Open decisions
