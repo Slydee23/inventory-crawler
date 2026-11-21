@@ -58,7 +58,7 @@ The game evidently re-serializes its object and compares, so output must match .
 
 ## Open questions
 - Full ID lists still missing for relics, arcanas, dungeons, achievements (characters, cards, gems, power-ups are complete via `CardGemSlots`/`GemFrequencies`/`PowerUpEnabled`).
-- Is buying a character just `CharactersPurchased`, or does the shop also need an unlock achievement?
+- Characters: `CharactersPurchased` alone is NOT enough (tested 2026-11-21: MissingN0 stayed unplayable). The character must also be unlocked via its achievement in `AchievementsUnlocked` (Antonio: `SimpleAchievement_Character_Antonio`). Exact IDs for the other characters unknown yet.
 - Meaning of `CurrentState`, `PowerUpLevelsUnlocked` format, `SaveObjects` content during a run.
 - Verified 2026-11-21: a save edited with InventoryCrawler (coins +10k, checksum recomputed) loads on Android and the coins can be spent.
 - Does the game reject a save on checksum mismatch, or just reset it? (untested)

@@ -346,6 +346,7 @@ function charactersView(ctx) {
   return h('div', null,
     panel('Characters', 'CharactersPurchased',
       groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist),
+      h('p', { class: 'warn-box' }, '⚠ Checking a character marks it as purchased. It only appears in the tavern if its in-game unlock (achievement) is also done — editing those unlocks is not supported yet. Tested: MissingN0 stays locked without its unlock.'),
       h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.')),
     experimentalPanel(p, exp, checklist(exp)));
 }
