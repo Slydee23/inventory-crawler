@@ -316,6 +316,30 @@ function goldEditor(ctx) {
     h('p', { class: 'note' }, 'Your gold in the village. Updates both gold counters stored in the save.'));
 }
 
+/** Overview: one button that runs "Unlock all" of every category tab. */
+function unlockEverythingPanel(ctx) {
+  const tabs = [
+    ['Characters', charactersView], ['Relics', relicsView], ['Power-ups', powerUpsView],
+    ['Cards', cardsView], ['Gems', gemsView], ['Achievements', achievementsView],
+  ];
+  const run = () => {
+    if (!confirm('Unlock everything (characters, relics, power-ups at max, cards, gems, all unlocks)?\n\nTip: download a backup of your original save first.')) return;
+    const quiet = { ...ctx, toast: () => {}, navigate: undefined };
+    let done = 0;
+    for (const [, view] of tabs) {
+      // render the tab off-screen and press its "Unlock all"
+      const el = view(quiet);
+      for (const btn of el.querySelectorAll('.unlock-all')) { btn.click(); done++; }
+    }
+    ctx.changed();
+    ctx.toast(`Everything unlocked (${done} categories). Experimental entries were left out.`);
+    ctx.navigate?.('overview');
+  };
+  return panel('Unlock everything', null,
+    h('p', { class: 'note' }, `Runs "Unlock all" in ${tabs.map(([n]) => n).join(', ')} at once. Gold is not changed. Experimental and unused entries are never included.`),
+    h('button', { class: 'btn btn-primary', type: 'button', onclick: run }, 'Unlock everything'));
+}
+
 function profileOverview(ctx) {
   const d = ctx.save.data;
   const p = d.get('ProfileSaveData');
@@ -327,6 +351,7 @@ function profileOverview(ctx) {
 
   return h('div', null,
     goldEditor(ctx),
+    unlockEverythingPanel(ctx),
     panel('Profile', null, h('div', { class: 'stats' },
       stat('Profile', d.get('ProfileId')),
       stat('Save system', d.get('saveSystemVersion')),
