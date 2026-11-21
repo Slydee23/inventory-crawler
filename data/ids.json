@@ -2797,6 +2797,544 @@
       "FCC_BigTroubler": "Character",
       "FCC_Leda": "Character"
     },
+    "cardSockets": {
+      "Card_A_1_MagicWand": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_D_0_Armor": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_BagOfCoins": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_LargeBagOfCoins": {
+        "max": 1,
+        "default": 0
+      },
+      "FCC_Imelda": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_S_1_Attractorb": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_A_0_Bone": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_0_Knife": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_0_Whip": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_0_CherryBomb": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_1_FireWand": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_0_Garlic": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_1_GattiAmari": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_1_KingBible": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_1_Runetracer": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_A_3_Axe": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_Carrello": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_CelestialDusting": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_0_Cross": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_EightTheSparrow": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_GlassFandango": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_LightningRing": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_5_Peachone": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_PhieraDerTuphello": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_SantaWater": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_ShadowPinion": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_6_EbonyWings": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_VentoSacro": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_Pentagram": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_D_3_ClockLancet": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_M_3_SongOfMana": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_D_1_Armor": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_D_2_Armor": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_D_3_Armor": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_A_0_GorgeousMoon": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_BloodyTear": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_HolyWand": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_UnholyVespers": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_ValkyrieTurner": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_2_ViciousHunger": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_DeathSpiral": {
+        "max": 3,
+        "default": 3
+      },
+      "Card_A_3_HeavenSword": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_HellFire": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_NoFuture": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_1_SoulEater": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_3_ThousandEdge": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_Fuwalafuwaloo": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_LaBorra": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_Phieraggi": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_Thunderloop": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_5_Vandalier": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_D_6_InfiniteCorridor": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_M_5_Mannajja": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_E_CloverPetal": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_CoinPurse": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_LittleClover": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_LittleHeart": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_E_Orologion": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_Rosary": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_E_Vacuum": {
+        "max": 1,
+        "default": 0
+      },
+      "FCC_Antonio": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Arca": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Cavallo": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Christine": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Clerici": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Concetta": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Dommario": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Gallo": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Gennaro": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Giovanna": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Krochi": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Lama": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_MissingNo": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Mortaccio": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_OSole": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Pasqualina": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Poe": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Poppea": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Porta": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Pugnala": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Ramba": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_B_0_EmptyTome": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_B_1_EmptyTome": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_B_2_EmptyTome": {
+        "max": 3,
+        "default": 2
+      },
+      "Card_B_3_EmptyTome": {
+        "max": 3,
+        "default": 3
+      },
+      "Card_B_0_RawMana": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_AngeloSpietato": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_Confuse": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_CursedLancet": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_ManaBomb": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_Muddle": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_Shatter": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_S_0_Candelabrador": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_0_SkullOManic": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_1_SpellBinder": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_1_Candelabrador": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_Crown": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_Duplicator": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_W_GoldRing": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_HollowHeart": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_Pummarola": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_Spinach": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_1_StoneMask": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_2_Bracer": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_2_Candelabrador": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_2_Clover": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_2_Crown": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_2_Duplicator": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_2_HollowHeart": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_S_2_Pummarola": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_W_SilverRing": {
+        "max": 0,
+        "default": 0
+      },
+      "Card_S_2_Spinach": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_S_2_Tiramisu": {
+        "max": 2,
+        "default": 0
+      },
+      "Card_S_0_Crown": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_S_0_HollowHeart": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_S_0_Pummarola": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_S_0_Spinach": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_S_0_StoneMask": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_S_2_Attractorb": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_S_2_StoneMask": {
+        "max": 1,
+        "default": 1
+      },
+      "Card_W_Bracelet": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_W_Combo": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_W_WildDefence": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_M_0_Wings": {
+        "max": 3,
+        "default": 0
+      },
+      "Card_A_2_LaRobba": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_1_UnearthlyBolt": {
+        "max": 3,
+        "default": 1
+      },
+      "Card_A_4_SpiritDisturbance": {
+        "max": 2,
+        "default": 1
+      },
+      "Card_E_CoinCard": {
+        "max": 1,
+        "default": 0
+      },
+      "Card_S_KaromasMana": {
+        "max": 1,
+        "default": 0
+      },
+      "FCC_Ambrojoe": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_BigTroubler": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Leda": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Divano": {
+        "max": 0,
+        "default": 0
+      },
+      "FCC_Zi'Assunta": {
+        "max": 0,
+        "default": 0
+      }
+    },
     "gemRarity": {
       "GemConfig_Area": 0,
       "GemConfig_Armor": 0,

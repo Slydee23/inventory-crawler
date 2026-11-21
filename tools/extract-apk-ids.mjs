@@ -298,6 +298,37 @@ for (const o of behaviours) {
   const types = [...new Set(refsOf(o).filter((t) => t.cls === 'CardType').map((t) => t.name.replace(/^CardType_/, '')))];
   result.cardTypes[id] = types.includes('Character') ? 'Character' : types[0] ?? 'Other';
 }
+// Gem sockets per card: after the card's save-ID field the object contains
+// [.., flag 1/0, X(id-like >1000), 0, 0, MAX, DEFAULT]. Verified against real saves
+// (all 100 CardGemSlots defaults match) and in-game maxima (Knife 2, Weighty Tome 3, …).
+result.cardSockets = {};
+for (const o of behaviours) {
+  if ((o.cls !== 'CardConfig' && o.cls !== 'FccConfig') || /Test/i.test(o.name)) continue;
+  const b = files[o.file].buf, end = o.start + o.size;
+  let at = -1, id = null;
+  for (let p = o.fieldsStart; p + 4 < end; p++) {
+    const n = b.readInt32LE(p);
+    if (n > 3 && n < 100 && p + 4 + n <= end) {
+      const s = b.toString('latin1', p + 4, p + 4 + n);
+      if (/^(Card|FCC)_[A-Za-z0-9_']+$/.test(s)) { at = p; id = s; break; }
+    }
+  }
+  if (at < 0 || id in result.cardSockets) continue;
+  const ints = [];
+  for (let p = (at + 4 + b.readInt32LE(at) + 3) & ~3; p + 4 <= end; p += 4) ints.push(b.readInt32LE(p));
+  const ok = (x, z1, z2, max, def) => x > 1000 && x < 100000 && z1 === 0 && z2 === 0 && max >= 0 && max <= 6 && def >= 0 && def <= max;
+  let found = null;
+  for (let i = 2; i + 4 < ints.length && !found; i++) {
+    const flags = ints.slice(Math.max(0, i - 3), i);
+    if (ok(...ints.slice(i, i + 5)) && flags.includes(1) && flags.every((f) => f === 0 || f === 1)) found = ints.slice(i + 3, i + 5);
+  }
+  // cards with a list right before the block: only the back part, directly after a flag 1
+  for (let i = 40; i + 4 < ints.length && !found; i++) {
+    if (ints[i - 1] === 1 && ok(...ints.slice(i, i + 5))) found = ints.slice(i + 3, i + 5);
+  }
+  if (found) result.cardSockets[id] = { max: found[0], default: found[1] };
+}
+
 // Gem rarity (GemConfig -> GemQualityConfig); index matches GemFrequencies / UnlockedGemRarities values in saves
 const RARITY = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
 result.gemRarity = {};

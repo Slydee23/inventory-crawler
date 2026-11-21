@@ -22,19 +22,24 @@ function panel(title, subtitle, ...content) {
  * Experimental sections are separate panels and therefore never included.
  */
 function unlockAllPanel(ctx, title, subtitle, ...content) {
+  return bulkPanel(ctx, { label: 'Unlock all', cls: 'unlock-all', done: 'everything unlocked' }, title, subtitle, ...content);
+}
+
+/** Panel with a bulk button in its title that runs all data-action="all" controls inside. */
+function bulkPanel(ctx, { label, cls, done }, title, subtitle, ...content) {
   const el = panel(title, subtitle, ...content);
   const btn = h('button', {
-    class: 'btn btn-small btn-primary unlock-all', type: 'button',
-    title: `Unlock everything in "${title}" (experimental entries excluded)`,
+    class: `btn btn-small btn-primary bulk-btn ${cls}`, type: 'button',
+    title: `${label}: "${title}" (experimental entries excluded)`,
     onclick: () => {
       // checkboxes first (e.g. shop tiers), then buttons (All / Max)
       for (const input of el.querySelectorAll('input[data-action="all"]')) {
         if (!input.checked) { input.checked = true; input.dispatchEvent(new Event('change')); }
       }
       for (const b of el.querySelectorAll('button[data-action="all"]')) b.click();
-      ctx.toast(`${title}: everything unlocked`);
+      ctx.toast(`${title}: ${done}`);
     },
-  }, 'Unlock all');
+  }, label);
   el.querySelector('.panel-title').append(btn);
   return el;
 }
@@ -522,6 +527,53 @@ function powerUpsView(ctx) {
       enabled && kvToggleList(enabled, ctx, { keep: p.isExperimental })));
 }
 
+/**
+ * Gem slots per card (Blacksmith): CardGemSlots[{Key, Value:int}] — every card has an entry.
+ * Max/default per card come from the game data (apk.cardSockets).
+ */
+function socketList(ctx, slots, ids, sockets, onCount) {
+  const valueOf = (id) => { const x = kvGet(slots, id); return x instanceof JsonNumber ? x.value : 0; };
+  const inputs = new Map();
+  const update = () => onCount?.(`${ids.filter((id) => valueOf(id) >= sockets[id].max).length} / ${ids.length} max`);
+  const setVal = (id, n) => { kvSet(slots, id, JsonNumber.int(n)); inputs.get(id).value = String(n); };
+  const rows = ids.map((id) => {
+    const { max, default: def } = sockets[id];
+    const input = h('input', {
+      type: 'number', min: '0', max: String(max), step: '1', value: String(valueOf(id)),
+      onchange: (e) => {
+        const n = Number(e.target.value);
+        if (!Number.isInteger(n) || n < 0 || n > max) {
+          ctx.toast(`${prettify(id)}: 0 to ${max} gem slots`, true);
+          e.target.value = String(valueOf(id));
+          return;
+        }
+        kvSet(slots, id, JsonNumber.int(n)); update(); ctx.changed();
+      },
+    });
+    inputs.set(id, input);
+    return h('label', { class: 'field', title: `Default ${def}, maximum ${max} (Blacksmith)` },
+      h('span', { class: 'field-label' }, prettify(id), ` (max ${max})`, h('small', null, id)), input);
+  });
+  const all = (pick) => { for (const id of ids) setVal(id, pick(id)); update(); ctx.changed(); };
+  update();
+  return h('div', null,
+    h('div', { class: 'list-tools' },
+      h('button', { class: 'btn btn-small', type: 'button', 'data-action': 'all', onclick: () => all((id) => sockets[id].max) }, 'Max'),
+      h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => all((id) => sockets[id].default) }, 'Default')),
+    h('div', { class: 'fields' }, rows));
+}
+
+function socketPanel(ctx, p, groups) {
+  const slots = p.arr(p.prog, 'CardGemSlots');
+  const sockets = p.ids.apk?.cardSockets ?? {};
+  if (!slots) return null;
+  const has = (id) => sockets[id] && sockets[id].max > 0 && kvGet(slots, id) instanceof JsonNumber;
+  const g = groups.map((x) => ({ ...x, ids: x.ids.filter(has) })).filter((x) => x.ids.length);
+  return bulkPanel(ctx, { label: 'Max all', cls: 'max-all', done: 'all gem slots at maximum' }, 'Gem slots', 'CardGemSlots',
+    groupedSections(g.flatMap((x) => x.ids), g, (list, _g, onCount) => socketList(ctx, slots, list, sockets, onCount), { key: 'sockets', open: false }),
+    h('p', { class: 'note' }, 'Gem slots per card, like the Blacksmith in-game. Maximum and default per card come from the game data; cards that cannot get slots are not listed.'));
+}
+
 /** Card type groups (from the game data: CardConfig -> CardType). */
 const CARD_TYPE_GROUPS = [
   ['Attack', 'Attack'], ['Defense', 'Defense'], ['Special', 'Stat boost'], ['Mana', 'Mana'],
@@ -545,7 +597,7 @@ function cardsView(ctx) {
     name, ids: all.filter((id) => (types[id] ?? (id.startsWith('FCC_') ? 'Character' : null)) === t),
   }));
   const unlocks = Object.fromEntries(all.filter(unlockOf).map((id) => [id, unlockOf(id)]));
-  return unlockAllPanel(ctx, 'Cards', 'DiscoveredCards',
+  return h('div', null, unlockAllPanel(ctx, 'Cards', 'DiscoveredCards',
     groupedSections(all, groups, (list, _group, onCount) => idChecklist(ctx, {
       ids: list,
       onCount,
@@ -564,7 +616,8 @@ function cardsView(ctx) {
       ].filter(Boolean).join(' · ')])),
       links: linksTo(ctx, list, unlocks, 'achievements', '→ Unlock'),
     }), { key: 'cards', open: false }),
-    h('p', { class: 'note' }, 'Checking a card marks it as discovered and sets its unlock (if it has one), so it can show up in runs. Crawler cards only get "discovered" — unlock characters in the Characters tab.'));
+    h('p', { class: 'note' }, 'Checking a card marks it as discovered and sets its unlock (if it has one), so it can show up in runs. Crawler cards only get "discovered" — unlock characters in the Characters tab.')),
+    socketPanel(ctx, p, groups));
 }
 
 // In-game names (internally Common, Uncommon, Rare, Epic, Legendary)

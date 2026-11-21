@@ -489,3 +489,5 @@ select {
 .gem-settings .field-control { flex-wrap: nowrap; }
 .gem-settings .field-label { min-width: 0; }
 @media (max-width: 560px) { .fields.gem-settings { grid-template-columns: 1fr; } }
+
+.panel-title .bulk-btn { margin-left: auto; letter-spacing: 1px; text-shadow: none; }

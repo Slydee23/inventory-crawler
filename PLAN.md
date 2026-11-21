@@ -37,7 +37,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
 - [x] Gems tab: 64 gems by rarity (from game data), check = UnlockedGemRarities [rarity] + unlock achievement (shared unlocks handled), 39 wiki names
 - [x] Gem rarity setting + seal (Jeweller feature): selector + seal toggle per gem; editor output verified identical to a game-written save (Coin Count Gem rarity change, Decimate Gem sealed)
-- [ ] Card gem slots (CardGemSlots) editor — max slots per card unknown
+- [x] Card gem slots: max/default per card from game data (verified with an in-game Blacksmith save), editor with Max/Default per group and "Max all" (not part of "Unlock everything")
 - [ ] In-game test: a gem unlocked via the editor drops in runs
 - [x] Power-up max levels from shop screenshot
 - [x] `PowerUp_Charm` = dev leftover without effect → hidden (`hidden` in `data/ids.json`). Collapsed "Experimental" section stays available via `experimental` map for future unconfirmed IDs
