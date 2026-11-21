@@ -30,6 +30,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
 ## Phase 3 — Editor UI (MVP)
+- [x] One tab per category: Overview · Characters · Relics · Power-ups · Cards · Achievements · Other · Raw JSON (Experimental sections live in their category tab)
 - [x] App shell: open file (picker + drag & drop), detect file type (profile / settings)
 - [x] Overview: profile info, playtime, checksum status
 - [x] Coins editor (keeps both TotalCoins fields in sync)
@@ -41,6 +42,13 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Raw JSON view for everything else (lossless)
 - [x] Export: download edited file + original backup, validate before download
 - [x] Dark, game-flavored styling (no game assets; Silkscreen OFL pixel font); mobile friendly
+
+## Phase 3b — Category deep-dives (like Characters: full ID list, wiki names, hints, update groups)
+- [x] Characters
+- [ ] Power-ups
+- [ ] Relics
+- [ ] Cards
+- [ ] Achievements
 
 ## Phase 4 — Polish & release
 - [ ] How-to page: where save files are on Android / PC / Switch, how to copy them back

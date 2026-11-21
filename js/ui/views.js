@@ -260,93 +260,134 @@ function profileOverview(ctx) {
     coinsEditor(ctx));
 }
 
-function progressionView(ctx) {
+// ---------------------------------------------------------------- progression helpers
+
+/**
+ * Shared context for the progression tabs (characters, relics, power-ups, cards, …).
+ * @returns {null | object} null if the save has no ProgressionSaveData
+ */
+function progression(ctx) {
   const prog = ctx.save.data.get('ProgressionSaveData');
+  if (!(prog instanceof Map)) return null;
   const run = ctx.save.data.get('RunMetaSaveData');
-  if (!(prog instanceof Map)) return panel('Progression', null, h('p', { class: 'empty' }, 'Not found in this save.'));
   const ids = ctx.ids;
   const arr = (map, key) => (map instanceof Map && Array.isArray(map.get(key)) ? map.get(key) : null);
   const kvKeys = (list) => (list ?? []).map((e) => e instanceof Map && e.get('Key'));
-  const slotIds = kvKeys(arr(prog, 'CardGemSlots'));
-
-  // Experimental IDs (in the save but unconfirmed in the game) live in their own collapsed section.
+  // Experimental IDs (in the save but unconfirmed in the game) get a collapsed section per tab.
   // Hidden IDs (dev leftovers without effect) are never shown; they still round-trip untouched.
   const experimental = ids.experimental ?? {};
   const isHidden = (id) => Object.hasOwn(ids.hidden ?? {}, id);
-  const isExperimental = (id) => Object.hasOwn(experimental, id) && !isHidden(id);
-  const isRegular = (id) => !Object.hasOwn(experimental, id) && !isHidden(id);
+  return {
+    prog, run, ids, arr, kvKeys, experimental,
+    slotIds: kvKeys(arr(prog, 'CardGemSlots')),
+    isExperimental: (id) => Object.hasOwn(experimental, id) && !isHidden(id),
+    isRegular: (id) => !Object.hasOwn(experimental, id) && !isHidden(id),
+  };
+}
 
-  // Characters: present with Value true = purchased. Removing deletes the entry (as in a fresh save).
-  const chars = arr(prog, 'CharactersPurchased');
-  const allChars = union(ids.characters, kvKeys(chars), slotIds.filter((k) => k?.startsWith('FCC_')));
-  const charChecklist = (list) => idChecklist(ctx, {
-    ids: list,
-    isOn: (id) => kvGet(chars, id) === true,
-    set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
-    hints: ids.hints ?? {},
-  });
-  const charPanel = chars && panel('Characters', 'CharactersPurchased',
-    groupedSections(allChars.filter(isRegular), ids.characterGroups, charChecklist),
-    h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.'));
+function notInSave(title) {
+  return panel(title, null, h('p', { class: 'empty' }, 'Not found in this save.'));
+}
 
-  // Power-up levels: [{Key, Value: level}], absent = level 0.
-  const levels = arr(prog, 'PowerUpLevelsUnlocked');
-  const enabled = arr(prog, 'PowerUpEnabled');
-  const allPowerUps = union(ids.powerUps, kvKeys(levels), kvKeys(enabled));
-  const levelPanel = levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
-    kvLevelList(ctx, levels, allPowerUps.filter(isRegular), ids.powerUpMaxLevels ?? {}, 10),
-    h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.'));
-
-  // Experimental section
-  const expChars = chars ? allChars.filter(isExperimental) : [];
-  const expPowerUps = allPowerUps.filter(isExperimental);
-  const experimentalPanel = (expChars.length > 0 || expPowerUps.length > 0) && h('details', { class: 'panel experimental' },
+/** Collapsed "Experimental" panel listing unconfirmed IDs with their editors. */
+function experimentalPanel(p, idList, ...editors) {
+  if (idList.length === 0) return null;
+  return h('details', { class: 'panel experimental' },
     h('summary', { class: 'panel-title' }, 'Experimental', h('small', null, 'unused or unconfirmed game data')),
     h('p', { class: 'warn-box' },
       '⚠ These entries exist in the save but are not confirmed to work in the game. Changing them may do nothing — or break your save. Keep a backup.'),
     h('ul', { class: 'exp-list' },
-      [...expChars, ...expPowerUps].map((id) => h('li', { class: 'note' }, h('code', null, id), ` — ${experimental[id]}`))),
-    expChars.length > 0 && h('h3', { class: 'sub-title' }, 'Characters'),
-    expChars.length > 0 && charChecklist(expChars),
-    expPowerUps.length > 0 && h('h3', { class: 'sub-title' }, 'Power-ups'),
-    expPowerUps.length > 0 && levels && kvLevelList(ctx, levels, expPowerUps, ids.powerUpMaxLevels ?? {}, 5),
-    expPowerUps.length > 0 && enabled && kvToggleList(enabled, ctx, { keep: isExperimental }));
+      idList.map((id) => h('li', { class: 'note' }, h('code', null, id), ` — ${p.experimental[id]}`))),
+    ...editors);
+}
 
-  // Relics: present = owned, Value = enabled. Unchecking keeps the relic but disables it.
-  const relics = arr(run, 'EnabledRelics');
-  const relicPanel = relics && panel('Relics', 'EnabledRelics',
+// ---------------------------------------------------------------- progression tabs
+
+function charactersView(ctx) {
+  const p = progression(ctx);
+  const chars = p && p.arr(p.prog, 'CharactersPurchased');
+  if (!chars) return notInSave('Characters');
+  // Present with Value true = purchased. Removing deletes the entry (as in a fresh save).
+  const all = union(p.ids.characters, p.kvKeys(chars), p.slotIds.filter((k) => k?.startsWith('FCC_')));
+  const checklist = (list) => idChecklist(ctx, {
+    ids: list,
+    isOn: (id) => kvGet(chars, id) === true,
+    set: (id, on) => (on ? kvSet(chars, id, true) : kvDelete(chars, id)),
+    hints: p.ids.hints ?? {},
+  });
+  const exp = all.filter(p.isExperimental);
+  return h('div', null,
+    panel('Characters', 'CharactersPurchased',
+      groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist),
+      h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.')),
+    experimentalPanel(p, exp, checklist(exp)));
+}
+
+function relicsView(ctx) {
+  const p = progression(ctx);
+  const relics = p && p.arr(p.run, 'EnabledRelics');
+  if (!relics) return notInSave('Relics');
+  // Present = owned, Value = enabled. Unchecking keeps the relic but disables it.
+  return panel('Relics', 'EnabledRelics',
     idChecklist(ctx, {
-      ids: union(ids.relics, kvKeys(relics)),
+      ids: union(p.ids.relics, p.kvKeys(relics)).filter(p.isRegular),
       isOn: (id) => kvGet(relics, id) === true,
       set: (id, on) => (on || kvGet(relics, id) !== undefined) && kvSet(relics, id, on),
+      hints: p.ids.hints ?? {},
     }),
     h('p', { class: 'note' }, 'Only relics seen in real saves are listed so far.'));
+}
 
-  // Discovered cards: plain string list.
-  const discovered = arr(prog, 'DiscoveredCards');
-  const cardPanel = discovered && panel('Discovered cards', 'DiscoveredCards',
+function powerUpsView(ctx) {
+  const p = progression(ctx);
+  if (!p) return notInSave('Power-ups');
+  // Levels: [{Key, Value: level}], absent = level 0. Enabled: [{Key, Value: bool}] for every power-up.
+  const levels = p.arr(p.prog, 'PowerUpLevelsUnlocked');
+  const enabled = p.arr(p.prog, 'PowerUpEnabled');
+  const all = union(p.ids.powerUps, p.kvKeys(levels), p.kvKeys(enabled));
+  const maxLevels = p.ids.powerUpMaxLevels ?? {};
+  const exp = all.filter(p.isExperimental);
+  return h('div', null,
+    levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
+      kvLevelList(ctx, levels, all.filter(p.isRegular), maxLevels, 10),
+      h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.')),
+    enabled && panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: p.isRegular })),
+    experimentalPanel(p, exp,
+      levels && kvLevelList(ctx, levels, exp, maxLevels, 5),
+      enabled && kvToggleList(enabled, ctx, { keep: p.isExperimental })));
+}
+
+function cardsView(ctx) {
+  const p = progression(ctx);
+  const discovered = p && p.arr(p.prog, 'DiscoveredCards');
+  if (!discovered) return notInSave('Cards');
+  // Plain string list; characters are listed here as cards too.
+  return panel('Discovered cards', 'DiscoveredCards',
     idChecklist(ctx, {
-      ids: union(ids.cards, ids.characters, discovered, slotIds),
+      ids: union(p.ids.cards, p.ids.characters, discovered, p.slotIds).filter(p.isRegular),
       isOn: (id) => discovered.includes(id),
       set: (id, on) => {
         const i = discovered.indexOf(id);
         if (on && i < 0) discovered.push(id);
         if (!on && i >= 0) discovered.splice(i, 1);
       },
-      hints: ids.hints ?? {},
+      hints: p.ids.hints ?? {},
     }));
+}
 
+function achievementsView(ctx) {
+  const p = progression(ctx);
+  if (!p) return notInSave('Achievements');
+  return panel('Achievements', 'AchievementsUnlocked', kvToggleList(p.prog.get('AchievementsUnlocked'), ctx),
+    h('p', { class: 'note' }, 'Only achievements already in your save are listed.'));
+}
+
+function otherView(ctx) {
+  const p = progression(ctx);
+  if (!p) return notInSave('Other');
   return h('div', null,
-    charPanel,
-    levelPanel,
-    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: isRegular })),
-    relicPanel,
-    cardPanel,
-    panel('Achievements', 'AchievementsUnlocked', kvToggleList(prog.get('AchievementsUnlocked'), ctx),
-      h('p', { class: 'note' }, 'Only achievements already in your save are listed.')),
-    panel('Flags & counters', 'ProgressionSaveData', fieldsEditor(prog, ctx, { exclude: ['TotalCoins'] })),
-    run instanceof Map && panel('Run options', 'RunMetaSaveData', fieldsEditor(run, ctx)),
-    experimentalPanel);
+    panel('Flags & counters', 'ProgressionSaveData', fieldsEditor(p.prog, ctx, { exclude: ['TotalCoins'] })),
+    p.run instanceof Map && panel('Run options', 'RunMetaSaveData', fieldsEditor(p.run, ctx)));
 }
 
 // ---------------------------------------------------------------- settings view
@@ -393,7 +434,12 @@ export function viewsFor(kind) {
   if (kind === 'profile') {
     return [
       { id: 'overview', label: 'Overview', render: profileOverview },
-      { id: 'progression', label: 'Progression', render: progressionView },
+      { id: 'characters', label: 'Characters', render: charactersView },
+      { id: 'relics', label: 'Relics', render: relicsView },
+      { id: 'powerups', label: 'Power-ups', render: powerUpsView },
+      { id: 'cards', label: 'Cards', render: cardsView },
+      { id: 'achievements', label: 'Achievements', render: achievementsView },
+      { id: 'other', label: 'Other', render: otherView },
       { id: 'raw', label: 'Raw JSON', render: rawView },
     ];
   }
