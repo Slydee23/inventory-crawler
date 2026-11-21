@@ -36,7 +36,7 @@ The game evidently re-serializes its object and compares, so output must match .
 - `ProgressionSaveData`
   - `TotalCoins` (duplicated in `ProfileSaveData.TotalCoins`; editor keeps both in sync — works in-game)
   - `CharactersPurchased[{Key:"FCC_*",Value:bool}]`
-  - `PowerUpLevelsUnlocked[{Key:"PowerUp_*",Value:int level}]` — only bought power-ups appear (absent = level 0). 19 real power-ups (wiki: Crawlers:Power_Ups); ID ≠ name for `PowerUp_CharacterSlot` = Crawler Slot, `PowerUp_Speed` = Deal Count, `PowerUp_Cooldown` = +1 Mana. Max levels in `data/ids.json` → `powerUpMaxLevels` (Greed: wiki says 4, shop screenshot showed 3 — unconfirmed). `PowerUp_Charm` is a dev leftover without effect → hidden. `PowerUpEnabled[{Key,Value:bool}]` lists the on/off state of all 20 entries
+  - `PowerUpLevelsUnlocked[{Key:"PowerUp_*",Value:int level}]` — only bought power-ups appear (absent = level 0). 19 real power-ups (wiki: Crawlers:Power_Ups); ID ≠ name for `PowerUp_CharacterSlot` = Crawler Slot, `PowerUp_Speed` = Deal Count, `PowerUp_Cooldown` = +1 Mana. Max levels in `data/ids.json` → `powerUpMaxLevels` (all 19 confirmed against the in-game shop; Greed = 4). `PowerUp_Charm` is a dev leftover without effect → hidden. `PowerUpEnabled[{Key,Value:bool}]` lists the on/off state of all 20 entries
   - `AchievementsUnlocked[{Key,Value:bool}]` — prefixes `SimpleAchievement_`, `DungeonAchievement_`, `MetricAchievement_`
   - `DiscoveredCards["Card_*" | "FCC_*"]` — string list, characters appear here too
   - `CardGemSlots[{Key,Value:int}]` (100 entries) — **contains every card AND every character (`FCC_*`) in the game**, locked or not → our source for the full ID lists. Value probably = number of gem slots (e.g. `Card_B_0..3_EmptyTome` = 0..3)
