@@ -141,12 +141,18 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {} }) {
     list);
 }
 
-/** Number inputs for a `[{Key, Value: int}]` dictionary; 0 removes the entry. */
-function kvLevelList(ctx, list, ids, { max }) {
+/**
+ * Number inputs for a `[{Key, Value: int}]` dictionary; 0 removes the entry.
+ * @param {Record<string, number>} maxById known maximum per ID; others use `fallbackMax` and get a ⚠
+ */
+function kvLevelList(ctx, list, ids, maxById, fallbackMax) {
   const rows = ids.map((id) => {
+    const known = Number.isInteger(maxById[id]);
+    const max = known ? maxById[id] : fallbackMax;
     const cur = kvGet(list, id);
     return h('label', { class: 'field' },
-      h('span', { class: 'field-label' }, prettify(id), h('small', null, id)),
+      h('span', { class: 'field-label', title: known ? `Max level ${max}` : 'Max level unknown' },
+        prettify(id), known ? ` (max ${max})` : ' ⚠', h('small', null, id)),
       h('input', {
         type: 'number', min: '0', max: String(max), step: '1', value: String(cur instanceof JsonNumber ? cur.value : 0),
         onchange: (e) => {
@@ -251,8 +257,8 @@ function progressionView(ctx) {
   // Power-up levels: [{Key, Value: level}], absent = level 0.
   const levels = arr(prog, 'PowerUpLevelsUnlocked');
   const levelPanel = levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
-    kvLevelList(ctx, levels, union(ids.powerUps, kvKeys(levels), kvKeys(arr(prog, 'PowerUpEnabled'))), { max: 10 }),
-    h('p', { class: 'note' }, 'In-game maximum levels differ per power-up and are not verified yet — stay within what the shop shows.'));
+    kvLevelList(ctx, levels, union(ids.powerUps, kvKeys(levels), kvKeys(arr(prog, 'PowerUpEnabled'))), ids.powerUpMaxLevels ?? {}, 10),
+    h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.'));
 
   // Relics: present = owned, Value = enabled. Unchecking keeps the relic but disables it.
   const relics = arr(run, 'EnabledRelics');

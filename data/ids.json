@@ -225,5 +225,26 @@
     "SimpleAchievement_Relic_GemHammer",
     "SimpleAchievement_Relic_PancakeOfPower"
   ],
-  "arcanas": []
+  "arcanas": [],
+  "powerUpMaxLevels": {
+    "PowerUp_Amount": 3,
+    "PowerUp_Area": 5,
+    "PowerUp_Armor": 3,
+    "PowerUp_Banish": 5,
+    "PowerUp_CharacterSlot": 2,
+    "PowerUp_Cooldown": 2,
+    "PowerUp_Curse": 5,
+    "PowerUp_Duration": 5,
+    "PowerUp_Greed": 3,
+    "PowerUp_Growth": 5,
+    "PowerUp_Luck": 5,
+    "PowerUp_Magnet": 1,
+    "PowerUp_MaxHealth": 5,
+    "PowerUp_Might": 5,
+    "PowerUp_Recovery": 3,
+    "PowerUp_Reroll": 5,
+    "PowerUp_Revival": 1,
+    "PowerUp_Skip": 5,
+    "PowerUp_Speed": 2
+  }
 }
