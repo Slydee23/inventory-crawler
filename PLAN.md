@@ -71,7 +71,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Save folders confirmed by players: Android `Android/data/com.poncle.vampirecrawlers/files/Save/`, PC `%USERPROFILE%\AppData\LocalLow\Nosebleed Interactive\Vampire Crawlers\Save\`
 - [ ] (later, low priority) iOS: how to get the save out of the game and back
   - Android path: `Android/data/com.poncle.vampirecrawler/…`. Android 11+ blocks third-party file managers from writing there → document: USB + PC (works), system "Files" app (device-dependent), Shizuku + ZArchiver/MiXplorer/Material Files (on-device)
-- [ ] Error handling for unknown versions (`saveSystemVersion` ≠ 0.30.0 → warning)
+- [x] Warning badge + toast for untested save versions (`testedSaveVersions` in data/ids.json; currently 0.30.0 = game 1.6.5)
 - [ ] README with screenshots, disclaimer
 - [ ] Release v1.0
 

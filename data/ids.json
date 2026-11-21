@@ -3861,5 +3861,9 @@
     "DungeonAchievement_Base_Game_Complete": "??? (Moongolow teaser)",
     "SimpleAchievement_Character_ZiAssunta": "Zi'Assunta",
     "DungeonAchievement_Unlock_TinyBridge_01": "Teeny Bridge (via the combined unlock)"
-  }
+  },
+  "testedSaveVersions": [
+    "0.30.0"
+  ],
+  "testedGameVersion": "1.6.5"
 }

@@ -46,8 +46,11 @@ async function openFile(file) {
     state.dirty = false;
     state.tab = null;
     showEditor();
+    const ver = state.save.saveSystemVersion;
     if (!state.save.checksumValid) {
       toast('Warning: the checksum of this file is not valid. It may be damaged or already edited.', true);
+    } else if (ver && !(state.ids.testedSaveVersions ?? []).includes(ver)) {
+      toast(`This save is from game version ${ver}, which this editor has not been tested with yet. Keep a backup!`, true);
     }
   } catch (e) {
     console.error(e);
@@ -68,6 +71,14 @@ function showEditor() {
   const cs = $('checksum-badge');
   cs.textContent = save.checksumValid ? '✔ Checksum OK' : '✖ Checksum invalid';
   cs.className = `badge ${save.checksumValid ? 'badge-ok' : 'badge-bad'}`;
+
+  // Saves from a game version the editor was not tested with: still editable, but warn.
+  const vb = $('version-badge');
+  const ver = save.saveSystemVersion;
+  const tested = state.ids.testedSaveVersions ?? [];
+  vb.hidden = !ver || tested.includes(ver);
+  vb.textContent = `⚠ Untested game version ${ver}`;
+  vb.title = `This editor was tested with save version ${tested.join(', ')}. A newer game update may have changed the save format — keep a backup.`;
 
   renderTabs();
   updateDirty();
