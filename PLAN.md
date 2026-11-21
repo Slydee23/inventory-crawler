@@ -47,7 +47,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Characters — confirmed in-game: unlock + purchase works. (Earlier: purchase alone is NOT enough (MissingN0 not playable). Each character also needs its unlock achievement (e.g. `SimpleAchievement_Character_Antonio`; Imelda via `DungeonAchievement_Inn`?). Wiki Crawlers:Unlocks lists ~182 unlocks by display name only, no internal IDs
 - [x] In-game test power-ups: levels of already unlocked power-ups apply; locked ones (e.g. Deal Count, shop tier 3) stay hidden → power-ups also need their unlock
 - [x] **Unlocks**: APK scan (`tools/extract-apk-ids.mjs`) → 257 unlock IDs; Characters tab sets unlock + purchase; power-up tiers have "Unlocked in shop"; Achievements tab lists all unlocks by category
-- [x] In-game test 2026-11-21 (Android): MissingN0 + Leda playable after unlock + purchase; ShopTier3 unlock shows all tier-3 power-ups, Deal Count (glove icon) at level 1; Greed visible after its unlock; Guiding Light relic unlock marked done in the Unlocks menu; everything persists after restarting the game
+- [x] In-game test 2026-11-21 (Android): MissingN0 + Leda playable after unlock + purchase; ShopTier3 unlock shows all tier-3 power-ups, Deal Count (glove icon) at level 1; Greed visible after its unlock (side effect confirmed: Library West Wing became selectable on the world map); Guiding Light relic unlock marked done in the Unlocks menu; everything persists after restarting the game
 - [x] Wiki cross-check (data/wiki-unlocks.json, 182 wiki unlocks): 159 matched directly, rest classified → 218 regular unlocks (with wiki requirement tooltips), 36 experimental, placeholders hidden
 - [x] Useless entries identified from the game data (unlock links + databases + DEPRECATED flags) and hidden; 7 doubtful left in Experimental
 - [x] Greed = `DungeonAchievement_Unlock_InlaidLibrary_02`, Skip = `DungeonAchievement_Unlock_DairyPlant_01` (from game data)
@@ -59,7 +59,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] Optional: check "Refund Power Ups" refunds edited levels sensibly
 - [x] Shop-tier grouping now from game data (effects/base prices still wiki only)
 - [x] Relics
-- [ ] Cards
+- [x] Cards: all 107 cards from game data, grouped by card type (Attack, Defense, Stat boost, Mana, Pickups, Debuff, Crawler cards), check = discovered + unlock, links to unlocks
 - [ ] Achievements
 
 ## Phase 4 — Polish & release

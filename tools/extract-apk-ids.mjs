@@ -289,6 +289,15 @@ for (const o of behaviours) {
     (result.unlocks[ach] ??= []).includes(id) || result.unlocks[ach].push(id);
   }
 }
+// Card types (CardConfig/FccConfig -> CardType object), keyed by save ID
+result.cardTypes = {};
+for (const o of behaviours) {
+  if ((o.cls !== 'CardConfig' && o.cls !== 'FccConfig') || /^Test/i.test(o.name) || /_Test_/.test(o.name)) continue;
+  const id = idOf(o);
+  if (!result.cards.has(id) && !result.characters.has(id)) continue;
+  const types = [...new Set(refsOf(o).filter((t) => t.cls === 'CardType').map((t) => t.name.replace(/^CardType_/, '')))];
+  result.cardTypes[id] = types.includes('Character') ? 'Character' : types[0] ?? 'Other';
+}
 for (const k of ['achievements', 'characters', 'relics', 'powerUps', 'gems', 'arcanas', 'dungeons', 'buildings', 'cards']) {
   result[k] = [...result[k]].sort();
 }

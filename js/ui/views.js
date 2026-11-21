@@ -474,28 +474,49 @@ function powerUpsView(ctx) {
       enabled && kvToggleList(enabled, ctx, { keep: p.isExperimental })));
 }
 
+/** Card type groups (from the game data: CardConfig -> CardType). */
+const CARD_TYPE_GROUPS = [
+  ['Attack', 'Attack'], ['Defense', 'Defense'], ['Special', 'Stat boost'], ['Mana', 'Mana'],
+  ['Void', 'Pickups'], ['Debuff', 'Debuff'], ['Character', 'Crawler cards'],
+];
+
 function cardsView(ctx) {
   const p = progression(ctx);
   const discovered = p && p.arr(p.prog, 'DiscoveredCards');
   if (!discovered) return notInSave('Cards');
-  // Plain string list; characters are listed here as cards too.
-  const all = union(p.ids.cards, p.ids.characters, discovered, p.slotIds).filter((id) => id && p.isRegular(id));
-  const groups = [
-    { name: 'Cards', ids: all.filter((id) => id.startsWith('Card_')) },
-    { name: 'Crawler cards', ids: all.filter((id) => id.startsWith('FCC_')) },
-  ];
-  return panel('Discovered cards', 'DiscoveredCards',
+  const types = p.ids.apk?.cardTypes ?? {};
+  const unlockedBy = p.ids.apk?.unlockedBy ?? {};
+  const pack = p.ids.apk?.pack ?? {};
+  const ach = p.achievements;
+  const all = union(p.ids.apk?.cards ?? [], p.ids.cards, p.ids.characters, discovered, p.slotIds)
+    .filter((id) => id && p.isRegular(id));
+  // Cards (not Crawler cards) also get their unlock, so they can show up in runs.
+  const unlockOf = (id) => (id.startsWith('Card_') ? unlockedBy[id] : undefined);
+  const isUnlocked = (id) => !unlockOf(id) || !ach || kvGet(ach, unlockOf(id)) === true;
+  const groups = CARD_TYPE_GROUPS.map(([t, name]) => ({
+    name, ids: all.filter((id) => (types[id] ?? (id.startsWith('FCC_') ? 'Character' : null)) === t),
+  }));
+  const unlocks = Object.fromEntries(all.filter(unlockOf).map((id) => [id, unlockOf(id)]));
+  return panel('Cards', 'DiscoveredCards',
     groupedSections(all, groups, (list, _group, onCount) => idChecklist(ctx, {
       ids: list,
       onCount,
-      isOn: (id) => discovered.includes(id),
+      isOn: (id) => discovered.includes(id) && isUnlocked(id),
       set: (id, on) => {
         const i = discovered.indexOf(id);
         if (on && i < 0) discovered.push(id);
         if (!on && i >= 0) discovered.splice(i, 1);
+        const u = unlockOf(id);
+        if (u && ach) { if (on) kvSet(ach, u, true); else kvDelete(ach, u); }
       },
-      hints: p.ids.hints ?? {},
-    }), { key: 'cards' }));
+      hints: Object.fromEntries(list.map((id) => [id, [
+        unlockOf(id) && (p.ids.unlockHints?.[unlockOf(id)] ?? unlockOf(id)),
+        pack[id] === 'Blueberries' && 'Death Parade update',
+        unlockOf(id) ? `Sets: discovered + ${unlockOf(id)}` : 'Sets: discovered',
+      ].filter(Boolean).join(' · ')])),
+      links: linksTo(ctx, list, unlocks, 'achievements', '→ Unlock'),
+    }), { key: 'cards', open: false }),
+    h('p', { class: 'note' }, 'Checking a card marks it as discovered and sets its unlock (if it has one), so it can show up in runs. Crawler cards only get "discovered" — unlock characters in the Characters tab.'));
 }
 
 /** Category of an achievement/unlock ID (by naming convention of the game data). */
@@ -533,6 +554,7 @@ function achievementsView(ctx) {
     links: {
       ...linksTo(ctx, list, invert(p.ids.characterUnlocks), 'characters', '→ Character'),
       ...linksTo(ctx, list, invert(p.ids.relicUnlocks), 'relics', '→ Relic'),
+      ...linksTo(ctx, list, invert(Object.fromEntries(Object.entries(p.ids.apk?.unlockedBy ?? {}).filter(([k]) => k.startsWith('Card_')))), 'cards', '→ Card'),
     },
   });
   return h('div', null,
