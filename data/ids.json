@@ -575,7 +575,11 @@
     "GemConfig_ReverseCombo": "Reverse Combo Gem",
     "GemConfig_YinYang": "Yin Yang Gem",
     "GemConfig_Jingle": "Coin Count Gem",
-    "GemConfig_Demi": "Decimate Gem"
+    "GemConfig_Demi": "Decimate Gem",
+    "Card_B_0_EmptyTome": "Empty Tome",
+    "Card_B_1_EmptyTome": "Light Tome",
+    "Card_B_2_EmptyTome": "Weighty Tome",
+    "Card_B_3_EmptyTome": "Ancient Tome"
   },
   "characterPrices": {
     "FCC_Antonio": 0,
