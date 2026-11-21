@@ -23,15 +23,15 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] (?) Verify the game accepts an edited save (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
-## Phase 3 — Editor UI (MVP)
-- [ ] App shell: open file (picker + drag & drop), detect file type (profile / settings)
-- [ ] Overview: profile info, playtime, checksum status
-- [ ] Coins editor
-- [ ] Unlock editors: characters, power-ups, relics, cards, achievements (checklists + "unlock all")
-- [ ] Settings editor
-- [ ] Raw JSON view for everything else (lossless)
-- [ ] Export: download edited file + original backup, validate before download
-- [ ] Dark, game-flavored styling; mobile friendly (Android users!)
+## Phase 3 — Editor UI (MVP) — shell done, unlock editors waiting for Phase 2
+- [x] App shell: open file (picker + drag & drop), detect file type (profile / settings)
+- [x] Overview: profile info, playtime, checksum status
+- [x] Coins editor (keeps both TotalCoins fields in sync)
+- [~] Unlock editors: toggles for entries already in the save work; adding new entries + "unlock all" needs ID lists (Phase 2)
+- [x] Settings editor (generic fields, volume sliders)
+- [x] Raw JSON view for everything else (lossless)
+- [x] Export: download edited file + original backup, validate before download
+- [x] Dark, game-flavored styling (no game assets; Silkscreen OFL pixel font); mobile friendly
 
 ## Phase 4 — Polish & release
 - [ ] How-to page: where save files are on Android / PC / Switch, how to copy them back
@@ -41,4 +41,4 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 
 ## Open decisions
 - (?) Feature scope for MVP — which edits matter most to the user?
-- (?) Visual style / branding (logo, colors)
+- [x] Visual style: dark gothic panels, gold frames, blood-red accents (user: "im Design des Games")
