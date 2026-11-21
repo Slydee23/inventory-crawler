@@ -403,7 +403,7 @@ function charactersView(ctx) {
   return h('div', null,
     panel('Characters', 'CharactersPurchased',
       groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist, { key: 'characters' }),
-      h('p', { class: 'note' }, 'Checking a character sets its in-game unlock AND the purchase, so it appears in the tavern. Keep at least one character. Hover a name for details.')),
+      h('p', { class: 'note' }, 'Checking a character sets two things: its unlock (the character shows up in the tavern) and its purchase (it becomes playable). Use "→ Unlock" to see the linked unlock. Keep at least one character.')),
     experimentalPanel(p, exp, checklist(exp)));
 }
 
