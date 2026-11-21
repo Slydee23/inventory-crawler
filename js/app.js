@@ -153,6 +153,11 @@ document.addEventListener('drop', (e) => {
 });
 
 $('close-file').addEventListener('click', closeFile);
+$('home-link').addEventListener('click', (e) => {
+  e.preventDefault(); // no reload: closeFile() asks before discarding unsaved changes
+  if (state.save) closeFile();
+  window.scrollTo({ top: 0 });
+});
 $('download').addEventListener('click', downloadEdited);
 $('download-backup').addEventListener('click', downloadBackup);
 
