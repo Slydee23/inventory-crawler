@@ -441,10 +441,10 @@ function achievementsView(ctx) {
   const p = progression(ctx);
   const ach = p && p.achievements;
   if (!ach) return notInSave('Achievements');
-  const all = union(p.ids.apk?.achievements ?? [], p.ids.achievements, p.kvKeys(ach)).filter(Boolean);
+  const all = union(p.ids.apk?.achievements ?? [], p.ids.achievements, p.kvKeys(ach)).filter((id) => id && !p.isHidden(id));
   const groups = ACHIEVEMENT_CATEGORIES.map((name) => ({ name, ids: all.filter((id) => achievementCategory(id) === name) }));
   return panel('Achievements & unlocks', 'AchievementsUnlocked',
-    h('p', { class: 'note' }, `All ${all.length} unlocks found in the game data. Most content in Vampire Crawlers (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these.`),
+    h('p', { class: 'note' }, `All ${all.length} unlocks of the game (test/unused entries hidden). Most content in Vampire Crawlers (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these.`),
     groupedSections(all, groups, (list) => idChecklist(ctx, {
       ids: list,
       isOn: (id) => kvGet(ach, id) === true,

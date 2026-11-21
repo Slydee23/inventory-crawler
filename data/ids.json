@@ -250,7 +250,8 @@
   "experimental": {},
   "hidden": {
     "PowerUp_Charm": "development leftover without any in-game effect (confirmed by user); kept untouched in the save, never shown",
-    "FCC_Divano": "unused character in the game data (wiki lists it as \"Unused\")"
+    "FCC_Divano": "unused character in the game data (wiki lists it as \"Unused\")",
+    "SimpleAchievement_Character_ZiAssunta": "unlock of an unused character (Zi Assunta, not in the game roster)"
   },
   "hints": {
     "FCC_Antonio": "Starting character (finish the tutorial)",
