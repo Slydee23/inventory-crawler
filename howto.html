@@ -54,14 +54,14 @@
     <section class="panel" id="android">
       <h2 class="panel-title">Android</h2>
       <p>The saves are in the game's app folder:</p>
-      <p class="path"><code>Internal storage / Android / data / com.poncle.vampirecrawlers / files /</code></p>
+      <p class="path"><code>Internal storage / Android / data / com.poncle.vampirecrawlers / files / Save /</code></p>
       <p><strong>The catch:</strong> since Android 11, normal file manager apps are no longer allowed to write into <code>Android/data</code>. You can often see the folder but not paste into it. Use one of these ways:</p>
 
       <details class="group" open>
         <summary class="sub-title">A) USB cable + PC — recommended, works on every phone</summary>
         <ol class="steps">
           <li>Connect the phone by USB and choose <strong>File transfer</strong> on the phone.</li>
-          <li>On the PC open the phone → <strong>Internal storage → Android → data → com.poncle.vampirecrawlers → files</strong>.</li>
+          <li>On the PC open the phone → <strong>Internal storage → Android → data → com.poncle.vampirecrawlers → files → Save</strong>.</li>
           <li>Copy <code>SaveProfile0.save</code> to the PC, edit it here, then copy the edited file back and replace the old one.</li>
         </ol>
       </details>
@@ -71,7 +71,7 @@
         <ol class="steps">
           <li>Install <strong>Shizuku</strong> and start it via <em>Wireless debugging</em> (Developer options) — the app guides you. After every phone restart it has to be started again.</li>
           <li>Install a file manager with Shizuku support (e.g. <strong>ZArchiver</strong>, <strong>MiXplorer</strong> or <strong>Material Files</strong>) and allow Shizuku access.</li>
-          <li>With it you can copy files out of and back into <code>Android/data/com.poncle.vampirecrawlers/files</code>.</li>
+          <li>With it you can copy files out of and back into <code>Android/data/com.poncle.vampirecrawlers/files/Save</code>.</li>
         </ol>
       </details>
 
@@ -88,9 +88,8 @@
 
     <section class="panel" id="pc">
       <h2 class="panel-title">PC / Steam</h2>
-      <p>Unity games usually store their saves here:</p>
-      <p class="path"><code>%USERPROFILE%\AppData\LocalLow\poncle\Vampire Crawlers\</code></p>
-      <p class="hint warn">Not confirmed yet — if your saves are somewhere else, please tell us (GitHub link below).</p>
+      <p>The saves are here:</p>
+      <p class="path"><code>%USERPROFILE%\AppData\LocalLow\Nosebleed Interactive\Vampire Crawlers\Save\</code></p>
       <ul class="steps">
         <li>Paste the path into the Windows Explorer address bar (<code>AppData</code> is hidden otherwise).</li>
         <li><strong>Steam Cloud:</strong> close the game before copying the edited file back. If Steam asks about a cloud conflict, keep the <em>local</em> files — otherwise your edited save gets replaced by the cloud copy.</li>

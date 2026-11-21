@@ -1,8 +1,12 @@
 # Vampire Crawlers save format
 
-Status: reverse-engineered from two Android saves (`saveSystemVersion` 0.30.0; ~7 min and ~33 min playtime). Platform parity (PC/Switch/…) is assumed, not yet verified.
+Status: reverse-engineered from two Android saves (`saveSystemVersion` 0.30.0; ~7 min and ~33 min playtime). Android and PC use the same file names and format.
 
 ## Files
+Locations (confirmed by players):
+- Android: `Android/data/com.poncle.vampirecrawlers/files/Save/`
+- PC (Steam): `%USERPROFILE%\AppData\LocalLow\Nosebleed Interactive\Vampire Crawlers\Save\` (developer Nosebleed Interactive, publisher poncle)
+
 | File | Content |
 |---|---|
 | `SaveProfile0.save` | Profile / progression (slot 0; presumably `SaveProfile1`, `2` for other slots) |
