@@ -146,6 +146,29 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {} }) {
 }
 
 /**
+ * Split IDs into content groups (base game, each update …) and render each with `renderList`.
+ * IDs that belong to no group end up in "New / not yet categorized", so new updates show up.
+ * @param {string[]} allIds
+ * @param {{ name: string, released?: string, ids: string[] }[] | undefined} groups
+ * @param {(ids: string[]) => HTMLElement} renderList
+ */
+function groupedSections(allIds, groups, renderList) {
+  if (!Array.isArray(groups) || groups.length === 0) return renderList(allIds);
+  const sections = [];
+  const assigned = new Set();
+  for (const g of groups) {
+    const members = allIds.filter((id) => g.ids.includes(id));
+    members.forEach((id) => assigned.add(id));
+    if (members.length) sections.push({ name: g.name, released: g.released, members });
+  }
+  const rest = allIds.filter((id) => !assigned.has(id));
+  if (rest.length) sections.push({ name: 'New / not yet categorized', members: rest });
+  return h('div', { class: 'groups' }, sections.map((s) => h('div', { class: 'group' },
+    h('h3', { class: 'sub-title' }, s.name, s.released && h('small', null, ` · ${s.released}`)),
+    renderList(s.members))));
+}
+
+/**
  * Number inputs for a `[{Key, Value: int}]` dictionary; 0 removes the entry.
  * @param {Record<string, number>} maxById known maximum per ID; others use `fallbackMax` and get a ⚠
  */
@@ -263,7 +286,7 @@ function progressionView(ctx) {
     hints: ids.hints ?? {},
   });
   const charPanel = chars && panel('Characters', 'CharactersPurchased',
-    charChecklist(allChars.filter(isRegular)),
+    groupedSections(allChars.filter(isRegular), ids.characterGroups, charChecklist),
     h('p', { class: 'note' }, 'Keep at least one character. Hover a name to see how it is unlocked in-game.'));
 
   // Power-up levels: [{Key, Value: level}], absent = level 0.

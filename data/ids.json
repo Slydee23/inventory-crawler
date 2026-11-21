@@ -330,5 +330,43 @@
     "FCC_Gallo": 2000,
     "FCC_BigTroubler": 5000,
     "FCC_MissingNo": 6666
-  }
+  },
+  "characterGroups": [
+    {
+      "name": "Base game",
+      "ids": [
+        "FCC_Antonio",
+        "FCC_Arca",
+        "FCC_Cavallo",
+        "FCC_Christine",
+        "FCC_Clerici",
+        "FCC_Concetta",
+        "FCC_Dommario",
+        "FCC_Gallo",
+        "FCC_Gennaro",
+        "FCC_Giovanna",
+        "FCC_Imelda",
+        "FCC_Krochi",
+        "FCC_Lama",
+        "FCC_MissingNo",
+        "FCC_Mortaccio",
+        "FCC_OSole",
+        "FCC_Pasqualina",
+        "FCC_Poe",
+        "FCC_Poppea",
+        "FCC_Porta",
+        "FCC_Pugnala",
+        "FCC_Ramba"
+      ]
+    },
+    {
+      "name": "Death Parade update",
+      "released": "2026-10-12",
+      "ids": [
+        "FCC_Ambrojoe",
+        "FCC_BigTroubler",
+        "FCC_Leda"
+      ]
+    }
+  ]
 }

@@ -23,6 +23,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] Still incomplete: relics, arcanas, dungeons, achievements — need later-game saves or community sources
 - [x] Game accepts an edited save: +10k coins (both TotalCoins fields) loaded on Android and spendable in-game (2026-11-21)
 - [x] Character roster cross-checked with vampire.survivors.wiki: all 25 IDs are playable (3 from Death Parade update); display names, unlock hints, prices added
+- [x] Characters grouped by content release (Base game 22, Death Parade update 3); unknown IDs fall into "New / not yet categorized"
+- [ ] Verify the 22 base-game unlock hints against the wiki (currently from guides)
 - Reference: https://vampire.survivors.wiki/w/Crawlers:Characters is the most reliable source (guides were incomplete/wrong)
 - [ ] In-game test: unlocking a character via CharactersPurchased (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity

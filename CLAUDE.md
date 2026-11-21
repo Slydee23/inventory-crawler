@@ -42,6 +42,15 @@ docs/SAVE_FORMAT.md format documentation
 PLAN.md             project plan & progress
 ```
 
+## Game data & new game updates
+- Known IDs, names, hints, prices and content groups live in `data/ids.json` (no code changes needed for new content).
+- Most reliable reference: https://vampire.survivors.wiki/w/Crawlers:Characters (online guides were outdated/wrong).
+- When the game gets an update:
+  1. Get a save from the new version → `node tools/extract-ids.mjs <save…>` merges new IDs.
+  2. New characters show up in the editor under "New / not yet categorized" automatically.
+  3. Add a group to `characterGroups` (`{ "name": "<Update> update", "released": "YYYY-MM-DD", "ids": [...] }`), plus `displayNames`, `hints`, `characterPrices` from the wiki.
+  4. Unconfirmed IDs → `experimental`; dev leftovers without effect → `hidden` (never shown, kept in the file).
+
 ## Commands
 - Run tests: `node --test tests/`
 - Local preview: `npx --yes http-server -c-1 .` (or any static server; ES modules don't work from `file://`)
