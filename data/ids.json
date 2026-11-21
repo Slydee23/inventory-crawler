@@ -276,7 +276,26 @@
     "FCC_MissingNo": "Secret: defeat Red Death once · 6,666 gold",
     "FCC_Ambrojoe": "Destroy 10 breakables in Gallo Dungeons (Death Parade update)",
     "FCC_Leda": "Defeat Leda in Gallo Dungeons — boss on floor 14 in endless mode (Death Parade update) · 666 gold",
-    "FCC_BigTroubler": "Find the coffin in Moongohigh, floor 6 (Death Parade update) · 5,000 gold"
+    "FCC_BigTroubler": "Find the coffin in Moongohigh, floor 6 (Death Parade update) · 5,000 gold",
+    "PowerUp_Amount": "+1 projectile per rank · Unlock: Completing Teeny Bridge · Base price 1,250 gold",
+    "PowerUp_Area": "+10% area (splash damage) per rank · Unlock: Power-up shop · Base price 850 gold",
+    "PowerUp_Armor": "+1 Armor per rank · Unlock: Power-up shop · Base price 1,250 gold",
+    "PowerUp_Banish": "+2 banishes (remove level-up choices) per rank · Unlock: Completing Weeny Bridge · Base price 300 gold",
+    "PowerUp_CharacterSlot": "+1 Crawler slot per rank · Unlock: Completing Teeny Bridge · Base price 3,500 gold",
+    "PowerUp_Curse": "+20% enemy strength per rank, but more XP · Unlock: Completing Weeny Bridge · Base price 350 gold",
+    "PowerUp_Speed": "+1 card dealt per rank · Unlock: Completing Weeny Bridge · Base price 2,500 gold",
+    "PowerUp_Duration": "+1 duration per rank · Unlock: Power-up shop · Base price 250 gold",
+    "PowerUp_Greed": "+25% coins per rank · Unlock: Completing Inlaid Library · Base price 1,000 gold",
+    "PowerUp_Growth": "+20% XP per rank · Unlock: Power-up shop · Base price 750 gold",
+    "PowerUp_Luck": "+20% Luck per rank · Unlock: Power-up shop · Base price 400 gold",
+    "PowerUp_Magnet": "+1 to Draw effects · Unlock: Completing Weeny Bridge · Base price 2,000 gold",
+    "PowerUp_Cooldown": "+1 Mana per rank · Unlock: Completing Teeny Bridge · Base price 3,500 gold",
+    "PowerUp_MaxHealth": "+10% max health per rank · Unlock: Power-up shop · Base price 450 gold",
+    "PowerUp_Might": "+20% damage per rank · Unlock: Power-up shop · Base price 500 gold",
+    "PowerUp_Recovery": "+1 HP healed after each encounter per rank · Unlock: Power-up shop · Base price 500 gold",
+    "PowerUp_Reroll": "+2 rerolls per rank · Unlock: Power-up shop · Base price 200 gold",
+    "PowerUp_Revival": "+1 revival · Unlock: Completing Weeny Bridge · Base price 4,000 gold",
+    "PowerUp_Skip": "+2 skips (skip choices for XP) per rank · Unlock: Completing Teeny Bridge · Base price 250 gold"
   },
   "displayNames": {
     "FCC_Antonio": "Antonio Belpaese",
@@ -303,7 +322,26 @@
     "FCC_MissingNo": "MissingN0",
     "FCC_Ambrojoe": "Sir Ambrojoe",
     "FCC_BigTroubler": "Big Troubler",
-    "FCC_Leda": "Leda"
+    "FCC_Leda": "Leda",
+    "PowerUp_Amount": "Amount",
+    "PowerUp_Area": "Area",
+    "PowerUp_Armor": "Armor",
+    "PowerUp_Banish": "Banish",
+    "PowerUp_CharacterSlot": "Crawler Slot",
+    "PowerUp_Curse": "Curse",
+    "PowerUp_Speed": "Deal Count",
+    "PowerUp_Duration": "Duration",
+    "PowerUp_Greed": "Greed",
+    "PowerUp_Growth": "Growth",
+    "PowerUp_Luck": "Luck",
+    "PowerUp_Magnet": "Magnet",
+    "PowerUp_Cooldown": "Cooldown",
+    "PowerUp_MaxHealth": "Max Health",
+    "PowerUp_Might": "Might",
+    "PowerUp_Recovery": "Recovery",
+    "PowerUp_Reroll": "Reroll",
+    "PowerUp_Revival": "Revival",
+    "PowerUp_Skip": "Skip"
   },
   "characterPrices": {
     "FCC_Antonio": 0,
@@ -366,6 +404,47 @@
         "FCC_Ambrojoe",
         "FCC_BigTroubler",
         "FCC_Leda"
+      ]
+    }
+  ],
+  "powerUpGroups": [
+    {
+      "name": "Shop tier 1 — available from the start",
+      "ids": [
+        "PowerUp_Area",
+        "PowerUp_Armor",
+        "PowerUp_Duration",
+        "PowerUp_Growth",
+        "PowerUp_Luck",
+        "PowerUp_MaxHealth",
+        "PowerUp_Might",
+        "PowerUp_Recovery",
+        "PowerUp_Reroll"
+      ]
+    },
+    {
+      "name": "Shop tier 2 — after Teeny Bridge",
+      "ids": [
+        "PowerUp_Amount",
+        "PowerUp_CharacterSlot",
+        "PowerUp_Cooldown",
+        "PowerUp_Skip"
+      ]
+    },
+    {
+      "name": "Shop tier 3 — after Weeny Bridge",
+      "ids": [
+        "PowerUp_Banish",
+        "PowerUp_Curse",
+        "PowerUp_Speed",
+        "PowerUp_Magnet",
+        "PowerUp_Revival"
+      ]
+    },
+    {
+      "name": "After Inlaid Library",
+      "ids": [
+        "PowerUp_Greed"
       ]
     }
   ]

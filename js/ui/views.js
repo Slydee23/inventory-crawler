@@ -170,33 +170,59 @@ function groupedSections(allIds, groups, renderList) {
 
 /**
  * Number inputs for a `[{Key, Value: int}]` dictionary; 0 removes the entry.
+ * "Max" sets every entry with a known maximum to it; "Reset" sets all to 0.
  * @param {Record<string, number>} maxById known maximum per ID; others use `fallbackMax` and get a ⚠
+ * @param {Record<string, string>} [hints] tooltip text per ID
  */
-function kvLevelList(ctx, list, ids, maxById, fallbackMax) {
+function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}) {
+  const levelOf = (id) => {
+    const v = kvGet(list, id);
+    return v instanceof JsonNumber ? v.value : 0;
+  };
+  const setLevel = (id, n) => {
+    if (n === 0) kvDelete(list, id);
+    else kvSet(list, id, JsonNumber.int(n));
+  };
+  const inputs = new Map();
   const rows = ids.map((id) => {
     const known = Number.isInteger(maxById[id]);
     const max = known ? maxById[id] : fallbackMax;
-    const cur = kvGet(list, id);
-    return h('label', { class: 'field' },
-      h('span', { class: 'field-label', title: known ? `Max level ${max}` : 'Max level unknown' },
+    const input = h('input', {
+      type: 'number', min: '0', max: String(max), step: '1', value: String(levelOf(id)),
+      onchange: (e) => {
+        const n = Number(e.target.value);
+        if (!Number.isInteger(n) || n < 0 || n > max) {
+          ctx.toast(`${prettify(id)}: enter a whole number from 0 to ${max}`, true);
+          e.target.value = String(levelOf(id));
+          return;
+        }
+        setLevel(id, n);
+        ctx.changed();
+      },
+    });
+    inputs.set(id, input);
+    return h('label', { class: 'field', title: hints[id] ?? (known ? `Max level ${max}` : 'Max level unknown') },
+      h('span', { class: 'field-label' },
         prettify(id), known ? ` (max ${max})` : ' ⚠', h('small', null, id)),
-      h('input', {
-        type: 'number', min: '0', max: String(max), step: '1', value: String(cur instanceof JsonNumber ? cur.value : 0),
-        onchange: (e) => {
-          const n = Number(e.target.value);
-          if (!Number.isInteger(n) || n < 0 || n > max) {
-            ctx.toast(`${prettify(id)}: enter a whole number from 0 to ${max}`, true);
-            const now = kvGet(list, id);
-            e.target.value = String(now instanceof JsonNumber ? now.value : 0);
-            return;
-          }
-          if (n === 0) kvDelete(list, id);
-          else kvSet(list, id, JsonNumber.int(n));
-          ctx.changed();
-        },
-      }));
+      input);
   });
-  return h('div', { class: 'fields' }, rows);
+  const setAll = (pick) => {
+    for (const id of ids) {
+      const n = pick(id);
+      if (n === null || n === levelOf(id)) continue;
+      setLevel(id, n);
+      inputs.get(id).value = String(n);
+    }
+    ctx.changed();
+  };
+  return h('div', null,
+    h('div', { class: 'list-tools' },
+      h('button', {
+        class: 'btn btn-small', type: 'button', title: 'Set every power-up with a known maximum to its max level',
+        onclick: () => setAll((id) => (Number.isInteger(maxById[id]) ? maxById[id] : null)),
+      }, 'Max'),
+      h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(() => 0) }, 'Reset')),
+    h('div', { class: 'fields' }, rows));
 }
 
 function stat(label, value) {
@@ -349,8 +375,9 @@ function powerUpsView(ctx) {
   const exp = all.filter(p.isExperimental);
   return h('div', null,
     levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
-      kvLevelList(ctx, levels, all.filter(p.isRegular), maxLevels, 10),
-      h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.')),
+      groupedSections(all.filter(p.isRegular), p.ids.powerUpGroups,
+        (list) => kvLevelList(ctx, levels, list, maxLevels, 10, p.ids.hints ?? {})),
+      h('p', { class: 'note' }, 'Max levels from the in-game shop / wiki. Hover a power-up for its effect, unlock condition and base price (the in-game price rises with each purchase).')),
     enabled && panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: p.isRegular })),
     experimentalPanel(p, exp,
       levels && kvLevelList(ctx, levels, exp, maxLevels, 5),

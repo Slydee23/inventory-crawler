@@ -45,7 +45,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 
 ## Phase 3b — Category deep-dives (like Characters: full ID list, wiki names, hints, update groups)
 - [x] Characters
-- [ ] Power-ups
+- [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
+- [ ] Greed max level: wiki 4 vs. screenshot 3 — confirm in-game
 - [ ] Relics
 - [ ] Cards
 - [ ] Achievements
