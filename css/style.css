@@ -431,3 +431,13 @@ details.experimental[open] > summary { margin-bottom: 16px; }
 .group + .group { margin-top: 8px; padding-top: 4px; border-top: 1px dotted rgba(217, 164, 65, 0.3); }
 .groups .sub-title:first-child { margin-top: 0; }
 .sub-title small { color: var(--muted); font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+/* gold: first and most prominent panel on the overview */
+.gold-panel {
+  border-color: var(--gold-hi);
+  background: linear-gradient(180deg, #3a2a1a, #261c2e);
+  box-shadow: inset 0 0 0 2px #000, inset 0 0 0 4px var(--gold-lo), 0 0 24px rgba(242, 193, 78, 0.25), 0 6px 0 rgba(0, 0, 0, 0.6);
+}
+.gold-panel .panel-title { font-size: 24px; }
+.gold-panel .coin-icon { width: 40px; height: 40px; }
+.gold-panel .coins input { font: 700 26px ui-monospace, monospace; color: var(--gold-hi); width: 240px; }

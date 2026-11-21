@@ -233,18 +233,18 @@ function stat(label, value) {
 
 // ---------------------------------------------------------------- profile views
 
-function coinsEditor(ctx) {
+function goldEditor(ctx) {
   const d = ctx.save.data;
-  // Coins are stored twice; keep both in sync.
+  // Gold is stored twice (ProfileSaveData/ProgressionSaveData.TotalCoins); keep both in sync.
   const paths = [['ProfileSaveData', 'TotalCoins'], ['ProgressionSaveData', 'TotalCoins']]
     .filter((p) => getIn(d, ...p) instanceof JsonNumber);
   if (!paths.length) return null;
   const current = getIn(d, ...paths[0]).value;
 
-  const input = h('input', { type: 'number', min: '0', max: String(INT32_MAX), step: '1', value: String(current) });
+  const input = h('input', { type: 'number', min: '0', max: String(INT32_MAX), step: '1', value: String(current), 'aria-label': 'Gold' });
   const apply = (n) => {
     if (!Number.isInteger(n) || n < 0 || n > INT32_MAX) {
-      ctx.toast(`Coins must be a whole number between 0 and ${INT32_MAX.toLocaleString('en')}`, true);
+      ctx.toast(`Gold must be a whole number between 0 and ${INT32_MAX.toLocaleString('en')}`, true);
       input.value = String(getIn(d, ...paths[0]).value);
       return;
     }
@@ -254,14 +254,15 @@ function coinsEditor(ctx) {
   };
   input.addEventListener('change', () => apply(Number(input.value)));
 
-  return panel('Coins', null,
+  return h('section', { class: 'panel gold-panel' },
+    h('h2', { class: 'panel-title' }, 'Gold'),
     h('div', { class: 'coins' },
       h('span', { class: 'coin-icon', 'aria-hidden': 'true' }),
       input,
       h('button', { class: 'btn btn-small', type: 'button', onclick: () => apply(Number(input.value) + 10000) }, '+10k'),
       h('button', { class: 'btn btn-small', type: 'button', onclick: () => apply(Number(input.value) + 100000) }, '+100k'),
       h('button', { class: 'btn btn-small', type: 'button', onclick: () => apply(999999) }, '999,999')),
-    h('p', { class: 'note' }, 'Updates both coin counters stored in the save.'));
+    h('p', { class: 'note' }, 'Your gold in the village. Updates both gold counters stored in the save.'));
 }
 
 function profileOverview(ctx) {
@@ -274,6 +275,7 @@ function profileOverview(ctx) {
   const count = (list) => (Array.isArray(list) ? list.filter((e) => !(e instanceof Map) || e.get('Value') !== false).length : null);
 
   return h('div', null,
+    goldEditor(ctx),
     panel('Profile', null, h('div', { class: 'stats' },
       stat('Profile', d.get('ProfileId')),
       stat('Save system', d.get('saveSystemVersion')),
@@ -282,8 +284,7 @@ function profileOverview(ctx) {
       stat('Characters', count(prog?.get('CharactersPurchased'))),
       stat('Cards discovered', count(prog?.get('DiscoveredCards'))),
       stat('Achievements', count(prog?.get('AchievementsUnlocked'))),
-      stat('Dungeon', prettify(getIn(d, 'RunMetaSaveData', 'SelectedDungeonID') ?? '—')))),
-    coinsEditor(ctx));
+      stat('Dungeon', prettify(getIn(d, 'RunMetaSaveData', 'SelectedDungeonID') ?? '—')))));
 }
 
 // ---------------------------------------------------------------- progression helpers
