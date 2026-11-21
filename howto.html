@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Where Vampire Crawlers stores its save files and how to back them up, edit them with InventoryCrawler and copy them back.">
+  <title>How to — InventoryCrawler</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='4' width='12' height='9' fill='%23b8862b'/><rect x='3' y='5' width='10' height='7' fill='%233a1420'/><rect x='7' y='7' width='2' height='3' fill='%23f2c14e'/></svg>">
+  <link rel="stylesheet" href="css/style.css?v=97c8c769fb">
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="logo"><a href="./" title="Back to the editor"><span class="logo-main">Inventory</span><span class="logo-accent">Crawler</span></a></h1>
+    <p class="tagline">A Vampire Crawlers Save Editor by Slydee</p>
+  </header>
+
+  <main class="howto">
+    <nav class="panel toc">
+      <h2 class="panel-title">How to</h2>
+      <ol>
+        <li><a href="#quick">Quick guide</a></li>
+        <li><a href="#files">Which files?</a></li>
+        <li><a href="#android">Android</a></li>
+        <li><a href="#pc">PC / Steam</a></li>
+        <li><a href="#ios">iPhone / iPad</a></li>
+        <li><a href="#consoles">Consoles</a></li>
+        <li><a href="#trouble">Troubleshooting</a></li>
+      </ol>
+      <p><a class="btn btn-small" href="./">← Back to the editor</a></p>
+    </nav>
+
+    <section class="panel" id="quick">
+      <h2 class="panel-title">Quick guide</h2>
+      <ol class="steps">
+        <li><strong>Close the game completely.</strong> If it is still running it may overwrite your edited file.</li>
+        <li><strong>Copy your save</strong> (<code>SaveProfile0.save</code>) from the game folder to a place you can reach — see your platform below.</li>
+        <li>Open it in the <a href="./">editor</a> and click <strong>Download original (backup)</strong> first. Keep that file safe.</li>
+        <li>Make your changes and click <strong>Download edited save</strong>.</li>
+        <li><strong>Check the file name:</strong> it must be exactly <code>SaveProfile0.save</code>. Browsers sometimes add a number, e.g. <code>SaveProfile0 (1).save</code> — rename it.</li>
+        <li><strong>Copy it back</strong> into the game folder, replace the old file and start the game.</li>
+      </ol>
+      <p class="hint warn">Something wrong? Copy your backup back (renamed to <code>SaveProfile0.save</code>) and everything is as before.</p>
+    </section>
+
+    <section class="panel" id="files">
+      <h2 class="panel-title">Which files?</h2>
+      <table class="howto-table">
+        <tr><td><code>SaveProfile0.save</code></td><td>Your progress: gold, characters, power-ups, relics, cards, gems, unlocks. This is the file you edit most of the time. (Other save slots would be <code>SaveProfile1.save</code>, <code>SaveProfile2.save</code>.)</td></tr>
+        <tr><td><code>SettingsData.save</code></td><td>Game options (volume, display, controls). Can be edited too.</td></tr>
+      </table>
+      <p class="note">Both are text files with a checksum. The editor recalculates the checksum automatically — editing them by hand will make the game reject or reset them.</p>
+    </section>
+
+    <section class="panel" id="android">
+      <h2 class="panel-title">Android</h2>
+      <p>The saves are in the game's app folder:</p>
+      <p class="path"><code>Internal storage / Android / data / com.poncle.vampirecrawlers / files /</code></p>
+      <p><strong>The catch:</strong> since Android 11, normal file manager apps are no longer allowed to write into <code>Android/data</code>. You can often see the folder but not paste into it. Use one of these ways:</p>
+
+      <details class="group" open>
+        <summary class="sub-title">A) USB cable + PC — recommended, works on every phone</summary>
+        <ol class="steps">
+          <li>Connect the phone by USB and choose <strong>File transfer</strong> on the phone.</li>
+          <li>On the PC open the phone → <strong>Internal storage → Android → data → com.poncle.vampirecrawlers → files</strong>.</li>
+          <li>Copy <code>SaveProfile0.save</code> to the PC, edit it here, then copy the edited file back and replace the old one.</li>
+        </ol>
+      </details>
+
+      <details class="group">
+        <summary class="sub-title">B) On the phone with Shizuku (no root)</summary>
+        <ol class="steps">
+          <li>Install <strong>Shizuku</strong> and start it via <em>Wireless debugging</em> (Developer options) — the app guides you. After every phone restart it has to be started again.</li>
+          <li>Install a file manager with Shizuku support (e.g. <strong>ZArchiver</strong>, <strong>MiXplorer</strong> or <strong>Material Files</strong>) and allow Shizuku access.</li>
+          <li>With it you can copy files out of and back into <code>Android/data/com.poncle.vampirecrawlers/files</code>.</li>
+        </ol>
+      </details>
+
+      <details class="group">
+        <summary class="sub-title">C) Rooted phone</summary>
+        <p>Any root file manager can read and write the folder directly.</p>
+      </details>
+
+      <details class="group">
+        <summary class="sub-title">Other options</summary>
+        <p>On some phones and Android versions the system's own <strong>Files</strong> app can still open <code>Android/data</code>. This depends on manufacturer and version — usually no longer possible on Android 14 and newer.</p>
+      </details>
+    </section>
+
+    <section class="panel" id="pc">
+      <h2 class="panel-title">PC / Steam</h2>
+      <p>Unity games usually store their saves here:</p>
+      <p class="path"><code>%USERPROFILE%\AppData\LocalLow\poncle\Vampire Crawlers\</code></p>
+      <p class="hint warn">Not confirmed yet — if your saves are somewhere else, please tell us (GitHub link below).</p>
+      <ul class="steps">
+        <li>Paste the path into the Windows Explorer address bar (<code>AppData</code> is hidden otherwise).</li>
+        <li><strong>Steam Cloud:</strong> close the game before copying the edited file back. If Steam asks about a cloud conflict, keep the <em>local</em> files — otherwise your edited save gets replaced by the cloud copy.</li>
+      </ul>
+    </section>
+
+    <section class="panel" id="ios">
+      <h2 class="panel-title">iPhone / iPad</h2>
+      <p>The editor works in Safari: tap <strong>Choose file</strong>, pick the save in the Files app; edited files land in <strong>Files → Downloads</strong>.</p>
+      <p class="hint warn">How to get the save out of the game and back on iOS is not known yet — if you know a way, please tell us.</p>
+    </section>
+
+    <section class="panel" id="consoles">
+      <h2 class="panel-title">Consoles</h2>
+      <p>Switch, Xbox and PlayStation do not give access to save files, so they cannot be edited.</p>
+    </section>
+
+    <section class="panel" id="trouble">
+      <h2 class="panel-title">Troubleshooting</h2>
+      <dl class="faq">
+        <dt>The game ignores my changes</dt>
+        <dd>The game was probably still running and overwrote the file — close it completely and copy the file again. Also check the file name (exactly <code>SaveProfile0.save</code>).</dd>
+        <dt>The editor says "Checksum invalid"</dt>
+        <dd>The file was changed outside the editor. Downloading it from the editor writes a correct checksum again.</dd>
+        <dt>A character / power-up / relic doesn't show up</dt>
+        <dd>Most content needs its <em>unlock</em> as well. The editor sets both when you use the checkboxes in the category tabs; when editing the Achievements tab directly, only the unlock is set.</dd>
+        <dt>Something broke</dt>
+        <dd>Copy your backup back. Please report problems on GitHub with a short description.</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Unofficial fan project — not affiliated with poncle. Use at your own risk.</p>
+    <p><a href="https://github.com/Slydee23/inventory-crawler">Source on GitHub</a> · <a href="https://github.com/Slydee23/inventory-crawler/issues">Report a problem</a></p>
+    <p>&copy; 2026 Slydee — <a href="https://github.com/Slydee23/inventory-crawler/blob/main/LICENSE">MIT License</a></p>
+  </footer>
+</body>
+</html>

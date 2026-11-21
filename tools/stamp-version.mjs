@@ -55,5 +55,10 @@ if (html.includes('<!-- version:start')) {
 html = html.replace(/href="css\/style\.css(\?v=[^"]*)?"/, `href="css/style.css?v=${v}"`);
 html = html.replace(/src="js\/app\.js(\?v=[^"]*)?"/, `src="js/app.js?v=${v}"`);
 writeFileSync(file, html);
+// other pages only need the versioned stylesheet
+for (const page of readdirSync(root).filter((n) => n.endsWith('.html') && n !== 'index.html')) {
+  const p = join(root, page);
+  writeFileSync(p, readFileSync(p, 'utf8').replace(/href="css\/style\.css(\?v=[^"]*)?"/, `href="css/style.css?v=${v}"`));
+}
 console.log(`version ${v} (${jsFiles.length} modules)`);
 }

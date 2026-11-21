@@ -491,3 +491,22 @@ select {
 @media (max-width: 560px) { .fields.gem-settings { grid-template-columns: 1fr; } }
 
 .panel-title .bulk-btn { margin-left: auto; letter-spacing: 1px; text-shadow: none; }
+
+/* ---------------------------------------------------------- how-to page */
+.howto { max-width: 860px; }
+.howto p, .howto li, .howto dd, .howto td { font-size: 15px; }
+.howto .toc ol { columns: 2; margin: 0 0 12px; padding-left: 20px; }
+.howto .toc li { margin: 4px 0; }
+.howto .steps { margin: 8px 0; padding-left: 22px; }
+.howto .steps li { margin: 6px 0; }
+.howto .path { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--gold-lo); padding: 8px 12px; overflow-x: auto; }
+.howto .path code { background: none; padding: 0; white-space: nowrap; }
+.howto-table { width: 100%; border-collapse: collapse; }
+.howto-table td { padding: 8px; border-bottom: 1px dotted rgba(217, 164, 65, 0.25); vertical-align: top; }
+.howto-table td:first-child { white-space: nowrap; }
+.howto .faq dt { font-weight: 700; color: var(--gold-hi); margin-top: 12px; }
+.howto .faq dd { margin: 4px 0 0 0; }
+.howto details.group > summary.sub-title { margin-top: 10px; }
+.start .howto-link { margin-top: 14px; }
+@media (max-width: 560px) { .howto .toc ol { columns: 1; } .howto-table td:first-child { white-space: normal; } }
+.howto .path code { white-space: normal; overflow-wrap: anywhere; }

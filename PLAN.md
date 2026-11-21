@@ -67,7 +67,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [ ] Achievements
 
 ## Phase 4 — Polish & release
-- [ ] How-to page: where save files are on Android / PC / Switch, how to copy them back
+- [x] How-to page (howto.html): quick guide, files, Android (USB/Shizuku/root; package com.poncle.vampirecrawlers from the APK), PC/Steam, iOS, consoles, troubleshooting; linked from start screen + footer
+- [ ] Confirm the exact Android folder (files/ directly?) and the PC path (unverified), iOS way unknown
   - Android path: `Android/data/com.poncle.vampirecrawler/…`. Android 11+ blocks third-party file managers from writing there → document: USB + PC (works), system "Files" app (device-dependent), Shizuku + ZArchiver/MiXplorer/Material Files (on-device)
 - [ ] Error handling for unknown versions (`saveSystemVersion` ≠ 0.30.0 → warning)
 - [ ] README with screenshots, disclaimer
