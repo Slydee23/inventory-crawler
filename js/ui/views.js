@@ -17,6 +17,29 @@ function panel(title, subtitle, ...content) {
 }
 
 /**
+ * Panel with an "Unlock all" button in its title: triggers every bulk action marked with
+ * data-action="all" inside the panel (group "All" buttons, power-up "Max", shop-tier unlocks).
+ * Experimental sections are separate panels and therefore never included.
+ */
+function unlockAllPanel(ctx, title, subtitle, ...content) {
+  const el = panel(title, subtitle, ...content);
+  const btn = h('button', {
+    class: 'btn btn-small btn-primary unlock-all', type: 'button',
+    title: `Unlock everything in "${title}" (experimental entries excluded)`,
+    onclick: () => {
+      // checkboxes first (e.g. shop tiers), then buttons (All / Max)
+      for (const input of el.querySelectorAll('input[data-action="all"]')) {
+        if (!input.checked) { input.checked = true; input.dispatchEvent(new Event('change')); }
+      }
+      for (const b of el.querySelectorAll('button[data-action="all"]')) b.click();
+      ctx.toast(`${title}: everything unlocked`);
+    },
+  }, 'Unlock all');
+  el.querySelector('.panel-title').append(btn);
+  return el;
+}
+
+/**
  * Editable form for all primitive fields (bool / number / string / null) of a Map.
  * Nested objects and arrays are skipped (handled by dedicated views or Raw JSON).
  */
@@ -147,7 +170,7 @@ function idChecklist(ctx, { ids, isOn, set, warnOn = {}, hints = {}, onCount, li
         type: 'search', placeholder: 'Search…', 'aria-label': 'Search',
         oninput: (e) => { filter = e.target.value; render(); },
       }),
-      h('button', { class: 'btn btn-small', type: 'button', onclick: () => setAll(true) }, 'All'),
+      h('button', { class: 'btn btn-small', type: 'button', 'data-action': 'all', onclick: () => setAll(true) }, 'All'),
       h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(false) }, 'None'),
       counter),
     list);
@@ -246,7 +269,7 @@ function kvLevelList(ctx, list, ids, maxById, fallbackMax, hints = {}, onCount) 
   return h('div', null,
     h('div', { class: 'list-tools' },
       h('button', {
-        class: 'btn btn-small', type: 'button', title: 'Set every power-up with a known maximum to its max level',
+        class: 'btn btn-small', type: 'button', 'data-action': 'all', title: 'Set every power-up with a known maximum to its max level',
         onclick: () => setAll((id) => (Number.isInteger(maxById[id]) ? maxById[id] : null)),
       }, 'Max'),
       h('button', { class: 'btn btn-small btn-ghost', type: 'button', onclick: () => setAll(() => 0) }, 'Reset')),
@@ -401,7 +424,7 @@ function charactersView(ctx) {
   });
   const exp = all.filter(p.isExperimental);
   return h('div', null,
-    panel('Characters', 'CharactersPurchased',
+    unlockAllPanel(ctx, 'Characters', 'CharactersPurchased',
       groupedSections(all.filter(p.isRegular), p.ids.characterGroups, checklist, { key: 'characters' }),
       h('p', { class: 'note' }, 'Checking a character sets two things: its unlock (the character shows up in the tavern) and its purchase (it becomes playable). Use "→ Unlock" to see the linked unlock. Keep at least one character.')),
     experimentalPanel(p, exp, checklist(exp)));
@@ -430,7 +453,7 @@ function relicsView(ctx) {
   });
   const exp = all.filter(p.isExperimental);
   return h('div', null,
-    panel('Relics', 'EnabledRelics',
+    unlockAllPanel(ctx, 'Relics', 'EnabledRelics',
       groupedSections(all.filter(p.isRegular), p.ids.relicGroups, checklist, { key: 'relics' }),
       h('p', { class: 'note' }, 'Checking a relic unlocks it and switches it on. Hover a relic for its effect and where it is found (from the wiki).')),
     experimentalPanel(p, exp, checklist(exp)));
@@ -446,12 +469,12 @@ function powerUpsView(ctx) {
   const maxLevels = p.ids.powerUpMaxLevels ?? {};
   const exp = all.filter(p.isExperimental);
   return h('div', null,
-    levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
+    levels && unlockAllPanel(ctx, 'Power-up levels', 'PowerUpLevelsUnlocked',
       groupedSections(all.filter(p.isRegular), p.ids.powerUpGroups,
         (list, group, onCount) => h('div', null,
           group?.unlock && p.achievements && h('label', { class: 'toggle unlock-toggle', title: `Unlocks: ${p.ids.unlockEffects?.[group.unlock] ?? group.unlock}` },
             h('input', {
-              type: 'checkbox', checked: kvGet(p.achievements, group.unlock) === true,
+              type: 'checkbox', 'data-action': 'all', checked: kvGet(p.achievements, group.unlock) === true,
               onchange: (e) => {
                 if (e.target.checked) kvSet(p.achievements, group.unlock, true); else kvDelete(p.achievements, group.unlock);
                 ctx.changed();
@@ -497,7 +520,7 @@ function cardsView(ctx) {
     name, ids: all.filter((id) => (types[id] ?? (id.startsWith('FCC_') ? 'Character' : null)) === t),
   }));
   const unlocks = Object.fromEntries(all.filter(unlockOf).map((id) => [id, unlockOf(id)]));
-  return panel('Cards', 'DiscoveredCards',
+  return unlockAllPanel(ctx, 'Cards', 'DiscoveredCards',
     groupedSections(all, groups, (list, _group, onCount) => idChecklist(ctx, {
       ids: list,
       onCount,
@@ -562,7 +585,7 @@ function gemsView(ctx) {
   const regular = all.filter(p.isRegular);
   const groups = GEM_RARITIES.map((name, i) => ({ name, ids: regular.filter((id) => rarity[id] === i) }));
   return h('div', null,
-    panel('Gems', 'UnlockedGemRarities',
+    unlockAllPanel(ctx, 'Gems', 'UnlockedGemRarities',
       groupedSections(regular, groups, checklist, { key: 'gems' }),
       h('p', { class: 'note' }, 'Checking a gem unlocks it (it can drop in runs) and sets its unlock achievement. Some unlocks give several gems at once. Grouped by rarity from the game data.')),
     experimentalPanel(p, all.filter(p.isExperimental), checklist(all.filter(p.isExperimental))));
@@ -608,7 +631,7 @@ function achievementsView(ctx) {
     },
   });
   return h('div', null,
-    panel('Achievements & unlocks', 'AchievementsUnlocked',
+    unlockAllPanel(ctx, 'Achievements & unlocks', 'AchievementsUnlocked',
       h('p', { class: 'note' }, `${regular.length} unlocks of the game. Most content (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these. Hover an entry for its in-game requirement (from the wiki, where known).`),
       groupedSections(regular, groups, checklist, { key: 'achievements', open: false })),
     experimentalPanel(p, exp, checklist(exp)));
