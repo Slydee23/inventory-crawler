@@ -391,3 +391,24 @@ input[type='checkbox'] { accent-color: var(--blood-hi); width: 18px; height: 18p
   .export-bar .btn { flex: 1 1 100%; }
   .coins input { width: 100%; }
 }
+
+/* ---------------------------------------------------------- experimental section */
+
+details.experimental { border-color: var(--blood); }
+details.experimental > summary {
+  cursor: pointer;
+  list-style: none;
+  margin: -4px 0 0;
+}
+details.experimental > summary::-webkit-details-marker { display: none; }
+details.experimental > summary::before { content: "▸ "; color: var(--blood-hi); }
+details.experimental[open] > summary::before { content: "▾ "; }
+details.experimental[open] > summary { margin-bottom: 16px; }
+.warn-box {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 2px solid var(--blood-hi);
+  background: rgba(179, 32, 44, 0.15);
+  color: var(--text);
+  font-size: 14px;
+}

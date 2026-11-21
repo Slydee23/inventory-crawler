@@ -76,13 +76,16 @@ function fieldsEditor(map, ctx, { exclude = [] } = {}) {
   return rows.length ? h('div', { class: 'fields' }, rows) : h('p', { class: 'empty' }, 'No simple fields.');
 }
 
-/** Toggle list for a `[{Key, Value: bool}]` dictionary. */
-function kvToggleList(list, ctx) {
+/**
+ * Toggle list for a `[{Key, Value: bool}]` dictionary.
+ * @param {{ keep?: (key: string) => boolean }} [opts] filter which entries are shown
+ */
+function kvToggleList(list, ctx, { keep = () => true } = {}) {
   if (!Array.isArray(list) || list.length === 0) {
     return h('p', { class: 'empty' }, 'Nothing here yet.');
   }
   const items = list
-    .filter((e) => e instanceof Map && typeof e.get('Value') === 'boolean')
+    .filter((e) => e instanceof Map && typeof e.get('Value') === 'boolean' && keep(e.get('Key')))
     .map((entry) => h('label', { class: 'toggle' },
       h('input', {
         type: 'checkbox', checked: entry.get('Value'),
@@ -254,11 +257,27 @@ function progressionView(ctx) {
     }),
     h('p', { class: 'note' }, 'Keep at least one character. "All" skips entries marked ⚠.'));
 
+  // Experimental IDs (e.g. leftovers that don't exist in the game UI) live in their own section.
+  const experimental = ids.experimental ?? {};
+  const isExperimental = (id) => Object.hasOwn(experimental, id);
+  const notExperimental = (id) => !isExperimental(id);
+
   // Power-up levels: [{Key, Value: level}], absent = level 0.
   const levels = arr(prog, 'PowerUpLevelsUnlocked');
+  const enabled = arr(prog, 'PowerUpEnabled');
+  const allPowerUps = union(ids.powerUps, kvKeys(levels), kvKeys(enabled));
   const levelPanel = levels && panel('Power-up levels', 'PowerUpLevelsUnlocked',
-    kvLevelList(ctx, levels, union(ids.powerUps, kvKeys(levels), kvKeys(arr(prog, 'PowerUpEnabled'))), ids.powerUpMaxLevels ?? {}, 10),
+    kvLevelList(ctx, levels, allPowerUps.filter(notExperimental), ids.powerUpMaxLevels ?? {}, 10),
     h('p', { class: 'note' }, 'Max levels are taken from the in-game shop. ⚠ = maximum not known yet, stay within what the shop shows.'));
+
+  const expPowerUps = allPowerUps.filter(isExperimental);
+  const experimentalPanel = expPowerUps.length > 0 && h('details', { class: 'panel experimental' },
+    h('summary', { class: 'panel-title' }, 'Experimental', h('small', null, 'unused or unconfirmed game data')),
+    h('p', { class: 'warn-box' },
+      '⚠ These entries exist in the save but have no counterpart in the game UI. Changing them may do nothing — or break your save. Keep a backup.'),
+    expPowerUps.map((id) => h('p', { class: 'note' }, h('code', null, id), ` — ${experimental[id]}`)),
+    levels && kvLevelList(ctx, levels, expPowerUps, ids.powerUpMaxLevels ?? {}, 5),
+    enabled && kvToggleList(enabled, ctx, { keep: isExperimental }));
 
   // Relics: present = owned, Value = enabled. Unchecking keeps the relic but disables it.
   const relics = arr(run, 'EnabledRelics');
@@ -287,13 +306,14 @@ function progressionView(ctx) {
   return h('div', null,
     charPanel,
     levelPanel,
-    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(prog.get('PowerUpEnabled'), ctx)),
+    panel('Power-ups enabled', 'PowerUpEnabled', kvToggleList(enabled, ctx, { keep: notExperimental })),
     relicPanel,
     cardPanel,
     panel('Achievements', 'AchievementsUnlocked', kvToggleList(prog.get('AchievementsUnlocked'), ctx),
       h('p', { class: 'note' }, 'Only achievements already in your save are listed.')),
     panel('Flags & counters', 'ProgressionSaveData', fieldsEditor(prog, ctx, { exclude: ['TotalCoins'] })),
-    run instanceof Map && panel('Run options', 'RunMetaSaveData', fieldsEditor(run, ctx)));
+    run instanceof Map && panel('Run options', 'RunMetaSaveData', fieldsEditor(run, ctx)),
+    experimentalPanel);
 }
 
 // ---------------------------------------------------------------- settings view

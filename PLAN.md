@@ -30,7 +30,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Coins editor (keeps both TotalCoins fields in sync)
 - [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
 - [ ] Gem editors (frequencies, rarities, card gem slots) — after meaning is confirmed
-- [x] Power-up max levels from shop screenshot (Charm still unknown)
+- [x] Power-up max levels from shop screenshot
+- [x] `PowerUp_Charm` (not in the game shop) moved to a collapsed "Experimental" section — mechanism: `experimental` map in `data/ids.json`
 - [x] Settings editor (generic fields, volume sliders)
 - [x] Raw JSON view for everything else (lossless)
 - [x] Export: download edited file + original backup, validate before download
