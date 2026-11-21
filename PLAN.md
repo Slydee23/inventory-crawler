@@ -36,7 +36,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Coins editor (keeps both TotalCoins fields in sync)
 - [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
 - [x] Gems tab: 64 gems by rarity (from game data), check = UnlockedGemRarities [rarity] + unlock achievement (shared unlocks handled), 39 wiki names
-- [ ] Gem rarity setting + ban (game feature): `GemFrequencies` is probably the player-set rarity (defaults = game rarity), `SealedGems` probably banned gems. Need a save where the user changed one rarity and banned one gem to learn the format, then add a rarity selector + ban toggle per gem
+- [x] Gem rarity setting + seal (Jeweller feature): selector + seal toggle per gem; editor output verified identical to a game-written save (Coin Count Gem rarity change, Decimate Gem sealed)
 - [ ] Card gem slots (CardGemSlots) editor — max slots per card unknown
 - [ ] In-game test: a gem unlocked via the editor drops in runs
 - [x] Power-up max levels from shop screenshot

@@ -431,7 +431,9 @@
     "GemConfig_Switch": "Switch Gem: Find 5 Gems in breakable Coral in Moongolow biome.",
     "GemConfig_TripleDamage": "Triple Damage Gem: Deal 500,000 damage.",
     "GemConfig_Uncrackable": "Uncrackable Gem: Defeat The Trickster.",
-    "GemConfig_YinYang": "Yin Yang Gem: Complete Berserk Wood."
+    "GemConfig_YinYang": "Yin Yang Gem: Complete Berserk Wood.",
+    "GemConfig_Jingle": "Coin Count Gem: Collect 100,000 coins.",
+    "GemConfig_Demi": "Decimate Gem: Deal 666,666 damage."
   },
   "displayNames": {
     "FCC_Antonio": "Antonio Belpaese",
@@ -571,7 +573,9 @@
     "GemConfig_Nduja": "Nduja Gem",
     "GemConfig_Preserve": "Freeze Gem",
     "GemConfig_ReverseCombo": "Reverse Combo Gem",
-    "GemConfig_YinYang": "Yin Yang Gem"
+    "GemConfig_YinYang": "Yin Yang Gem",
+    "GemConfig_Jingle": "Coin Count Gem",
+    "GemConfig_Demi": "Decimate Gem"
   },
   "characterPrices": {
     "FCC_Antonio": 0,

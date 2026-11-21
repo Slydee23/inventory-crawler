@@ -567,7 +567,55 @@ function cardsView(ctx) {
     h('p', { class: 'note' }, 'Checking a card marks it as discovered and sets its unlock (if it has one), so it can show up in runs. Crawler cards only get "discovered" — unlock characters in the Characters tab.'));
 }
 
-const GEM_RARITIES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
+// In-game names (internally Common, Uncommon, Rare, Epic, Legendary)
+const GEM_RARITIES = ['Common', 'Uncommon', 'Rare', 'Very Rare', 'Ultra Rare'];
+
+/**
+ * Per-gem rarity setting and seal (ban), as done at the Jeweller in-game:
+ *  - GemFrequencies[{Key, Value}]        = selected rarity
+ *  - UnlockedGemRarities[{Key, Value:[]}] = rarities available for the gem (new ones are appended)
+ *  - SealedGems / PreviouslySealedGems   = banned gems / ban history (string lists)
+ */
+function gemSettingsPanel(ctx, p, ids, rarity, groups) {
+  const freq = p.arr(p.prog, 'GemFrequencies');
+  const unlocked = p.arr(p.prog, 'UnlockedGemRarities');
+  const sealed = p.arr(p.prog, 'SealedGems');
+  const prevSealed = p.arr(p.prog, 'PreviouslySealedGems');
+  if (!freq || !sealed) return null;
+  const rows = (list) => h('div', { class: 'fields gem-settings' }, list.filter((id) => kvGet(freq, id) instanceof JsonNumber).map((id) => {
+    const cur = kvGet(freq, id).value;
+    const select = h('select', {
+      'aria-label': `Rarity of ${prettify(id)}`,
+      onchange: (e) => {
+        const n = Number(e.target.value);
+        kvSet(freq, id, JsonNumber.int(n));
+        // the game appends a newly selected rarity to the gem's available rarities
+        const avail = unlocked && kvGet(unlocked, id);
+        if (Array.isArray(avail) && !avail.some((x) => x instanceof JsonNumber && x.value === n)) avail.push(JsonNumber.int(n));
+        ctx.changed();
+      },
+    }, GEM_RARITIES.map((name, i) => h('option', {
+      value: String(i), selected: i === cur,
+    }, i === rarity[id] ? `${name} (default)` : name)));
+    const seal = h('input', {
+      type: 'checkbox', checked: sealed.includes(id), 'aria-label': `Seal ${prettify(id)}`,
+      onchange: (e) => {
+        const i = sealed.indexOf(id);
+        if (e.target.checked) {
+          if (i < 0) sealed.push(id);
+          if (prevSealed && !prevSealed.includes(id)) prevSealed.push(id);
+        } else if (i >= 0) sealed.splice(i, 1);
+        ctx.changed();
+      },
+    });
+    return h('div', { class: 'field', 'data-id': `settings:${id}` },
+      h('span', { class: 'field-label' }, prettify(id), h('small', null, id)),
+      h('span', { class: 'field-control' }, select, h('label', { class: 'seal', title: 'Sealed gems never drop' }, seal, ' Seal')));
+  }));
+  return panel('Rarity & seal', 'GemFrequencies · SealedGems',
+    groupedSections(ids, groups.map((g) => ({ ...g, name: `${g.name} by default` })), rows, { key: 'gem-settings', open: false }),
+    h('p', { class: 'note' }, 'Like the Jeweller in-game: change how rare a gem is, or seal it so it never drops. Sealed gems: ' + (sealed.length ? sealed.map(prettify).join(', ') : 'none') + '.'));
+}
 
 function gemsView(ctx) {
   const p = progression(ctx);
@@ -613,6 +661,7 @@ function gemsView(ctx) {
     unlockAllPanel(ctx, 'Gems', 'UnlockedGemRarities',
       groupedSections(regular, groups, checklist, { key: 'gems' }),
       h('p', { class: 'note' }, 'Checking a gem unlocks it (it can drop in runs) and sets its unlock achievement. Some unlocks give several gems at once. Grouped by rarity from the game data.')),
+    gemSettingsPanel(ctx, p, regular, rarity, groups),
     experimentalPanel(p, all.filter(p.isExperimental), checklist(all.filter(p.isExperimental))));
 }
 

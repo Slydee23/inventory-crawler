@@ -474,3 +474,18 @@ details.group:not([open]) > summary { margin-bottom: 4px; }
 /* "Unlock all" in panel titles */
 .panel-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
 .panel-title .unlock-all { margin-left: auto; letter-spacing: 1px; text-shadow: none; }
+
+/* gem rarity & seal */
+select {
+  font: 14px var(--body);
+  color: var(--text);
+  background: #0b0812;
+  border: 2px solid var(--gold-lo);
+  padding: 4px 6px;
+  border-radius: var(--radius);
+}
+.gem-settings .seal { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.fields.gem-settings { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+.gem-settings .field-control { flex-wrap: nowrap; }
+.gem-settings .field-label { min-width: 0; }
+@media (max-width: 560px) { .fields.gem-settings { grid-template-columns: 1fr; } }
