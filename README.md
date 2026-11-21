@@ -10,6 +10,8 @@ Unofficial fan project, not affiliated with poncle.
 
 ## Credits
 
+Unlock requirements and names: [Vampire Survivors Wiki](https://vampire.survivors.wiki/w/Crawlers:Unlocks) (CC BY-SA).
+
 Pixel font: [Silkscreen](https://github.com/googlefonts/silkscreen) by Jason Kottke, SIL Open Font License 1.1 (`fonts/OFL.txt`).
 
 ## License

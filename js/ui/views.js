@@ -442,14 +442,20 @@ function achievementsView(ctx) {
   const ach = p && p.achievements;
   if (!ach) return notInSave('Achievements');
   const all = union(p.ids.apk?.achievements ?? [], p.ids.achievements, p.kvKeys(ach)).filter((id) => id && !p.isHidden(id));
-  const groups = ACHIEVEMENT_CATEGORIES.map((name) => ({ name, ids: all.filter((id) => achievementCategory(id) === name) }));
-  return panel('Achievements & unlocks', 'AchievementsUnlocked',
-    h('p', { class: 'note' }, `All ${all.length} unlocks of the game (test/unused entries hidden). Most content in Vampire Crawlers (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these.`),
-    groupedSections(all, groups, (list) => idChecklist(ctx, {
-      ids: list,
-      isOn: (id) => kvGet(ach, id) === true,
-      set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
-    })));
+  const regular = all.filter(p.isRegular);
+  const exp = all.filter(p.isExperimental);
+  const groups = ACHIEVEMENT_CATEGORIES.map((name) => ({ name, ids: regular.filter((id) => achievementCategory(id) === name) }));
+  const checklist = (list) => idChecklist(ctx, {
+    ids: list,
+    isOn: (id) => kvGet(ach, id) === true,
+    set: (id, on) => (on ? kvSet(ach, id, true) : kvDelete(ach, id)),
+    hints: p.ids.unlockHints ?? {},
+  });
+  return h('div', null,
+    panel('Achievements & unlocks', 'AchievementsUnlocked',
+      h('p', { class: 'note' }, `${regular.length} unlocks of the game. Most content (characters, shop tiers, relics, dungeons, gems, arcanas) is gated by these. Hover an entry for its in-game requirement (from the wiki, where known).`),
+      groupedSections(regular, groups, checklist)),
+    experimentalPanel(p, exp, checklist(exp)));
 }
 
 function otherView(ctx) {

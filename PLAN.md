@@ -48,6 +48,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] In-game test power-ups: levels of already unlocked power-ups apply; locked ones (e.g. Deal Count, shop tier 3) stay hidden → power-ups also need their unlock
 - [x] **Unlocks**: APK scan (`tools/extract-apk-ids.mjs`) → 257 unlock IDs; Characters tab sets unlock + purchase; power-up tiers have "Unlocked in shop"; Achievements tab lists all unlocks by category
 - [ ] In-game test: MissingN0 playable with unlock + purchase; Deal Count visible after ShopTier3 unlock
+- [x] Wiki cross-check (data/wiki-unlocks.json, 182 wiki unlocks): 159 matched directly, rest classified → 218 regular unlocks (with wiki requirement tooltips), 36 experimental, placeholders hidden
+- [ ] **Find out which experimental entries are useless, then remove them** (currently: 12 unknown relics, Soda dungeon, event trackers, some dungeon/gem trackers, 3 arcanas). Ideas: (1) check whether the game code/data references them anywhere besides their own definition (e.g. unlock registries, shop/museum lists) — unreferenced = dead; (2) watch saves of advanced players: anything that never shows up after late-game play is likely unused; (3) in-game test single entries with a backup
 - [ ] Greed ("After Inlaid Library"): find its unlock achievement
 - [ ] Relics tab: all 30 relics with their unlock achievements
 - [x] Full internal ID lists from the APK (all save IDs cross-checked)
