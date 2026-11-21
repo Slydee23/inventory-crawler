@@ -519,6 +519,55 @@ function cardsView(ctx) {
     h('p', { class: 'note' }, 'Checking a card marks it as discovered and sets its unlock (if it has one), so it can show up in runs. Crawler cards only get "discovered" — unlock characters in the Characters tab.'));
 }
 
+const GEM_RARITIES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
+
+function gemsView(ctx) {
+  const p = progression(ctx);
+  const unlocked = p && p.arr(p.prog, 'UnlockedGemRarities');
+  if (!unlocked) return notInSave('Gems');
+  const rarity = p.ids.apk?.gemRarity ?? {};
+  const unlockedBy = p.ids.apk?.unlockedBy ?? {};
+  const pack = p.ids.apk?.pack ?? {};
+  const ach = p.achievements;
+  const all = union(p.ids.gems, p.kvKeys(unlocked)).filter((id) => id && !p.isHidden(id));
+  // A gem is available when it has an UnlockedGemRarities entry (value = [its rarity]); the game also
+  // sets the unlock achievement. Some achievements unlock several gems at once.
+  const isUnlocked = (id) => !unlockedBy[id] || !ach || kvGet(ach, unlockedBy[id]) === true;
+  const has = (id) => p.kvKeys(unlocked).includes(id);
+  const siblings = (u) => all.filter((g) => unlockedBy[g] === u);
+  const checklist = (list, _group, onCount) => idChecklist(ctx, {
+    ids: list,
+    onCount,
+    isOn: (id) => has(id) && isUnlocked(id),
+    set: (id, on) => {
+      const u = unlockedBy[id];
+      if (on) {
+        if (!has(id) && Number.isInteger(rarity[id])) kvSet(unlocked, id, [JsonNumber.int(rarity[id])]);
+        if (u && ach) kvSet(ach, u, true);
+      } else {
+        kvDelete(unlocked, id);
+        // keep a shared unlock while another gem of it is still unlocked
+        if (u && ach && !siblings(u).some((g) => g !== id && has(g))) kvDelete(ach, u);
+      }
+    },
+    hints: Object.fromEntries(list.map((id) => [id, [
+      GEM_RARITIES[rarity[id]],
+      p.ids.hints?.[id] ?? (unlockedBy[id] ? (p.ids.unlockHints?.[unlockedBy[id]] ?? unlockedBy[id]) : 'available from the start'),
+      unlockedBy[id] && siblings(unlockedBy[id]).length > 1 && `same unlock as: ${siblings(unlockedBy[id]).filter((g) => g !== id).map(prettify).join(', ')}`,
+      pack[id] === 'Blueberries' && 'Death Parade update',
+      p.ids.experimental?.[id],
+    ].filter(Boolean).join(' · ')])),
+    links: linksTo(ctx, list, unlockedBy, 'achievements', '→ Unlock'),
+  });
+  const regular = all.filter(p.isRegular);
+  const groups = GEM_RARITIES.map((name, i) => ({ name, ids: regular.filter((id) => rarity[id] === i) }));
+  return h('div', null,
+    panel('Gems', 'UnlockedGemRarities',
+      groupedSections(regular, groups, checklist, { key: 'gems' }),
+      h('p', { class: 'note' }, 'Checking a gem unlocks it (it can drop in runs) and sets its unlock achievement. Some unlocks give several gems at once. Grouped by rarity from the game data.')),
+    experimentalPanel(p, all.filter(p.isExperimental), checklist(all.filter(p.isExperimental))));
+}
+
 /** Category of an achievement/unlock ID (by naming convention of the game data). */
 function achievementCategory(id) {
   if (/_Character_|^MetricAchievement_Ambrojoe$/.test(id)) return 'Characters';
@@ -555,6 +604,7 @@ function achievementsView(ctx) {
       ...linksTo(ctx, list, invert(p.ids.characterUnlocks), 'characters', '→ Character'),
       ...linksTo(ctx, list, invert(p.ids.relicUnlocks), 'relics', '→ Relic'),
       ...linksTo(ctx, list, invert(Object.fromEntries(Object.entries(p.ids.apk?.unlockedBy ?? {}).filter(([k]) => k.startsWith('Card_')))), 'cards', '→ Card'),
+      ...linksTo(ctx, list, invert(Object.fromEntries(Object.entries(p.ids.apk?.unlockedBy ?? {}).filter(([k]) => k.startsWith('GemConfig_')))), 'gems', '→ Gem'),
     },
   });
   return h('div', null,
@@ -620,6 +670,7 @@ export function viewsFor(kind) {
       { id: 'relics', label: 'Relics', render: relicsView },
       { id: 'powerups', label: 'Power-ups', render: powerUpsView },
       { id: 'cards', label: 'Cards', render: cardsView },
+      { id: 'gems', label: 'Gems', render: gemsView },
       { id: 'achievements', label: 'Achievements', render: achievementsView },
       { id: 'other', label: 'Other', render: otherView },
       { id: 'raw', label: 'Raw JSON', render: rawView },

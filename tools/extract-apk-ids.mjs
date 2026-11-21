@@ -298,6 +298,16 @@ for (const o of behaviours) {
   const types = [...new Set(refsOf(o).filter((t) => t.cls === 'CardType').map((t) => t.name.replace(/^CardType_/, '')))];
   result.cardTypes[id] = types.includes('Character') ? 'Character' : types[0] ?? 'Other';
 }
+// Gem rarity (GemConfig -> GemQualityConfig); index matches GemFrequencies / UnlockedGemRarities values in saves
+const RARITY = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
+result.gemRarity = {};
+for (const o of behaviours) {
+  if (o.cls !== 'GemConfig') continue;
+  const id = idOf(o);
+  if (!result.gems.has(id)) continue;
+  const q = refsOf(o).find((t) => t.cls === 'GemQualityConfig')?.name.replace(/^GemQuality_/, '');
+  if (q && RARITY.includes(q)) result.gemRarity[id] = RARITY.indexOf(q);
+}
 for (const k of ['achievements', 'characters', 'relics', 'powerUps', 'gems', 'arcanas', 'dungeons', 'buildings', 'cards']) {
   result[k] = [...result[k]].sort();
 }

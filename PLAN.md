@@ -35,7 +35,9 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Overview: profile info, playtime, checksum status
 - [x] Coins editor (keeps both TotalCoins fields in sync)
 - [x] Unlock editors: all characters, discovered cards, relics (search + All/None), power-up levels
-- [ ] Gem editors (frequencies, rarities, card gem slots) — after meaning is confirmed
+- [x] Gems tab: 64 gems by rarity (from game data), check = UnlockedGemRarities [rarity] + unlock achievement (shared unlocks handled), 39 wiki names
+- [ ] Card gem slots (CardGemSlots) editor — max slots per card unknown
+- [ ] In-game test: a gem unlocked via the editor drops in runs
 - [x] Power-up max levels from shop screenshot
 - [x] `PowerUp_Charm` = dev leftover without effect → hidden (`hidden` in `data/ids.json`). Collapsed "Experimental" section stays available via `experimental` map for future unconfirmed IDs
 - [x] Settings editor (generic fields, volume sliders)

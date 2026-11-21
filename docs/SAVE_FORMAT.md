@@ -40,8 +40,8 @@ The game evidently re-serializes its object and compares, so output must match .
   - `AchievementsUnlocked[{Key,Value:bool}]` — prefixes `SimpleAchievement_`, `DungeonAchievement_`, `MetricAchievement_`
   - `DiscoveredCards["Card_*" | "FCC_*"]` — string list, characters appear here too
   - `CardGemSlots[{Key,Value:int}]` (100 entries) — **contains every card AND every character (`FCC_*`) in the game**, locked or not → our source for the full ID lists. Value probably = number of gem slots (e.g. `Card_B_0..3_EmptyTome` = 0..3)
-  - `GemFrequencies[{Key:"GemConfig_*",Value:int}]` (62 gem types, values 0–4 — maybe rarity tier)
-  - `UnlockedGemRarities[{Key:"GemConfig_*",Value:[int]}]` — list of unlocked rarities per gem
+  - `GemFrequencies[{Key:"GemConfig_*",Value:int}]` = each gem's **rarity** from the game data (0 Common, 1 Uncommon, 2 Rare, 3 Epic, 4 Legendary; all 62 values match `apk.gemRarity`). Game property — not edited.
+  - `UnlockedGemRarities[{Key:"GemConfig_*",Value:[rarity]}]` = gems that are **unlocked** (can drop). Set together with the gem's unlock achievement; one achievement can unlock several gems (e.g. `DungeonAchievement_Gems_01_CompMF1F1` → Area, Armor, Might, Evolve, Amount, Draw). Double Damage needs no unlock.
   - `BuildingsVisited[{Key:"TownBuilding_*",Value:bool}]`, `DungeonsVisited[{Key:"Dungeon_*",Value:bool}]`
   - `SealedGems`, `PreviouslySealedGems` (still empty — TODO)
   - `ChestsSpawned`, `IsTutorialComplete`, `IsWildCardTutorialComplete`, `UnlocksHideCompleted`, `HasUpgraded`
