@@ -3,6 +3,7 @@
 Edit your *Vampire Crawlers* save files right in your browser. Nothing is uploaded — the file never leaves your device.
 
 **▶ Open the editor: https://slydee23.github.io/inventory-crawler/**
+
 **📖 Where are my save files? → [How to](https://slydee23.github.io/inventory-crawler/howto.html)**
 
 ![Overview with gold editor](docs/screenshots/overview.png)

@@ -53,6 +53,9 @@ PLAN.md             project plan & progress
   4. New characters also need an entry in `characterUnlocks` (unlock achievement). Unconfirmed IDs → `experimental`; unused/dev leftovers → `hidden` (never shown, kept in the file).
 - Unlock model: almost everything is gated by entries in `AchievementsUnlocked`. A character needs its unlock achievement AND `CharactersPurchased`; a power-up tier needs `MetricAchievement_PowerUpShop` / `DungeonAchievement_Unlock_ShopTier2/3`.
 
+## Releases
+- Version shown in the footer of index.html and howto.html; tag `vX.Y.Z` + GitHub release with notes (`gh release create`). Bump the footer version together with the tag.
+
 ## Commands
 - **Before every commit that changes js/, css/ or data/:** `node tools/stamp-version.mjs` (cache busting: GitHub Pages lets browsers cache 10 min; this stamps a content hash into index.html import map + URLs). `tests/version.test.js` fails if forgotten.
 - Run tests: `node --test tests/`

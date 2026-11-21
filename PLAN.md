@@ -73,7 +73,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
   - Android path: `Android/data/com.poncle.vampirecrawler/…`. Android 11+ blocks third-party file managers from writing there → document: USB + PC (works), system "Files" app (device-dependent), Shizuku + ZArchiver/MiXplorer/Material Files (on-device)
 - [x] Warning badge + toast for untested save versions (`testedSaveVersions` in data/ids.json; currently 0.30.0 = game 1.6.5)
 - [x] README with features, screenshots (synthetic save), how-to, privacy, credits, disclaimer
-- [ ] Release v1.0
+- [x] Release v1.0.0 (2026-11-22)
 
 ## Open decisions
 - (?) Feature scope for MVP — which edits matter most to the user?
