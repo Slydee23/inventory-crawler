@@ -47,6 +47,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Characters
 - [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
+- [ ] In-game test: edited power-up levels are accepted (e.g. Might 1, Deal Count 1); confirms PowerUp_Speed = Deal Count; check "Refund Power Ups" behaviour
+- [ ] Unverified (wiki only): effects, base prices, shop-tier grouping
 - [ ] Relics
 - [ ] Cards
 - [ ] Achievements
