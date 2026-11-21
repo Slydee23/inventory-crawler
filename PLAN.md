@@ -26,7 +26,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Characters grouped by content release (Base game 22, Death Parade update 3); unknown IDs fall into "New / not yet categorized"
 - [ ] Verify the 22 base-game unlock hints against the wiki (currently from guides)
 - Reference: https://vampire.survivors.wiki/w/Crawlers:Characters is the most reliable source (guides were incomplete/wrong)
-- [ ] In-game test: unlocking a character via CharactersPurchased (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
+- [x] In-game test: unlocking a character (unlock achievement + CharactersPurchased) (user test on Android) — e.g. coins changed in both `ProfileSaveData.TotalCoins` and `ProgressionSaveData.TotalCoins`
 - [ ] (?) Collect a PC/Steam save to confirm cross-platform parity
 
 ## Phase 3 — Editor UI (MVP)
@@ -44,10 +44,10 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Dark, game-flavored styling (no game assets; Silkscreen OFL pixel font); mobile friendly
 
 ## Phase 3b — Category deep-dives (like Characters: full ID list, wiki names, hints, update groups)
-- [~] Characters — in-game test: purchase alone is NOT enough (MissingN0 not playable). Each character also needs its unlock achievement (e.g. `SimpleAchievement_Character_Antonio`; Imelda via `DungeonAchievement_Inn`?). Wiki Crawlers:Unlocks lists ~182 unlocks by display name only, no internal IDs
+- [x] Characters — confirmed in-game: unlock + purchase works. (Earlier: purchase alone is NOT enough (MissingN0 not playable). Each character also needs its unlock achievement (e.g. `SimpleAchievement_Character_Antonio`; Imelda via `DungeonAchievement_Inn`?). Wiki Crawlers:Unlocks lists ~182 unlocks by display name only, no internal IDs
 - [x] In-game test power-ups: levels of already unlocked power-ups apply; locked ones (e.g. Deal Count, shop tier 3) stay hidden → power-ups also need their unlock
 - [x] **Unlocks**: APK scan (`tools/extract-apk-ids.mjs`) → 257 unlock IDs; Characters tab sets unlock + purchase; power-up tiers have "Unlocked in shop"; Achievements tab lists all unlocks by category
-- [ ] In-game test: MissingN0 playable with unlock + purchase; Deal Count visible after ShopTier3 unlock
+- [x] In-game test 2026-11-21 (Android): MissingN0 + Leda playable after unlock + purchase; ShopTier3 unlock shows all tier-3 power-ups, Deal Count (glove icon) at level 1; Greed visible after its unlock; Guiding Light relic unlock marked done in the Unlocks menu; everything persists after restarting the game
 - [x] Wiki cross-check (data/wiki-unlocks.json, 182 wiki unlocks): 159 matched directly, rest classified → 218 regular unlocks (with wiki requirement tooltips), 36 experimental, placeholders hidden
 - [x] Useless entries identified from the game data (unlock links + databases + DEPRECATED flags) and hidden; 7 doubtful left in Experimental
 - [x] Greed = `DungeonAchievement_Unlock_InlaidLibrary_02`, Skip = `DungeonAchievement_Unlock_DairyPlant_01` (from game data)
@@ -55,7 +55,8 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Full internal ID lists from the APK (all save IDs cross-checked)
 - [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
-- [ ] In-game test: edited power-up levels are accepted (e.g. Might 1, Deal Count 1); confirms PowerUp_Speed = Deal Count; check "Refund Power Ups" behaviour
+- [x] In-game: edited power-up levels are accepted; PowerUp_Speed = Deal Count confirmed
+- [ ] Optional: check "Refund Power Ups" refunds edited levels sensibly
 - [x] Shop-tier grouping now from game data (effects/base prices still wiki only)
 - [x] Relics
 - [ ] Cards

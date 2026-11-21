@@ -73,6 +73,6 @@ The game evidently re-serializes its object and compares, so output must match .
 - Full ID lists still missing for relics, arcanas, dungeons, achievements (characters, cards, gems, power-ups are complete via `CardGemSlots`/`GemFrequencies`/`PowerUpEnabled`).
 - Characters: `CharactersPurchased` alone is NOT enough (tested 2026-11-21: MissingN0 stayed unplayable). The character must also be unlocked via its achievement in `AchievementsUnlocked` (Antonio: `SimpleAchievement_Character_Antonio`). Exact IDs for the other characters unknown yet.
 - Meaning of `CurrentState`, `PowerUpLevelsUnlocked` format, `SaveObjects` content during a run.
-- Verified 2026-11-21: a save edited with InventoryCrawler (coins +10k, checksum recomputed) loads on Android and the coins can be spent.
+- Verified 2026-11-21 on Android with saves edited by InventoryCrawler: coins (+10k, spendable); power-up levels; unlock + purchase makes characters playable (MissingN0, Leda); shop tier 3 unlock shows tier-3 power-ups; Greed unlock; relic unlock (Guiding Light) shows as done in the Unlocks menu; all changes persist after a restart.
 - Does the game reject a save on checksum mismatch, or just reset it? (untested)
 - Same format on PC/Switch/Xbox/iOS?
