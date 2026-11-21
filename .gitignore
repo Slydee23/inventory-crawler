@@ -1,0 +1,13 @@
+# Private save files for local analysis/testing - never commit
+samples/
+
+# Node / tooling
+node_modules/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.claude/settings.local.json
+VC Save/
