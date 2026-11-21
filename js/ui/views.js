@@ -388,15 +388,27 @@ function relicsView(ctx) {
   const p = progression(ctx);
   const relics = p && p.arr(p.run, 'EnabledRelics');
   if (!relics) return notInSave('Relics');
-  // Present = owned, Value = enabled. Unchecking keeps the relic but disables it.
-  return panel('Relics', 'EnabledRelics',
-    idChecklist(ctx, {
-      ids: union(p.ids.relics, p.kvKeys(relics)).filter(p.isRegular),
-      isOn: (id) => kvGet(relics, id) === true,
-      set: (id, on) => (on || kvGet(relics, id) !== undefined) && kvSet(relics, id, on),
-      hints: p.ids.hints ?? {},
-    }),
-    h('p', { class: 'note' }, 'Only relics seen in real saves are listed so far.'));
+  // A relic needs its unlock achievement (owned) AND an EnabledRelics entry (Value = switched on).
+  const unlocks = p.ids.relicUnlocks ?? {};
+  const ach = p.achievements;
+  const owned = (id) => !unlocks[id] || !ach || kvGet(ach, unlocks[id]) === true;
+  const all = union(p.ids.relics, p.kvKeys(relics)).filter((id) => id && !p.isHidden(id));
+  const checklist = (list) => idChecklist(ctx, {
+    ids: list,
+    isOn: (id) => kvGet(relics, id) === true && owned(id),
+    set: (id, on) => {
+      if (on) kvSet(relics, id, true); else kvDelete(relics, id);
+      if (unlocks[id] && ach) { if (on) kvSet(ach, unlocks[id], true); else kvDelete(ach, unlocks[id]); }
+    },
+    hints: Object.fromEntries(list.map((id) => [id,
+      [p.ids.hints?.[id], unlocks[id] ? `Sets: ${unlocks[id]} + enabled` : 'Sets: enabled'].filter(Boolean).join(' · ')])),
+  });
+  const exp = all.filter(p.isExperimental);
+  return h('div', null,
+    panel('Relics', 'EnabledRelics',
+      checklist(all.filter(p.isRegular)),
+      h('p', { class: 'note' }, 'Checking a relic unlocks it and switches it on. Hover a relic for its effect and where it is found (from the wiki).')),
+    experimentalPanel(p, exp, checklist(exp)));
 }
 
 function powerUpsView(ctx) {

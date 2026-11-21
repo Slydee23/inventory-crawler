@@ -51,13 +51,13 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Wiki cross-check (data/wiki-unlocks.json, 182 wiki unlocks): 159 matched directly, rest classified → 218 regular unlocks (with wiki requirement tooltips), 36 experimental, placeholders hidden
 - [ ] **Find out which experimental entries are useless, then remove them** (currently: 12 unknown relics, Soda dungeon, event trackers, some dungeon/gem trackers, 3 arcanas). Ideas: (1) check whether the game code/data references them anywhere besides their own definition (e.g. unlock registries, shop/museum lists) — unreferenced = dead; (2) watch saves of advanced players: anything that never shows up after late-game play is likely unused; (3) in-game test single entries with a backup
 - [ ] Greed ("After Inlaid Library"): find its unlock achievement
-- [ ] Relics tab: all 30 relics with their unlock achievements
+- [x] Relics tab: 19 wiki relics (names, effects, unlock + enable), 11 unknown relics in Experimental
 - [x] Full internal ID lists from the APK (all save IDs cross-checked)
 - [x] Power-ups: wiki names/effects/base prices, grouped by shop tier, Max/Reset per group
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
 - [ ] In-game test: edited power-up levels are accepted (e.g. Might 1, Deal Count 1); confirms PowerUp_Speed = Deal Count; check "Refund Power Ups" behaviour
 - [ ] Unverified (wiki only): effects, base prices, shop-tier grouping
-- [ ] Relics
+- [x] Relics
 - [ ] Cards
 - [ ] Achievements
 

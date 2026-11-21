@@ -59,7 +59,8 @@ The game evidently re-serializes its object and compares, so output must match .
 - Achievement objects have two name fields: asset name and save ID. They differ for 7 objects; the **second field is the save ID** (evidence: asset `DungeonAchievement_Unlock_TinyBridge_01_Demo` → ID `DungeonAchievement_Unlock_TinyBridge_01`). E.g. MissingNo: asset `…_MIssingNo` (typo), ID `SimpleAchievement_Character_MissingNo`.
 - Characters: unlock achievement + purchase (see `characterUnlocks` in `data/ids.json`; Imelda = `DungeonAchievement_Inn`, Mortaccio = `…_Character_Mortuccio`, Ambrojoe = `MetricAchievement_Ambrojoe`).
 - Power-up shop tiers: `MetricAchievement_PowerUpShop`, `DungeonAchievement_Unlock_ShopTier2`, `DungeonAchievement_Unlock_ShopTier3`.
-- Relics: `SimpleAchievement_Relic_*`; dungeons: `DungeonAchievement_Unlock_*`.
+- Relics: owned = unlock achievement `SimpleAchievement_Relic_*` (see `relicUnlocks`), switched on = `RunMetaSaveData.EnabledRelics[{Key:"RelicConfig_*",Value:true}]`. Starter relics (Deck Box, Milky Way Map, Rilevatore, Damage Indicators) need no unlock — real saves have them enabled without the achievement. Display names differ: `RelicConfig_PancakeOfPower` = Combo Stack, `_Blacksmith` = Stardust Anvil, `_Jeweller` = Lapidary Loupe.
+- Dungeons: `DungeonAchievement_Unlock_*`.
 
 ## SettingsData — `Data`
 `Resolution`/`RefreshRate` (Unity Vector3 incl. derived `normalized`, `magnitude`, `sqrMagnitude`), volumes (float 0–1), many bool toggles, `LocaleIdentifier`, `InputActionBindings` (null), layout indices.
