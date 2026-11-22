@@ -39,7 +39,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Gems tab: 64 gems by rarity (from game data), check = UnlockedGemRarities [rarity] + unlock achievement (shared unlocks handled), 39 wiki names
 - [x] Gem rarity setting + seal (Jeweller feature): selector + seal toggle per gem; editor output verified identical to a game-written save (Coin Count Gem rarity change, Decimate Gem sealed)
 - [x] Card gem slots: max/default per card from game data (verified with an in-game Blacksmith save), editor with Max/Default per group and "Max all" (not part of "Unlock everything")
-- [ ] In-game test: a gem unlocked via the editor drops in runs
+- [x] In-game test 2026-11-22: gems unlocked via the editor drop in runs
 - [x] Power-up max levels from shop screenshot
 - [x] `PowerUp_Charm` = dev leftover without effect → hidden (`hidden` in `data/ids.json`). Collapsed "Experimental" section stays available via `experimental` map for future unconfirmed IDs
 - [x] Settings editor (generic fields, volume sliders)
@@ -61,7 +61,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 - [x] Greed max level = 4 (confirmed by user; wiki Crawlers:Power_Ups matches the game)
 - [x] In-game: edited power-up levels are accepted; PowerUp_Speed = Deal Count confirmed
 - [x] In-game test 2026-11-21: a save with EVERYTHING unlocked via the editor (all categories) loads fine and shows everything unlocked
-- [ ] Optional: check "Refund Power Ups" refunds edited levels sensibly
+- [x] In-game test 2026-11-22: "Refund Power Ups" treats editor-set levels like bought ones — refunds their full price, resets levels to 0, shop tier unlocks stay
 - [x] Shop-tier grouping now from game data (effects/base prices still wiki only)
 - [x] Relics
 - [x] Cards: all 107 cards from game data, grouped by card type (Attack, Defense, Stat boost, Mana, Pickups, Debuff, Crawler cards), check = discovered + unlock, links to unlocks
