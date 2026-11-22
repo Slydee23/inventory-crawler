@@ -34,7 +34,12 @@ The game evidently re-serializes its object and compares, so output must match .
 
 ## SaveProfile0 — `Data`
 - `ProfileId`, `saveSystemVersion`, `BuildSKU`
-- `GameSaveData.SaveObjects[]` — empty outside a run (probably in-run state; TODO)
+- `GameSaveData.SaveObjects[{Key: <object GUID>, Value: {ComponentDataList: [{Guid: <component GUID>, SerializedData: {…}}]}}]` — **state of a running run** (empty outside a run; `ProfileSaveData.CurrentState` is 3 during a run, 2 in the village). Example run save: 21 objects. Component data seen:
+  - player state: `PlayerLevel`, `CurrentCoins` (run gold), `CurrentXp`, `TotalXp`, `MaxDeckSize`, `FccsInDeckIds`, `CardGroupStatusData[{AssetId, Count, TimeEnteredDeck}]`, `PlayerStats.Snapshot` (Health, MaxHealth, Armor, Might, Area, Luck, Greed, Mana, …) and `PlayerStats.Modifiers`, `RunAchievementIDs`, `BanishedCardGroups`, `BanishedGems`
+  - deck: `CardConfigAssetIDs[]` (deck list) and card piles `{cardPileId: DrawPile|HandPile|DiscardPile|ComboPile|ThrowingPile|FccPile, cards: [{CardConfigId, BaseCardConfigId, CardGuid, GemIds[], GemSlotCount, ManaCostModifier, IsTemporary, …}]}`
+  - dungeon progress: `{DungeonId, CompletedFloors, EventIdx, HasDefeatedLastBoss, IsRedDeathEncounter, …}`, dungeon map string, encounter (`EnemyConfigIds`, `IsActiveEncounter`), RNG state (`RunSeed`, `RandomState`), destroyed props, chest pools, water/drowner state
+  - Number literals include doubles (`0.33333334041950025`) and `3.40282347e+38` (lower-case e) — kept as-is by the lossless parser. Round trip of a run save is byte-identical.
+  - The deck is stored in several places (deck list, piles, card group counts) that must stay consistent — adding/removing cards is risky.
 - `ProfileSaveData` — `CurrentState`, `TotalCoins`, `MainCharacterId` (32-hex GUID), `SaveTimeStamp` (ISO UTC), `PlayTime` (.NET TimeSpan `hh:mm:ss.fffffff`), `SaveSlotIdx`
 - `RunMetaSaveData` — `SelectedDungeonID`, `SelectedPartyFccIds[]` (e.g. `FCC_Antonio`), `ActiveArcanasIds[]`, `EquippedArcanaIds[]`, `EnabledRelics[{Key,Value:bool}]`, mode flags (`EndlessModeActive`, `HandSizeLimitActive`, `HurryModeActive`, `IsJewellerDisabled`)
 - `ProgressionSaveData`
