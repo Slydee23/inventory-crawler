@@ -19,7 +19,7 @@ Status legend: `[ ]` open · `[x]` done · `[~]` in progress · `(?)` needs deci
 ## Phase 2 — Research game data (needs more saves)
 - [x] Diff saves after more play (`VC Save/nach-1h/`) → documented in `docs/SAVE_FORMAT.md`
 - [x] Mid-run save documented (`GameSaveData.SaveObjects`: player state, deck/piles with gems, dungeon progress, encounter, RNG); round trip byte-identical
-- [ ] (?) Run editor — decide scope with the user: low risk (run gold, HP, level/XP), medium (gems in deck cards), high (add/remove cards)
+- [ ] (not needed for now — user decision 2026-11-22) Run editor: options documented (A: run gold/HP/level, B: gems in deck cards, C: add/remove cards)
 - [x] `data/ids.json` + `tools/extract-ids.mjs`: characters (25), cards (75), gems (62), power-ups (20) complete
 - [x] Complete ID lists for all categories from the APK (database-registered content)
 - [x] Game accepts an edited save: +10k coins (both TotalCoins fields) loaded on Android and spendable in-game (2026-11-21)
