@@ -6,6 +6,8 @@ Edit your *Vampire Crawlers* save files right in your browser. Nothing is upload
 
 **📖 Where are my save files? → [How to](https://slydee23.github.io/inventory-crawler/howto.html)**
 
+Sister project: [CrawlerMenu — an in-game mod menu for Vampire Crawlers on Android](https://github.com/Slydee23/crawler-menu).
+
 ![Overview with gold editor](docs/screenshots/overview.png)
 
 ## Features
